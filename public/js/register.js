@@ -149,6 +149,35 @@ function calculateAge(dob) {
   return age;
 }
 
+
+function openAgeCriteriaModal() {
+  const modal = document.getElementById('ageCriteriaModal');
+  const okButton = document.getElementById('ageModalOk');
+  if (!modal || !okButton) return;
+  modal.hidden = false;
+  document.body.style.overflow = 'hidden';
+  okButton.focus();
+  const close = () => {
+    modal.hidden = true;
+    document.body.style.overflow = '';
+    document.getElementById('dob').focus();
+    okButton.removeEventListener('click', close);
+    modal.removeEventListener('click', onBackdrop);
+    document.removeEventListener('keydown', onKeydown);
+  };
+  const onBackdrop = (event) => { if (event.target === modal) close(); };
+  const onKeydown = (event) => {
+    if (event.key === 'Escape') close();
+    if (event.key === 'Tab') {
+      event.preventDefault();
+      okButton.focus();
+    }
+  };
+  okButton.addEventListener('click', close);
+  modal.addEventListener('click', onBackdrop);
+  document.addEventListener('keydown', onKeydown);
+}
+
 async function handleSubmit(e) {
   e.preventDefault();
   const form = e.target;
@@ -157,9 +186,8 @@ async function handleSubmit(e) {
   const dob = document.getElementById('dob').value;
   if (!dob || calculateAge(dob) < 17) {
     const message = 'Age criteria not met. Players must be at least 17 years old on the date of registration. Your registration cannot be submitted.';
-    window.alert(message);
     showMsg(message, 'error');
-    document.getElementById('dob').focus();
+    openAgeCriteriaModal();
     return;
   }
 
