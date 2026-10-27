@@ -279,6 +279,57 @@
     }
     .sponsor-cta .btn-primary { display: inline-block; width: auto; padding: 13px 28px; text-decoration: none; }
 
+  
+    /* Mobile-first home page hierarchy and alignment */
+    .identity-strip { margin: 28px auto 0; padding: 0 2px; }
+    .identity-card { align-items: center; justify-content: flex-start; min-width: 0; }
+    .identity-card strong { line-height: 1.35; }
+    .home-intro { position:relative; z-index:2; max-width:520px; margin:14px auto 0; padding:0 8px; color:#cbd5e1; font-size:.95rem; line-height:1.6; }
+    .hero { padding:56px 18px 32px; }
+    .hero-title { font-size:clamp(2.35rem, 10vw, 4rem); line-height:.98; }
+    .hero-meta { max-width:620px; margin:18px auto 0; gap:9px; }
+    .hero-meta span { display:flex; align-items:flex-start; justify-content:center; gap:6px; line-height:1.45; max-width:100%; overflow-wrap:anywhere; }
+    .container { max-width:980px; padding:18px 16px 48px; }
+    .home-quick-actions { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; margin:6px auto 30px; max-width:900px; }
+    .home-action { display:flex; align-items:center; gap:11px; min-width:0; padding:15px; color:var(--text); text-decoration:none; background:var(--card); border:1px solid var(--border); border-radius:14px; transition:border-color .2s,transform .2s; }
+    .home-action:hover { border-color:var(--gold); transform:translateY(-2px); }
+    .home-action > span:first-child { font-size:1.45rem; flex:0 0 auto; }
+    .home-action > span:nth-child(2) { min-width:0; flex:1; }
+    .home-action strong { display:block; font-family:var(--font-ui); font-size:.9rem; color:var(--gold-light); line-height:1.3; }
+    .home-action small { display:block; margin-top:5px; color:var(--muted); font-size:.75rem; line-height:1.4; }
+    .home-action b { color:var(--gold); font-size:1.15rem; }
+    .home-action.primary { border-color:rgba(245,197,24,.55); background:linear-gradient(135deg,rgba(245,197,24,.13),rgba(17,24,39,.95)); }
+    .poster-section { margin:0 auto 30px; padding:0; gap:22px; }
+    .poster-copy h2 { line-height:1.03; }
+    .poster-art img { display:block; width:100%; height:auto; }
+    .sponsor-announcement { margin-top:26px; }
+    .section-heading { margin-top:32px; }
+    footer { padding:22px 16px; text-align:center; line-height:1.6; }
+    @media(max-width:640px) {
+      .hero { padding:66px 16px 28px; }
+      .hero-title { letter-spacing:1px; }
+      .hero-meta { display:grid; grid-template-columns:1fr; max-width:390px; }
+      .hero-meta span { justify-content:flex-start; border-radius:12px; padding:11px 13px; }
+      .container { padding:14px 14px 38px; }
+      .home-quick-actions { grid-template-columns:1fr; gap:10px; margin:0 auto 24px; }
+      .home-action { padding:14px 15px; }
+      .home-action strong { font-size:.94rem; }
+      .poster-section { grid-template-columns:1fr; gap:16px; margin-bottom:26px; }
+      .poster-copy { text-align:left; }
+      .poster-copy h2 { font-size:2.1rem; }
+      .poster-copy p { font-size:.92rem; line-height:1.7; }
+      .poster-art { max-width:480px; margin:0 auto; width:100%; }
+      .sponsor-announcement { padding:22px 16px; margin-top:24px; }
+      .title-sponsor-name { font-size:1.18rem; }
+      .sponsor-names { gap:7px; }
+      .sponsor-name { padding:7px 10px; font-size:.8rem; }
+      .organizer-panel p { font-size:.9rem; }
+      .identity-strip { grid-template-columns:1fr; gap:10px; margin-top:22px; }
+      .identity-card { min-height:92px; padding:12px; gap:12px; }
+      .identity-card img { width:62px; height:62px; flex:0 0 62px; }
+      .identity-card strong { font-size:.86rem; }
+      .identity-card span { font-size:.75rem; }
+    }
   </style>
 </head>
 <body>
@@ -296,10 +347,7 @@
   <a href="/admin"    class="nav-btn">🔒 Admin</a>
 </nav>
 
-  <section class="identity-strip fade-in" aria-label="Organising organisations" style="opacity: 1; transform: translateY(0px); transition: opacity 0.5s, transform 0.5s;">
-    <div class="identity-card"><img src="public/SBKYM_Logo.jpeg" alt="SBKYM logo"><div><strong>Shri Banaskantha Yuvak Mandal</strong><span>Organiser • Pune</span></div></div>
-    <div class="identity-card"><img src="public/SBVOS.jpeg" alt="Shri Banaskantha Visa Oswal Sangh logo"><div><strong>Shri Banaskantha Visa Oswal Sangh</strong><span>Community association • Pune</span></div></div>
-  </section>
+
 
 
   <header class="hero">
@@ -308,6 +356,7 @@
   <div class="badge fade-in d1">🏏 Shri Banaskantha Yuvak Mandal • Pune</div>
   <h1 class="hero-title fade-in d2">SBKYM Premier League<br/><span style="font-size:.68em;letter-spacing:3px;">SEASON 4</span></h1>
   <p class="hero-sub fade-in d3">Cricket • Community • Sportsmanship</p>
+  <p class="home-intro">Three days of cricket, camaraderie and community pride.</p>
   <div class="hero-meta fade-in d3">
     <span>📅 <strong id="metaDates">11–13 December 2026</strong></span>
     <span>📍 <strong id="metaVenue">Tembekar Ground, Bibwewadi, Pune</strong></span>
@@ -316,7 +365,25 @@
 </header>
 
 <div class="container">
-  <!-- TITLE SPONSOR ANNOUNCEMENT -->
+  <section class="home-quick-actions" aria-label="Tournament links">
+    <a class="home-action primary" href="/register"><span>📝</span><span><strong>Player Registration</strong><small>Register to participate</small></span><b>→</b></a>
+    <a class="home-action" href="/schedule"><span>📅</span><span><strong>Match Schedule</strong><small>Fixtures and match timings</small></span><b>→</b></a>
+    <a class="home-action" href="/rules"><span>📋</span><span><strong>Tournament Rules</strong><small>Read before you play</small></span><b>→</b></a>
+  </section>
+
+  <section class="poster-section fade-in" aria-labelledby="eventPosterTitle">
+    <div class="poster-copy">
+      <h2 id="eventPosterTitle">The Cricket Celebration Is Back</h2>
+      <p>Get ready for three days of competitive cricket, team spirit, and community celebration at the SBKYM Premier League.</p>
+
+      
+    </div>
+    <a class="poster-art" href="public/SBKYM_Poster.jpeg" target="_blank" rel="noopener" aria-label="Open the official SBKYM Premier League Season 4 poster">
+      <img src="public/SBKYM_Poster.jpeg" alt="Official SBKYM Premier League Season 4 poster, 11–13 December 2026 at Tembekar Ground, Bibwewadi" loading="lazy" />
+    </a>
+  </section>
+
+    <!-- TITLE SPONSOR ANNOUNCEMENT -->
   <section class="sponsor-announcement fade-in" aria-labelledby="titleSponsorHeading">
     <h2 id="titleSponsorHeading">Official Title Sponsor</h2>
     <p class="sponsor-eyebrow">SBKYM Premier League • Season 4</p>
@@ -331,6 +398,11 @@
       <h3>Organised by Team SBKYM Pune</h3>
       <p><strong>Alkesh Lunkad</strong> — President<br/><strong>Sanghvi Rahul Bhansali</strong> — Secretary</p>
     </div>
+  </section>
+
+    <section class="identity-strip fade-in" aria-label="Organising organisations" style="opacity: 1; transform: translateY(0px); transition: opacity 0.5s, transform 0.5s;">
+    <div class="identity-card"><img src="public/SBKYM_Logo.jpeg" alt="SBKYM logo"><div><strong>Shri Banaskantha Yuvak Mandal</strong><span>Organiser • Pune</span></div></div>
+    <div class="identity-card"><img src="public/SBVOS.jpeg" alt="Shri Banaskantha Visa Oswal Sangh logo"><div><strong>Shri Banaskantha Visa Oswal Sangh</strong><span>Community association • Pune</span></div></div>
   </section>
 
 <section class="poster-section fade-in" aria-labelledby="eventPosterTitle">
