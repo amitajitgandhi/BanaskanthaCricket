@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="description" content="Official CLBPL Season 12 auction rules, retention, bidding, boosters and purse examples.">
+<title>CLBPL Season 12 – Auction Rules</title>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="public/favicon-32x32.png">
+<link rel="apple-touch-icon" href="public/apple-touch-icon.png">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="public/css/site-theme.css" rel="stylesheet">
+<style>
+.rules-intro{max-width:850px;margin:0 auto 24px;text-align:center;color:var(--muted)}
+.rules-nav{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 22px;justify-content:center}
+.rules-nav a{padding:8px 12px;border:1px solid var(--border,rgba(255,255,255,.12));border-radius:999px;color:var(--text);text-decoration:none;font-size:.9rem;background:rgba(255,255,255,.03)}
+.rules-nav a:hover{border-color:var(--gold,#d6ad54);color:var(--gold-light,#f4d98a)}
+.rules-section{scroll-margin-top:18px}.rules-section h2{display:flex;align-items:center;gap:10px}
+.section-number{display:inline-grid;place-items:center;width:32px;height:32px;flex:0 0 32px;border-radius:10px;background:rgba(212,175,55,.13);color:var(--gold-light,#f4d98a);font-family:var(--font-heading,'Bebas Neue',sans-serif)}
+.rules-section h3{margin-top:22px}.rule-list{padding-left:22px}.rule-list li{margin:8px 0;line-height:1.65}
+.table-wrap{overflow-x:auto;width:100%}.rules-table{width:100%;border-collapse:collapse;min-width:480px}
+.rules-table th,.rules-table td{padding:11px 12px;text-align:left;border-bottom:1px solid var(--border,rgba(255,255,255,.1));vertical-align:top}
+.rules-table th{color:var(--gold-light,#f4d98a);font-family:var(--font-ui,'Outfit',sans-serif);font-weight:700;font-size:.9rem}
+.rules-table td{font-size:.95rem}.rules-table tr:last-child td{border-bottom:0}.rules-table .num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.callout{border-left:3px solid var(--gold,#d6ad54);padding:12px 15px;margin:16px 0;border-radius:0 10px 10px 0;background:rgba(212,175,55,.07);line-height:1.65}
+.example-card{margin-top:18px}.example-label{display:inline-block;margin-bottom:8px;padding:4px 9px;border-radius:6px;color:var(--gold-light,#f4d98a);background:rgba(212,175,55,.12);font-size:.78rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.result-line{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:14px;padding:14px 16px;border-radius:10px;background:rgba(212,175,55,.09);border:1px solid rgba(212,175,55,.25)}
+.result-line strong{font-size:1.2rem;color:var(--gold-light,#f4d98a);white-space:nowrap}.muted-small{color:var(--muted);font-size:.88rem}
+.category-pill{display:inline-block;padding:3px 8px;border-radius:6px;font-size:.78rem;font-weight:700;background:rgba(255,255,255,.06)}
+.platinum-plus{color:#f4d98a;border:1px solid rgba(244,217,138,.4)}
+@media(max-width:600px){.rules-table th,.rules-table td{padding:9px 8px;font-size:.87rem}.result-line{align-items:flex-start;flex-direction:column;gap:5px}}
+@media print{.rules-section details:not([open])>*:not(summary){display:block!important}.rules-summary{margin-bottom:18px!important}.collapse-indicator{display:none!important}.hamburger-btn,.nav-backdrop,.nav-drawer,.rules-nav{display:none!important}body{background:#fff!important;color:#111!important}.panel{break-inside:avoid;box-shadow:none!important}}
+
+.rules-section details{width:100%}.rules-summary{display:flex;align-items:center;gap:10px;list-style:none;cursor:pointer;user-select:none;font-family:var(--font-heading,'Bebas Neue',sans-serif);font-size:1.45rem;font-weight:700;color:var(--text);line-height:1.25}.rules-summary::-webkit-details-marker{display:none}.rules-summary::marker{content:""}.collapse-indicator{margin-left:auto;flex:0 0 28px;width:28px;height:28px;display:grid;place-items:center;border:1px solid var(--border,rgba(255,255,255,.15));border-radius:8px;color:var(--gold-light,#f4d98a);font-family:var(--font-ui,'Outfit',sans-serif);font-size:1.1rem}.rules-section details:not([open]) .collapse-indicator{font-size:0}.rules-section details:not([open]) .collapse-indicator::after{content:"+";font-size:1.1rem}.rules-summary:hover{color:var(--gold-light,#f4d98a)}.rules-section details[open]>.rules-summary{margin-bottom:18px}.rules-section details:not([open])>.rules-summary{margin-bottom:0}.rules-section .rules-table{min-width:680px}
+
+
+/* Mobile-friendly auction section headers and tighter intro spacing */
+.rules-intro{margin:0 auto 12px!important;line-height:1.45}
+main.container{padding-top:10px!important}
+.hero{padding-bottom:18px!important}
+.hero-divider{margin-bottom:0!important}
+.rules-section details{width:100%}
+.rules-summary{display:flex;align-items:center;gap:8px;list-style:none;cursor:pointer;user-select:none;font-family:var(--font-ui,'Outfit',sans-serif)!important;font-size:clamp(.76rem,3.15vw,1rem)!important;font-weight:700!important;letter-spacing:0!important;color:var(--text);line-height:1.2!important;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+.section-title-text{display:block;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.section-number{width:30px;height:30px;flex:0 0 30px;font-family:var(--font-ui,'Outfit',sans-serif)!important;font-size:.95rem;font-weight:700}
+.collapse-indicator{margin-left:auto;flex:0 0 26px;width:26px;height:26px;font-family:var(--font-ui,'Outfit',sans-serif);font-size:1rem}
+.rules-section details:not([open])>.rules-summary{margin-bottom:0}
+.rules-section details[open]>.rules-summary{margin-bottom:16px}
+@media(max-width:380px){.rules-summary{font-size:.72rem!important;gap:6px}.section-number{width:27px;height:27px;flex-basis:27px}.collapse-indicator{width:24px;height:24px;flex-basis:24px}}
+
+</style>
+</head>
+<body>
+<input type="checkbox" id="navToggle" class="nav-toggle">
+<label for="navToggle" class="hamburger-btn" aria-label="Toggle menu"><span></span><span></span><span></span></label>
+<label for="navToggle" class="nav-backdrop"></label>
+<nav class="nav-drawer">
+<a href="/" class="nav-btn">🏠 Home</a><a href="/rules" class="nav-btn">📋 Rules</a><a href="/schedule" class="nav-btn">📅 Schedule</a><a href="/register" class="nav-btn">📝 Register</a><a href="/players" class="nav-btn">🏏 Players</a><a href="/auction-rules" class="nav-btn active" aria-current="page">🔨 Auction Rules</a><a href="/admin" class="nav-btn">🔒 Admin</a>
+</nav>
+<header class="hero">
+<div class="pitch-lines"></div><div class="hero-logo-wrap fade-in"><img src="public/CLB_Logo.jpg" alt="CLBPL Logo"></div>
+<div class="badge fade-in d1">🔨 Season 12 &nbsp;•&nbsp; Auction Guide</div>
+<h1 class="hero-title fade-in d2">CLBPL Season 12<br>Auction Rules</h1>
+<p class="hero-sub fade-in d3">Know your purse. Plan your squad. Bid smart.</p><div class="hero-divider fade-in d4"></div>
+</header>
+<main class="container">
+<p class="rules-intro">Official auction rules for all 16 teams.</p>
+
+<section id="squad" class="panel rules-section"><details><summary class="rules-summary"><span class="section-number">01</span><span class="section-title-text">Player Categories & Squad Composition</span><span class="collapse-indicator" aria-hidden="true">−</span></summary>
+
+<p>Each team must finish with exactly <strong>10 players</strong>.</p>
+<div class="table-wrap"><table class="rules-table"><thead><tr><th>Category</th><th class="num">Required players</th></tr></thead><tbody><tr><td>Platinum, including Platinum+</td><td class="num">4</td></tr><tr><td>Gold</td><td class="num">4</td></tr><tr><td>Silver</td><td class="num">2</td></tr><tr><td><strong>Total</strong></td><td class="num"><strong>10</strong></td></tr></tbody></table></div>
+<p>Auction order: <strong>Platinum → Gold → Silver</strong>.</p><h3>Platinum+ players</h3>
+<ul class="rule-list"><li>Platinum+ players are special players within the Platinum category, highlighted as premium players.</li><li>Platinum+ is not a separate squad category.</li><li>Any team may bid for any Platinum or Platinum+ player.</li><li>Teams may acquire multiple Platinum+ players. There is no requirement for every team to select exactly one.</li><li>Retained players count toward the required category slots.</li></ul>
+</details></section>
+
+<section id="prices" class="panel rules-section"><details><summary class="rules-summary"><span class="section-number">02</span><span class="section-title-text">Base Prices & Retention Values</span><span class="collapse-indicator" aria-hidden="true">−</span></summary>
+
+<div class="table-wrap"><table class="rules-table"><thead><tr><th>Category</th><th class="num">Base price</th><th class="num">Retention value</th></tr></thead><tbody>
+<tr><td><span class="category-pill platinum-plus">Platinum+</span></td><td class="num">25,000</td><td class="num">50,000</td></tr><tr><td>Platinum</td><td class="num">15,000</td><td class="num">30,000</td></tr><tr><td>Gold</td><td class="num">8,000</td><td class="num">15,000</td></tr><tr><td>Silver</td><td class="num">3,000</td><td class="num">5,000</td></tr>
+</tbody></table></div>
+<div class="callout"><strong>Starting purse:</strong> 1,50,000 points per team. The applicable retention value is deducted from the team's purse. A retained Platinum+ player occupies one of the four Platinum slots.</div>
+</details></section>
+
+<section id="teams" class="panel rules-section"><details><summary class="rules-summary"><span class="section-number">03</span><span class="section-title-text">Team Retention List</span><span class="collapse-indicator" aria-hidden="true">−</span></summary>
+<p class="note">Fifteen teams have retained their owners as players. Trimurti is the only team with no retention because its owner is non-playing.</p>
+<div class="table-wrap"><table class="rules-table"><thead><tr><th>Sr.</th><th>Team name</th><th>Owner name</th><th>Retained category</th><th class="num">Deduction</th></tr></thead><tbody>
+<tr><td>1</td><td>Laddha Warriors</td><td>Purshottam Laddha</td><td>Platinum</td><td class="num">30,000</td></tr><tr><td>2</td><td>Mighty Mavericks</td><td>Parth Oswal</td><td>Gold</td><td class="num">15,000</td></tr><tr><td>3</td><td>Oswal Smashers</td><td>Dhruv Oswal</td><td>Gold</td><td class="num">15,000</td></tr><tr><td>4</td><td>Siddha Strikers</td><td>Sahil Gugale</td><td>Gold</td><td class="num">15,000</td></tr><tr><td>5</td><td>Garuda Warriors</td><td>Pradeep Rawal</td><td>Silver</td><td class="num">5,000</td></tr><tr><td>6</td><td>Shyam Strikers</td><td>Divesh Oswal</td><td>Gold</td><td class="num">15,000</td></tr><tr><td>7</td><td>Tiluck Warriors</td><td>Bharat Oswal</td><td>Silver</td><td class="num">5,000</td></tr><tr><td>8</td><td>KD Strikers</td><td>Krish Gandhi</td><td>Platinum</td><td class="num">30,000</td></tr><tr><td>9</td><td>Bombay Tiles Titans</td><td>Devesh Panchal</td><td>Platinum</td><td class="num">30,000</td></tr><tr><td>10</td><td>Sparsh Strikers</td><td>Rinesh Parekh</td><td>Silver</td><td class="num">5,000</td></tr><tr><td>11</td><td>SS Strikers</td><td>Suten Shah</td><td><span class="category-pill platinum-plus">Platinum+</span></td><td class="num">50,000</td></tr><tr><td>12</td><td>Promica</td><td>Rakesh Desai</td><td>Silver</td><td class="num">5,000</td></tr><tr><td>13</td><td>Ratan Rising Stars</td><td>Pranay Oswal</td><td>Gold</td><td class="num">15,000</td></tr><tr><td>14</td><td>Trimurti</td><td>Kalpesh Oswal</td><td>No retention</td><td class="num">0</td></tr><tr><td>15</td><td>Gulty Gladiators</td><td>Harshat Chordiya</td><td>Platinum</td><td class="num">30,000</td></tr><tr><td>16</td><td>Kshetrapal Hurricanes</td><td>Pradeep Oswal</td><td>Silver</td><td class="num">5,000</td></tr>
+</tbody></table></div>
+</details></section>
+
+<section id="bidding" class="panel rules-section"><details><summary class="rules-summary"><span class="section-number">04</span><span class="section-title-text">Bidding Rules</span><span class="collapse-indicator" aria-hidden="true">−</span></summary>
+<ul class="rule-list"><li>Bidding starts at the applicable category's base price.</li><li>Every bid increase must be in multiples of <strong>1,000 points or more</strong>. Valid increases include 1,000, 2,000, 3,000, 5,000 points and so on.</li><li>Bidders may jump directly to a much higher bid, provided the increase is a multiple of 1,000 points and the team has sufficient available purse after required reservations.</li><li>Once the auctioneer declares a player sold, the winning bid is final.</li><li>Teams must comply with the mandatory purse-reservation rule before placing a bid.</li></ul></details></section>
+
+<section id="boosters" class="panel rules-section"><details><summary class="rules-summary"><span class="section-number">05</span><span class="section-title-text">Booster Rules</span><span class="collapse-indicator" aria-hidden="true">−</span></summary>
+<ul class="rule-list"><li>Each team may purchase a maximum of <strong>5 boosters</strong>.</li><li>Each booster costs <strong>₹1,000 in actual money</strong> and adds <strong>10,000 points</strong> to the team's auction purse.</li><li>Teams may purchase boosters individually or all five together.</li><li>Boosters may be purchased at any time before the relevant player's name and photograph appear on screen.</li><li>Once the player's name and photograph are displayed, no booster can be purchased for that bidding round.</li><li>The maximum of five boosters applies separately to each team.</li></ul></details></section>
+
+<section id="purse" class="panel rules-section"><details><summary class="rules-summary"><span class="section-number">06</span><span class="section-title-text">Mandatory Purse Reservation</span><span class="collapse-indicator" aria-hidden="true">−</span></summary>
+
+<p>Every team must reserve enough points to fill all its remaining mandatory player slots at their applicable base prices.</p>
+<ul class="rule-list"><li>Before placing a bid, account for the proposed bid and reserve the base-price amount for every other unfilled slot.</li><li>The reserve is calculated only for unfilled slots <strong>other than the player currently being auctioned</strong>.</li><li>A category that is already complete requires no further reserve.</li><li>As players are purchased and categories are completed, the reserve must be recalculated.</li></ul>
+
+<article class="panel example-card"><span class="example-label">Example 1</span><h3>Bidding for the Third Platinum Player with 3 Boosters</h3>
+<p><strong>Situation:</strong> The retained owner is a Platinum player (retention deduction 30,000 points). The team has purchased 3 boosters (+30,000 points), and one additional Platinum player has already been purchased for 37,000 points. The team is now bidding for its third Platinum player overall.</p>
+<h3>Purse calculation</h3><div class="table-wrap"><table class="rules-table"><tbody><tr><td>Starting purse</td><td class="num">1,50,000</td></tr><tr><td>Platinum owner retention</td><td class="num">−30,000</td></tr><tr><td>3 boosters</td><td class="num">+30,000</td></tr><tr><td>Previously purchased Platinum player</td><td class="num">−37,000</td></tr><tr><td><strong>Remaining purse</strong></td><td class="num"><strong>1,13,000</strong></td></tr></tbody></table></div>
+<h3>Reserve after the current player is purchased</h3><div class="table-wrap"><table class="rules-table"><thead><tr><th>Remaining slots after current purchase</th><th class="num">Reserve</th></tr></thead><tbody><tr><td>1 Platinum player</td><td class="num">15,000</td></tr><tr><td>4 Gold players</td><td class="num">32,000</td></tr><tr><td>2 Silver players</td><td class="num">6,000</td></tr><tr><td><strong>Total reserve</strong></td><td class="num"><strong>53,000</strong></td></tr></tbody></table></div>
+<div class="result-line"><span><strong>Maximum bid for the current Platinum player</strong><br><span class="muted-small">1,13,000 − 53,000</span></span><strong>60,000 points</strong></div></article>
+
+<article class="panel example-card"><span class="example-label">Example 2</span><h3>Bidding for a Gold Player with a Silver Retained Owner and 5 Boosters</h3>
+<p><strong>Situation:</strong> The retained owner belongs to the Silver category (retention deduction 5,000 points). The team has purchased all 5 boosters (+50,000 points). All four Platinum players have already been purchased for a combined total of <strong>1,10,000 points (illustrative amount only; actual purchase prices may differ)</strong>. The team is now bidding for its first Gold player.</p>
+<h3>Purse calculation</h3><div class="table-wrap"><table class="rules-table"><tbody><tr><td>Starting purse</td><td class="num">1,50,000</td></tr><tr><td>Silver owner retention</td><td class="num">−5,000</td></tr><tr><td>5 boosters</td><td class="num">+50,000</td></tr><tr><td>Four Platinum purchases (illustrative total)</td><td class="num">−1,10,000</td></tr><tr><td><strong>Remaining purse</strong></td><td class="num"><strong>85,000</strong></td></tr></tbody></table></div>
+<h3>Reserve after the current player is purchased</h3><div class="table-wrap"><table class="rules-table"><thead><tr><th>Remaining slots after current purchase</th><th class="num">Reserve</th></tr></thead><tbody><tr><td>Platinum</td><td class="num">0</td></tr><tr><td>3 Gold players</td><td class="num">24,000</td></tr><tr><td>1 Silver player</td><td class="num">3,000</td></tr><tr><td><strong>Total reserve</strong></td><td class="num"><strong>27,000</strong></td></tr></tbody></table></div>
+<div class="result-line"><span><strong>Maximum bid for the current Gold player</strong><br><span class="muted-small">85,000 − 27,000</span></span><strong>58,000 points</strong></div></article>
+<div class="callout"><strong>Remember:</strong> The maximum bid is the remaining purse minus the base-price reserve for all other unfilled slots.</div>
+</details></section>
+
+<section id="unsold" class="panel rules-section"><details><summary class="rules-summary"><span class="section-number">07</span><span class="section-title-text">Last-Player Allocation & Unsold Players</span><span class="collapse-indicator" aria-hidden="true">−</span></summary>
+<p>Players who remain unsold in the initial auction will be offered once again in one repeat auction round. Players still unsold after the repeat round will be allocated through a spin wheel, subject to the category rules below.</p>
+<h3>Platinum, including Platinum+</h3><ul class="rule-list"><li>The last player in the Platinum lot will automatically be allotted to the only team with an unfilled Platinum slot.</li><li>The allocation price is the average final sale price of the <strong>three lowest-priced players sold in the Platinum category</strong>, rounded to the nearest 1,000 points.</li><li>A player unsold in the initial auction will be offered once again in the repeat auction round.</li><li>If still unsold after the repeat round, the player will be allocated through a spin wheel among eligible teams at the same average-based allocation price.</li></ul>
+<h3>Gold</h3><ul class="rule-list"><li>The last player in the Gold lot will automatically be allotted to the only team with an unfilled Gold slot.</li><li>The allocation price is the average final sale price of the <strong>three lowest-priced players sold in the Gold category</strong>, rounded to the nearest 1,000 points.</li><li>A player unsold in the initial auction will be offered once again in the repeat auction round.</li><li>If still unsold after the repeat round, the player will be allocated through a spin wheel among eligible teams at the same average-based allocation price.</li></ul>
+<h3>Silver</h3><ul class="rule-list"><li>The last player in the Silver lot will automatically be allotted to the only team with an unfilled Silver slot at the Silver base price of <strong>3,000 points</strong>.</li><li>A player unsold in the initial auction will be offered once again in the repeat auction round.</li><li>If still unsold after the repeat round, the player will be allocated through a spin wheel among eligible teams at the Silver base price of <strong>3,000 points</strong>.</li></ul>
+<h3>Allocation conditions</h3><ul class="rule-list"><li>Only teams with an unfilled slot in the relevant category are eligible for spin-wheel allocation.</li><li>Teams must have sufficient purse to pay the allocation price while maintaining the required reserve for their other unfilled slots.</li><li>No team may exceed its category composition or 10-player squad limit.</li></ul></details></section>
+
+<section id="committee" class="panel rules-section">
+  <details>
+    <summary class="rules-summary">
+      <span class="section-number">08</span>
+      <span class="section-title-text">Committee Decisions & Conduct</span>
+      <span class="collapse-indicator" aria-hidden="true">+</span>
+    </summary>
+    <ul class="rule-list">
+      <li>The CLBPL Committee's decision shall be final in all auction-related matters.</li>
+      <li>No arguments or disputes against the Committee's final decisions will be entertained.</li>
+      <li>All participants are requested to cooperate with the Committee and support its decisions in the best interest of the tournament.</li>
+      <li>If you have any questions or doubts, please get them clarified with the Committee.</li>
+    </ul>
+  </details>
+</section>
+
+</main>
+<footer><p>Official Auction Rules &nbsp;•&nbsp; &copy; CLBPL Committee</p><p>Designed with ❤️ by <span class="pill pill-gold">Amit Gandhi</span></p></footer>
+</body></html>

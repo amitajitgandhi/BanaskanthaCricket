@@ -1,0 +1,9 @@
+{
+  "name": "clbpl-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Cricket Lover Boys Premier League — site + registration + admin dashboard (Vercel + Supabase)",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.4"
+  }
+}

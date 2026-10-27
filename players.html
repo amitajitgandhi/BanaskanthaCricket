@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>CLBPL Season 12 – Players</title>
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="public/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="public/favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="public/apple-touch-icon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="public/css/site-theme.css" rel="stylesheet" />
+</head>
+<body>
+
+<input type="checkbox" id="navToggle" class="nav-toggle" />
+<label for="navToggle" class="hamburger-btn" aria-label="Toggle menu"><span></span><span></span><span></span></label>
+<label for="navToggle" class="nav-backdrop"></label>
+<nav class="nav-drawer">
+  <a href="/"         class="nav-btn">🏠 Home</a>
+  <a href="/rules"    class="nav-btn">📋 Rules</a>
+  <a href="/schedule" class="nav-btn">📅 Schedule</a>
+  <a href="/register" class="nav-btn">📝 Register</a>
+  <a href="/players"  class="nav-btn active">🏏 Players</a>
+  <a href="/auction-rules" class="nav-btn">🔨 Auction</a>
+  <a href="/admin"    class="nav-btn">🔒 Admin</a>
+</nav>
+
+<header class="hero">
+  <div class="hero-logo-wrap fade-in">
+    <img src="public/CLB_Logo.jpg" alt="CLBPL Logo" />
+  </div>
+  <div class="badge">🏏 Confirmed Players</div>
+  <h1 class="hero-title">Cricket Lover Boys<br/>Premier League</h1>
+  <p class="hero-sub">Season 12</p>
+  <div class="hero-divider"></div>
+</header>
+
+<div class="container">
+  <div class="panel">
+    <h2>Confirmed Players <span id="playerCount" style="color:var(--muted); font-family:var(--font-ui); font-size:1rem;"></span></h2>
+    <p class="note">Players whose registration and payment have been confirmed by the organizers.</p>
+    <div class="table-wrap" id="playersHolder">
+      <div class="qr-loading">Loading players…</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>Official Player Roster &nbsp;•&nbsp; &copy; CLBPL Committee</p>
+  <p>Designed with ❤️ by <span class="pill pill-gold">Amit Gandhi</span></p>
+</footer>
+
+<script src="public/js/players.js"></script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+README.md
+SUPABASE_SETUP.md
+supabase
+CLBPL.csproj
+CLBPL.csproj.user
+CLBPL.slnx
+Program.cs
+Properties
+appsettings.json
+appsettings.Development.json
+CLBPL Rules
+CLBPL_S11_Rules.docx
+.gitattributes
+bin
+obj
+.vs

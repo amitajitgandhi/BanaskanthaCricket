@@ -1,0 +1,643 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>CLBPL Season 12</title>
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="public/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="public/favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="public/apple-touch-icon.png" />
+  <meta name="description" content="Cricket Lover Boys Premier League — Season 12. Pune's biggest community cricket carnival, now 16 teams and 160 players strong." />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="public/css/site-theme.css" rel="stylesheet" />
+  <style>
+    /* ══ HOME-ONLY SECTIONS ══════════════════════════ */
+    .section-heading {
+      text-align: center;
+      margin: 44px 0 8px;
+    }
+    .section-heading h2 {
+      font-family: var(--font-head);
+      font-size: clamp(1.7rem, 6vw, 2.3rem);
+      letter-spacing: 1.5px;
+      color: #fff;
+    }
+    .section-heading p {
+      font-family: var(--font-body);
+      color: var(--muted);
+      font-size: clamp(.85rem, 3.2vw, .95rem);
+      max-width: 620px;
+      margin: 10px auto 0;
+      line-height: 1.75;
+    }
+
+    /* ── Growth story ── */
+    .anniversary-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: linear-gradient(135deg, var(--gold), #c9920f);
+      color: #000;
+      font-family: var(--font-ui);
+      font-weight: 700;
+      font-size: .72rem;
+      letter-spacing: 1.5px;
+      padding: 5px 16px;
+      border-radius: 50px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .growth-compare {
+      display: flex;
+      align-items: stretch;
+      margin-top: 28px;
+      max-width: 620px;
+      margin-left: auto;
+      margin-right: auto;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--card);
+    }
+    .growth-col {
+      flex: 1;
+      min-width: 0;
+      padding: 20px 10px;
+      text-align: center;
+    }
+    .growth-col.now {
+      background: linear-gradient(160deg, rgba(245,197,24,.14), transparent);
+    }
+    .growth-tag {
+      font-family: var(--font-ui);
+      font-size: .64rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .growth-col.now .growth-tag { color: var(--gold); }
+    .growth-num {
+      font-family: var(--font-head);
+      font-size: clamp(1.5rem, 8vw, 2.4rem);
+      color: var(--gold);
+      line-height: 1;
+    }
+    .growth-label {
+      font-family: var(--font-ui);
+      font-size: .62rem;
+      color: var(--muted);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin: 3px 0 12px;
+    }
+    .growth-arrow {
+      flex: 0 0 auto;
+      width: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      color: var(--gold);
+      background: var(--card2);
+      border-left: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+    }
+    @media(max-width: 380px) {
+      .growth-arrow { width: 24px; font-size: 1rem; }
+      .growth-col { padding: 16px 6px; }
+    }
+
+    .levelup-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 22px;
+    }
+    .levelup-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--card2);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      padding: 8px 16px;
+      font-family: var(--font-ui);
+      font-size: .78rem;
+      color: var(--text);
+    }
+    .levelup-pill .up-arrow { color: var(--green); font-weight: 700; }
+
+    /* ── Sponsor showcase (past sponsors) ── */
+    .sponsor-showcase-intro {
+      max-width: 640px;
+      margin: 14px auto 0;
+      text-align: center;
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: clamp(.85rem, 3.2vw, .95rem);
+      line-height: 1.8;
+    }
+    .sponsor-chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 22px;
+    }
+    .sponsor-chip {
+      background: var(--card2);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      padding: 7px 15px;
+      font-family: var(--font-ui);
+      font-size: .78rem;
+      font-weight: 600;
+      color: var(--gold-light);
+      transition: border-color .2s;
+    }
+    .sponsor-chip:hover { border-color: var(--gold); }
+    .sponsor-chip.more { color: var(--muted); font-weight: 400; font-style: italic; }
+
+    .growth-callout {
+      margin-top: 26px;
+      text-align: center;
+      background: linear-gradient(135deg, rgba(245,197,24,.10), rgba(245,197,24,.02));
+      border: 1px solid rgba(245,197,24,.3);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      font-family: var(--font-head);
+      font-size: clamp(1.05rem, 4.5vw, 1.35rem);
+      letter-spacing: .5px;
+      color: var(--gold-light);
+    }
+    .growth-callout span { color: var(--gold); }
+
+    /* ── Sponsorship ── */
+    .sponsor-intro {
+      max-width: 680px;
+      margin: 18px auto 0;
+      text-align: center;
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: clamp(.85rem, 3.2vw, .95rem);
+      line-height: 1.85;
+    }
+    .sponsor-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 26px;
+    }
+    @media(max-width: 760px) { .sponsor-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media(max-width: 480px) { .sponsor-grid { grid-template-columns: 1fr; } }
+    .sponsor-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 18px;
+      transition: border-color .2s, box-shadow .2s, transform .2s;
+    }
+    .sponsor-card:hover { border-color: var(--gold); box-shadow: 0 8px 24px rgba(245,197,24,.08); transform: translateY(-2px); }
+    .sponsor-card .sponsor-icon { font-size: 1.7rem; margin-bottom: 10px; }
+    .sponsor-card h3 {
+      font-family: var(--font-ui);
+      font-size: .92rem;
+      font-weight: 700;
+      color: var(--gold-light);
+      margin-bottom: 6px;
+      letter-spacing: .2px;
+    }
+    .sponsor-card p {
+      font-family: var(--font-body);
+      font-size: .82rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .sponsor-cta {
+      margin-top: 30px;
+      background: linear-gradient(135deg, rgba(245,197,24,.10), rgba(245,197,24,.02));
+      border: 1px solid rgba(245,197,24,.3);
+      border-radius: var(--radius);
+      padding: 30px 22px;
+      text-align: center;
+    }
+    .sponsor-cta h3 {
+      font-family: var(--font-head);
+      font-size: clamp(1.3rem, 5vw, 1.7rem);
+      color: var(--gold-light);
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+    }
+    .sponsor-cta p {
+      font-family: var(--font-body);
+      color: var(--text);
+      font-size: clamp(.82rem, 3.2vw, .92rem);
+      line-height: 1.8;
+      max-width: 560px;
+      margin: 0 auto 18px;
+    }
+    .sponsor-cta .btn-primary { display: inline-block; width: auto; padding: 13px 28px; text-decoration: none; }
+
+    /* ── Gallery / slideshow ── */
+    .gallery-wrap {
+      margin-top: 26px;
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--card);
+      aspect-ratio: 16/10;
+      max-height: 420px;
+    }
+    .gallery-track {
+      display: flex;
+      height: 100%;
+      transition: transform .5s cubic-bezier(.4,0,.2,1);
+    }
+    .gallery-slide {
+      flex: 0 0 100%;
+      height: 100%;
+      position: relative;
+    }
+    .gallery-slide img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .gallery-placeholder {
+      width: 100%; height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: linear-gradient(160deg, var(--card2), var(--card));
+      color: var(--muted);
+      font-family: var(--font-ui);
+      text-align: center;
+      padding: 20px;
+    }
+    .gallery-placeholder .ph-icon { font-size: 2.4rem; }
+    .gallery-placeholder p { font-size: .85rem; letter-spacing: .5px; }
+    .gallery-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 14px;
+    }
+    .gallery-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--border);
+      cursor: pointer;
+      transition: background .2s, transform .2s;
+      border: none;
+      padding: 0;
+    }
+    .gallery-dot.active { background: var(--gold); transform: scale(1.3); }
+    .gallery-nav-btn {
+      position: absolute;
+      top: 50%; transform: translateY(-50%);
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: rgba(7,9,15,.55);
+      border: 1px solid rgba(245,197,24,.35);
+      color: var(--gold);
+      font-size: 1.1rem;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      z-index: 3;
+    }
+    .gallery-nav-btn.prev { left: 12px; }
+    .gallery-nav-btn.next { right: 12px; }
+    .gallery-follow {
+      text-align: center;
+      margin-top: 18px;
+    }
+
+    /* ── Caption ticker (flows right → left along the bottom of the photo) ── */
+    .gallery-caption-bar {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 48px;
+      overflow: hidden;
+      background: linear-gradient(0deg, rgba(7,9,15,.78), rgba(7,9,15,.18));
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      pointer-events: none;
+    }
+    .gallery-caption-text {
+      display: inline-block;
+      white-space: nowrap;
+      padding-left: 100%;
+      font-family: var(--font-ui);
+      font-weight: 700;
+      font-size: 1.15rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      text-shadow: 0 1px 6px rgba(0,0,0,.6);
+    }
+    @keyframes marqueeScroll {
+      0%   { transform: translate3d(0, 0, 0); }
+      100% { transform: translate3d(-100%, 0, 0); }
+    }
+  </style>
+</head>
+<body>
+
+<input type="checkbox" id="navToggle" class="nav-toggle" />
+<label for="navToggle" class="hamburger-btn" aria-label="Toggle menu"><span></span><span></span><span></span></label>
+<label for="navToggle" class="nav-backdrop"></label>
+<nav class="nav-drawer">
+  <a href="/"         class="nav-btn active">🏠 Home</a>
+  <a href="/rules"    class="nav-btn">📋 Rules</a>
+  <a href="/schedule" class="nav-btn">📅 Schedule</a>
+  <a href="/register" class="nav-btn">📝 Register</a>
+  <a href="/players"  class="nav-btn">🏏 Players</a>
+  <a href="/auction-rules" class="nav-btn">🔨 Auction</a>
+  <a href="/admin"    class="nav-btn">🔒 Admin</a>
+</nav>
+
+<header class="hero">
+  <div class="pitch-lines"></div>
+  <div class="hero-logo-wrap fade-in">
+    <img src="public/CLB_Logo.jpg" alt="CLBPL Logo" />
+  </div>
+  <div class="badge fade-in d1">🏆 Season 12 &nbsp;•&nbsp; 2026</div>
+  <h1 class="hero-title fade-in d2">Cricket Lover Boys<br/>Premier League</h1>
+  <p class="hero-sub fade-in d3">Pune's Biggest Community Cricket Carnival</p>
+  <div class="hero-meta fade-in d3">
+    <span>📅 <strong id="metaDates">Loading…</strong></span>
+    <span>📍 <strong id="metaVenue">Loading…</strong></span>
+  </div>
+  <div class="hero-divider fade-in d4"></div>
+</header>
+
+<div class="container">
+
+  <!-- GROWTH STORY -->
+  <div class="section-heading fade-in">
+    <div class="anniversary-badge">🎉 5 Years of CLBPL</div>
+    <h2>📈 Growing Every Season</h2>
+    <p>Since our very first ball on <strong style="color:var(--text);">13 June 2021</strong>, what began as a small gathering of cricket-loving friends has become one of Pune's most anticipated community tournaments. Five years and twelve seasons later, CLBPL has grown bigger, sharper, and more competitive with every edition.</p>
+  </div>
+
+  <div class="growth-compare fade-in d1">
+    <div class="growth-col">
+      <div class="growth-tag">Season 1 · 2021</div>
+      <div class="growth-num">8</div>
+      <div class="growth-label">Teams</div>
+      <div class="growth-num">56</div>
+      <div class="growth-label">Players</div>
+    </div>
+    <div class="growth-arrow">→</div>
+    <div class="growth-col now">
+      <div class="growth-tag">Season 12 · Now</div>
+      <div class="growth-num">16</div>
+      <div class="growth-label">Teams</div>
+      <div class="growth-num">160</div>
+      <div class="growth-label">Players</div>
+    </div>
+  </div>
+
+  <div class="levelup-row fade-in d2">
+    <div class="levelup-pill"><span class="up-arrow">↑</span> Level of Competition</div>
+    <div class="levelup-pill"><span class="up-arrow">↑</span> Team Arrangement</div>
+    <div class="levelup-pill"><span class="up-arrow">↑</span> Player Auction</div>
+    <div class="levelup-pill"><span class="up-arrow">↑</span> Trophies &amp; Rewards</div>
+  </div>
+
+  <!-- PAST SPONSORS / BRAND PROOF -->
+  <div class="section-heading fade-in d1" style="margin-top:56px;">
+    <h2>🏅 A Brand Built Over 5 Years</h2>
+  </div>
+  <p class="sponsor-showcase-intro fade-in d1">
+    CLBPL has become a brand over the years — proudly backed by some of the biggest names to support community cricket in Pune:
+  </p>
+  <div class="sponsor-chip-row fade-in d2">
+    <span class="sponsor-chip">Rosewood</span>
+    <span class="sponsor-chip">Rajdeep Hardware</span>
+    <span class="sponsor-chip">MG Glass</span>
+    <span class="sponsor-chip">Dhanlaxmi</span>
+    <span class="sponsor-chip">Dimora</span>
+    <span class="sponsor-chip">Protouch</span>
+    <span class="sponsor-chip">K Decor</span>
+    <span class="sponsor-chip">R Seven</span>
+    <span class="sponsor-chip">Royal Crown</span>
+    <span class="sponsor-chip">NTRM</span>
+    <span class="sponsor-chip">Royal Railing</span>
+    <span class="sponsor-chip">Aarasuri Sales</span>
+    <span class="sponsor-chip">Tara Interio</span>
+    <span class="sponsor-chip more">& many more</span>
+  </div>
+  <div class="growth-callout fade-in d3">
+    Grown From <span>8 Teams</span> to <span>16 Teams</span>
+  </div>
+
+  <!-- SPONSORSHIP -->
+  <div class="section-heading fade-in d1" style="margin-top:56px;">
+    <h2>🤝 Why Sponsor CLB Tournament</h2>
+  </div>
+  <p class="sponsor-intro fade-in d1">
+    Partnering with CLB places your brand at the heart of a dynamic sporting celebration that unites the business community and delivers measurable visibility.
+  </p>
+
+  <div class="sponsor-grid fade-in d2">
+    <div class="sponsor-card">
+      <div class="sponsor-icon">👁️</div>
+      <h3>High Visibility</h3>
+      <p>Branding across the venue, social media, and live coverage.</p>
+    </div>
+    <div class="sponsor-card">
+      <div class="sponsor-icon">🤝</div>
+      <h3>Direct Engagement</h3>
+      <p>Reach an enthusiastic Jain community audience.</p>
+    </div>
+    <div class="sponsor-card">
+      <div class="sponsor-icon">🌐</div>
+      <h3>Networking</h3>
+      <p>Connect with business leaders and influencers.</p>
+    </div>
+    <div class="sponsor-card">
+      <div class="sponsor-icon">💛</div>
+      <h3>Positive Association</h3>
+      <p>Energetic, family-friendly sporting event.</p>
+    </div>
+    <div class="sponsor-card">
+      <div class="sponsor-icon">🎶</div>
+      <h3>Entertainment Factor</h3>
+      <p>DJ &amp; Dhol keep the energy high all evening.</p>
+    </div>
+    <div class="sponsor-card">
+      <div class="sponsor-icon">🏏</div>
+      <h3>Community Impact</h3>
+      <p>Support local talent and contribute to sports development.</p>
+    </div>
+  </div>
+
+  <div class="sponsor-cta fade-in d3">
+    <h3>Let's Create Brand Together!</h3>
+    <p>Be part of one of Pune's biggest community sporting events. Build your brand, celebrate cricket, and strengthen community ties.</p>
+    <a href="https://wa.me/917798130022?text=Hi%2C%20I%27m%20interested%20in%20sponsoring%20CLBPL%20Season%2012." id="sponsorWhatsapp" target="_blank" rel="noopener" class="btn-primary">📞 Contact for Sponsorship</a>
+  </div>
+
+  <!-- GALLERY / SLIDESHOW -->
+  <div class="section-heading fade-in" style="margin-top:56px;">
+    <h2>📸 Tournament Moments</h2>
+    <p>A glimpse of the energy, excitement, and community spirit at CLBPL.</p>
+  </div>
+
+  <div class="gallery-wrap fade-in d1" id="galleryWrap">
+    <div class="gallery-caption-bar" id="galleryCaptionBar" style="display:none;">
+      <span class="gallery-caption-text" id="galleryCaptionText"></span>
+    </div>
+    <div class="gallery-track" id="galleryTrack"></div>
+  </div>
+  <div class="gallery-dots" id="galleryDots"></div>
+
+  <div class="gallery-follow fade-in d2">
+    <a href="https://www.facebook.com/profile.php?id=61589068418086" target="_blank" rel="noopener" class="btn gold">📘 Follow us on Facebook</a>
+  </div>
+
+</div>
+
+<footer>
+  <p style="margin-top:5px;">Cricket Lover Boys Premier League &nbsp;•&nbsp; &copy; CLBPL Committee</p>
+  <p style="margin-top:8px;"><a href="https://www.facebook.com/profile.php?id=61589068418086" target="_blank" rel="noopener" class="pill pill-gold" style="text-decoration:none;">📘 Facebook</a></p>
+  <p style="margin-top:8px;">Designed with ❤️ by <span class="pill pill-gold">Amit Gandhi</span></p>
+</footer>
+
+<script>
+  // Fade-in on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.section-heading, .growth-compare, .levelup-row, .sponsor-showcase-intro, .sponsor-chip-row, .growth-callout, .sponsor-grid, .sponsor-cta, .gallery-wrap, .gallery-follow').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(18px)';
+    el.style.transition = 'opacity .5s ease, transform .5s ease';
+    io.observe(el);
+  });
+
+  // Tournament dates/venue, from /api/config
+  // (Sponsorship WhatsApp number is hardcoded above, separate from the
+  // registration-query contact in lib/config.js)
+  async function loadConfig() {
+    try {
+      const res = await fetch('/api/config');
+      const cfg = await res.json();
+      document.getElementById('metaDates').textContent = cfg.eventDates;
+      document.getElementById('metaVenue').textContent = cfg.venue;
+    } catch (err) {
+      console.error('Could not load tournament config', err);
+    }
+  }
+  loadConfig();
+
+  // Gallery / slideshow — add new photos to public/gallery/ and list them
+  // here. The caption shown on each photo is auto-generated from its
+  // filename (underscores/CamelCase become spaces, e.g.
+  // "Season11_RunnerUp.jpg" -> "Season 11 Runner Up").
+  const galleryImages = [
+    'public/gallery/Committee.jpg',
+    'public/gallery/Food_Area_Ribbon_Cutting.jpg',
+    'public/gallery/Ground_Ribbon_Cutting.jpg',
+    'public/gallery/Player_Auction.jpg',
+    'public/gallery/Season11_RunnerUp.jpg',
+    'public/gallery/Season11_Winner.jpg',
+    'public/gallery/Sponsor_Felicitation.jpg',
+    'public/gallery/Trophy_Reveal_by_Sponsor.jpg',
+  ];
+
+  const SMALL_WORDS = new Set(['by', 'of', 'the', 'and', 'a', 'an', 'in', 'on', 'for', 'to', 'vs']);
+
+  function filenameToCaption(path) {
+    let name = path.split('/').pop().replace(/\.[^/.]+$/, ''); // strip folder + extension
+    name = name.replace(/[_-]+/g, ' ');                        // underscores/hyphens -> spaces
+    name = name.replace(/([a-z])([A-Z])/g, '$1 $2');            // camelCase -> spaced
+    name = name.replace(/([A-Za-z])(\d)/g, '$1 $2');            // letter|digit boundary
+    name = name.replace(/(\d)([A-Za-z])/g, '$1 $2');
+    name = name.replace(/\s+/g, ' ').trim();
+    return name.split(' ').map((w, i) => {
+      const lw = w.toLowerCase();
+      if (i > 0 && SMALL_WORDS.has(lw)) return lw;
+      return w.charAt(0).toUpperCase() + w.slice(1).toLowerCase();
+    }).join(' ');
+  }
+
+  const track = document.getElementById('galleryTrack');
+  const dotsWrap = document.getElementById('galleryDots');
+  const captionBar = document.getElementById('galleryCaptionBar');
+  const captionText = document.getElementById('galleryCaptionText');
+  let current = 0;
+  let timer = null;
+
+  function renderGallery() {
+    if (!galleryImages.length) {
+      track.innerHTML = `
+        <div class="gallery-slide">
+          <div class="gallery-placeholder">
+            <div class="ph-icon">🏏📷</div>
+            <p>Photos coming soon — stay tuned!</p>
+          </div>
+        </div>`;
+      dotsWrap.innerHTML = '';
+      captionBar.style.display = 'none';
+      return;
+    }
+    track.innerHTML = galleryImages.map(src => `
+      <div class="gallery-slide"><img src="${src}" alt="${filenameToCaption(src)} — CLBPL" loading="lazy" /></div>
+    `).join('');
+    dotsWrap.innerHTML = galleryImages.map((_, i) => `
+      <button class="gallery-dot${i === 0 ? ' active' : ''}" data-i="${i}" aria-label="Go to photo ${i + 1}"></button>
+    `).join('');
+    dotsWrap.querySelectorAll('.gallery-dot').forEach(dot => {
+      dot.addEventListener('click', () => goTo(parseInt(dot.dataset.i, 10)));
+    });
+    captionBar.style.display = 'flex';
+    updateCaption(0);
+    startAutoplay();
+  }
+
+  function updateCaption(i) {
+    const caption = filenameToCaption(galleryImages[i]);
+    captionText.textContent = caption;
+    // restart the marquee animation for the new caption
+    captionText.style.animation = 'none';
+    void captionText.offsetWidth; // force reflow
+    const duration = Math.max(6, caption.length * 0.22).toFixed(1);
+    captionText.style.animation = `marqueeScroll ${duration}s linear infinite`;
+  }
+
+  function goTo(i) {
+    current = (i + galleryImages.length) % galleryImages.length;
+    track.style.transform = `translateX(-${current * 100}%)`;
+    dotsWrap.querySelectorAll('.gallery-dot').forEach((d, idx) => d.classList.toggle('active', idx === current));
+    updateCaption(current);
+  }
+
+  function startAutoplay() {
+    if (timer) clearInterval(timer);
+    if (galleryImages.length > 1) {
+      timer = setInterval(() => goTo(current + 1), 4000);
+    }
+  }
+
+  renderGallery();
+</script>
+
+</body>
+</html>

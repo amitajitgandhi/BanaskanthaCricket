@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>CLBPL Season 12 – Schedule</title>
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="public/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="public/favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="public/apple-touch-icon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --gold:        #f5c518;
+      --gold-light:  #ffe066;
+      --green:       #22c55e;
+      --darker:      #07090f;
+      --dark:        #0d1117;
+      --card:        #111827;
+      --card2:       #161d2e;
+      --border:      #1e2d4a;
+      --text:        #e2e8f0;
+      --muted:       #64748b;
+      --red:         #ef4444;
+      --blue:        #3b82f6;
+      --radius:      14px;
+      --font-head:   'Bebas Neue', sans-serif;
+      --font-body:   'Outfit', sans-serif;
+      --font-ui:     'Space Grotesk', sans-serif;
+    }
+
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--darker);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    img { max-width:100%; display:block; }
+
+    /* ══ HERO ═══════════════════════════════════════ */
+    .hero {
+      position: relative;
+      text-align: center;
+      padding-top: max(56px, env(safe-area-inset-top, 56px));
+      padding-bottom: 48px;
+      padding-left: 16px;
+      padding-right: 16px;
+      background:
+        radial-gradient(ellipse 90% 55% at 50% 0%, rgba(245,197,24,.22) 0%, transparent 65%),
+        linear-gradient(180deg, #0c1422 0%, var(--darker) 100%);
+      overflow: hidden;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(1px 1px at 20% 35%, rgba(245,197,24,.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 75% 18%, rgba(245,197,24,.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 55% 70%, rgba(255,255,255,.3) 0%, transparent 100%),
+        radial-gradient(1px 1px at 10% 60%, rgba(255,255,255,.2) 0%, transparent 100%),
+        radial-gradient(1px 1px at 90% 55%, rgba(245,197,24,.3) 0%, transparent 100%);
+      pointer-events: none;
+    }
+    .pitch-lines {
+      position: absolute;
+      bottom: 0; left: 50%;
+      transform: translateX(-50%);
+      width: min(260px,70vw); height: 55px;
+      border: 1.5px solid rgba(245,197,24,.22);
+      border-bottom: none;
+      border-radius: 4px 4px 0 0;
+    }
+
+    /* logo */
+    .hero-logo-wrap {
+      position: relative; z-index: 2;
+      margin: 0 auto 20px;
+      width: min(120px, 30vw);
+      height: min(120px, 30vw);
+      border-radius: 50%;
+      border: 3px solid var(--gold);
+      box-shadow: 0 0 32px rgba(245,197,24,.4), 0 0 70px rgba(245,197,24,.14);
+      overflow: hidden;
+      background: #0d1117;
+    }
+    .hero-logo-wrap img { width:100%; height:100%; object-fit:fill; display:block; }
+
+    .badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: linear-gradient(135deg, var(--gold), #c9920f);
+      color: #000;
+      font-family: var(--font-ui); font-weight: 700;
+      font-size: .72rem; letter-spacing: 2.5px;
+      padding: 5px 18px; border-radius: 50px;
+      text-transform: uppercase; margin-bottom: 18px;
+      position: relative; z-index: 2;
+    }
+
+    .hero-title {
+      font-family: var(--font-head);
+      font-size: clamp(2.6rem, 9vw, 5rem);
+      line-height: .95; letter-spacing: 2px;
+      background: linear-gradient(160deg, #fff 0%, var(--gold-light) 45%, var(--gold) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      position: relative; z-index: 2;
+    }
+
+    .hero-sub {
+      margin-top: 12px;
+      color: var(--muted);
+      font-family: var(--font-ui);
+      font-size: clamp(.78rem, 3.2vw, .92rem);
+      letter-spacing: 1.5px;
+      position: relative; z-index: 2;
+    }
+
+    .hero-divider {
+      width: 80px; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 22px auto 0;
+    }
+
+    /* ══ STATS ══════════════════════════════════════ */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      padding: 28px 14px 6px;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    @media(max-width:480px){ .stats-row { grid-template-columns: repeat(2,1fr); } }
+
+    .stat-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 8px;
+      text-align: center;
+      position: relative; overflow: hidden;
+      transition: transform .2s, border-color .2s;
+    }
+    .stat-card:hover { transform: translateY(-3px); border-color: var(--gold); }
+    .stat-card::before {
+      content:''; position:absolute;
+      top:0; left:0; right:0; height:2px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    }
+    .stat-num  { font-family: var(--font-head); font-size: clamp(1.5rem,5.5vw,2rem); color:var(--gold); line-height:1; }
+    .stat-label{ font-family: var(--font-ui); font-size:.62rem; color:var(--muted); letter-spacing:1.5px; text-transform:uppercase; margin-top:4px; }
+
+    /* ══ NAV ════════════════════════════════════════ */
+    .page-nav {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      padding: 18px 14px 0;
+    }
+    .nav-btn {
+      font-family: var(--font-ui);
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 7px 18px;
+      border-radius: 50px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      background: var(--card2);
+      transition: border-color .2s, color .2s;
+    }
+    .nav-btn:hover, .nav-btn.active {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    /* ══ CONTAINER ══════════════════════════════════ */
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 16px 14px 72px;
+    }
+
+    /* ══ DAY BLOCK ══════════════════════════════════ */
+    .day-block {
+      margin-top: 20px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: border-color .25s;
+    }
+    .day-block:has(.day-toggle:checked) {
+      border-color: rgba(245,197,24,.5);
+    }
+
+    .day-toggle { display: none; }
+
+    .day-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px;
+      background: var(--card2);
+      cursor: pointer;
+      user-select: none;
+      -webkit-user-select: none;
+      min-height: 64px;
+      transition: background .2s;
+    }
+    .day-header:active { background: #1f2e47; }
+    .day-toggle:checked ~ .day-header {
+      background: linear-gradient(135deg, rgba(245,197,24,.22), rgba(245,197,24,.10));
+      border-bottom: 1px solid rgba(245,197,24,.3);
+    }
+
+    .day-icon {
+      font-size: 1.3rem;
+      width: 42px; height: 42px;
+      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, rgba(245,197,24,.14), rgba(245,197,24,.04));
+      border: 1px solid rgba(245,197,24,.25);
+      border-radius: 10px;
+      flex-shrink: 0;
+    }
+
+    .day-title-wrap { flex: 1; }
+    .day-title {
+      font-family: var(--font-head);
+      font-size: clamp(1.2rem, 4.5vw, 1.5rem);
+      letter-spacing: 1.5px;
+      color: #fff;
+      line-height: 1.1;
+    }
+    .day-subtitle {
+      font-family: var(--font-ui);
+      font-size: .72rem;
+      color: var(--muted);
+      letter-spacing: 1px;
+      margin-top: 2px;
+    }
+
+    .day-badge {
+      font-family: var(--font-ui);
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      padding: 3px 10px;
+      border-radius: 50px;
+      background: var(--gold-dim, rgba(245,197,24,.15));
+      color: var(--gold);
+      white-space: nowrap;
+    }
+
+    .chevron {
+      width: 22px; height: 22px;
+      fill: none; stroke: var(--gold);
+      stroke-width: 2.5;
+      stroke-linecap: round; stroke-linejoin: round;
+      flex-shrink: 0;
+      transition: transform .35s cubic-bezier(.4,0,.2,1);
+    }
+    .day-toggle:checked ~ .day-header .chevron {
+      transform: rotate(180deg);
+    }
+
+    /* body panel */
+    .day-body {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows .35s cubic-bezier(.4,0,.2,1);
+      background: var(--dark);
+    }
+    .day-body-inner { overflow: hidden; padding: 0 14px; }
+    .day-toggle:checked ~ .day-body { grid-template-rows: 1fr; }
+    .day-toggle:checked ~ .day-body .day-body-inner { padding: 16px 14px 20px; }
+
+    /* ══ MATCH TABLE ════════════════════════════════ */
+    .match-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .match-table thead tr {
+      border-bottom: 1px solid rgba(245,197,24,.25);
+    }
+    .match-table th {
+      font-family: var(--font-ui);
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      padding: 8px 10px;
+      text-align: left;
+    }
+    .match-table tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background .15s;
+    }
+    .match-table tbody tr:last-child { border-bottom: none; }
+    .match-table tbody tr:hover { background: rgba(245,197,24,.04); }
+
+    .match-table td {
+      font-family: var(--font-body);
+      font-size: clamp(.78rem, 3vw, .88rem);
+      color: var(--text);
+      padding: 11px 10px;
+      vertical-align: middle;
+    }
+
+    /* match number */
+    .td-num {
+      font-family: var(--font-head);
+      font-size: clamp(.9rem, 3.5vw, 1.1rem);
+      color: var(--muted);
+      width: 42px;
+    }
+
+    /* time pill */
+    .td-time {
+      white-space: nowrap;
+    }
+    .time-pill {
+      display: inline-block;
+      background: rgba(59,130,246,.12);
+      border: 1px solid rgba(59,130,246,.25);
+      color: #93c5fd;
+      font-family: var(--font-ui);
+      font-size: .7rem;
+      font-weight: 600;
+      padding: 2px 10px;
+      border-radius: 50px;
+      white-space: nowrap;
+    }
+
+    /* fixture */
+    .td-fixture {
+      font-weight: 500;
+    }
+    .team-tag {
+      display: inline-block;
+      background: rgba(245,197,24,.12);
+      border: 1px solid rgba(245,197,24,.22);
+      color: var(--gold);
+      font-family: var(--font-ui);
+      font-size: .72rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+    .vs-sep {
+      display: inline-block;
+      color: var(--muted);
+      font-size: .7rem;
+      margin: 0 6px;
+      font-family: var(--font-ui);
+    }
+    .team-tag small {
+      font-size: .58rem;
+      font-weight: 600;
+      opacity: .8;
+      letter-spacing: .3px;
+    }
+
+    /* ══ CEREMONY ROW ═══════════════════════════════ */
+    .ceremony-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 10px;
+      margin: 4px 0;
+      background: linear-gradient(135deg, rgba(245,197,24,.08), rgba(245,197,24,.03));
+      border: 1px solid rgba(245,197,24,.25);
+      border-radius: 10px;
+    }
+    .ceremony-icon { font-size: 1.4rem; }
+    .ceremony-text {
+      font-family: var(--font-ui);
+      font-size: clamp(.8rem, 3vw, .9rem);
+      font-weight: 700;
+      color: var(--gold-light);
+      flex: 1;
+    }
+    .ceremony-time {
+      font-family: var(--font-ui);
+      font-size: .72rem;
+      color: var(--gold);
+      font-weight: 600;
+      background: rgba(245,197,24,.12);
+      border: 1px solid rgba(245,197,24,.25);
+      padding: 2px 10px;
+      border-radius: 50px;
+    }
+
+    /* ══ HAMBURGER NAV ══════════════════════════════ */
+    .nav-toggle { display: none; }
+    .hamburger-btn {
+      position: fixed; top: max(16px, env(safe-area-inset-top, 16px)); right: 16px;
+      z-index: 50; width: 44px; height: 44px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 5px; background: var(--card2); border: 1px solid var(--border);
+      border-radius: 10px; cursor: pointer; transition: border-color .2s;
+    }
+    .hamburger-btn:hover { border-color: var(--gold); }
+    .hamburger-btn span { width: 20px; height: 2px; background: var(--gold); border-radius: 2px; transition: transform .25s, opacity .25s; }
+    .nav-toggle:checked ~ .hamburger-btn span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-toggle:checked ~ .hamburger-btn span:nth-child(2) { opacity: 0; }
+    .nav-toggle:checked ~ .hamburger-btn span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .nav-backdrop {
+      position: fixed; inset: 0; background: rgba(7,9,15,.7); backdrop-filter: blur(2px);
+      opacity: 0; pointer-events: none; transition: opacity .25s; z-index: 40; display: block;
+    }
+    .nav-toggle:checked ~ .nav-backdrop { opacity: 1; pointer-events: auto; }
+    .nav-drawer {
+      position: fixed; top: 0; right: 0; height: 100vh; width: min(260px, 78vw);
+      background: var(--dark); border-left: 1px solid var(--border); z-index: 45;
+      display: flex; flex-direction: column; gap: 10px;
+      padding: max(76px, calc(env(safe-area-inset-top, 0px) + 76px)) 20px 20px;
+      transform: translateX(100%); transition: transform .3s cubic-bezier(.4,0,.2,1);
+    }
+    .nav-toggle:checked ~ .nav-drawer { transform: translateX(0); }
+    .nav-drawer .nav-btn { width: 100%; text-align: left; border-radius: 10px; padding: 12px 16px; }
+
+    /* ══ FOOTER ═════════════════════════════════════ */
+    footer {
+      text-align: center;
+      padding: 24px 16px max(16px, env(safe-area-inset-bottom, 16px));
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-family: var(--font-ui);
+      font-size: .78rem;
+      background: var(--darker);
+    }
+    footer span { color: var(--gold); }
+
+    /* ══ ANIMATIONS ═════════════════════════════════ */
+    @keyframes fadeUp { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:translateY(0); } }
+    .fade-in { animation: fadeUp .55s ease both; }
+    .d1 { animation-delay:.08s; } .d2 { animation-delay:.16s; }
+    .d3 { animation-delay:.24s; } .d4 { animation-delay:.32s; }
+
+    /* multi-ground fixture rows (two matches at the same time, two grounds) */
+    .td-fixture-multi { display: flex; flex-direction: column; gap: 7px; }
+    .ground-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .ground-label {
+      font-family: var(--font-ui);
+      font-size: .6rem;
+      font-weight: 700;
+      color: var(--muted);
+      letter-spacing: .5px;
+      text-transform: uppercase;
+      min-width: 58px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ HAMBURGER NAV ══════════════════════════════ -->
+<input type="checkbox" id="navToggle" class="nav-toggle" />
+<label for="navToggle" class="hamburger-btn" aria-label="Toggle menu"><span></span><span></span><span></span></label>
+<label for="navToggle" class="nav-backdrop"></label>
+<nav class="nav-drawer">
+  <a href="/"         class="nav-btn">🏠 Home</a>
+  <a href="/rules"    class="nav-btn">📋 Rules</a>
+  <a href="/schedule" class="nav-btn active">📅 Schedule</a>
+  <a href="/register" class="nav-btn">📝 Register</a>
+  <a href="/players"  class="nav-btn">🏏 Players</a>
+  <a href="/auction-rules" class="nav-btn">🔨 Auction</a>
+  <a href="/admin"    class="nav-btn">🔒 Admin</a>
+</nav>
+
+<!-- ══ HERO ═════════════════════════════════════════ -->
+<header class="hero">
+  <div class="pitch-lines"></div>
+  <div class="hero-logo-wrap fade-in">
+    <img src="public/CLB_Logo.jpg" alt="CLBPL Logo" />
+  </div>
+  <div class="badge fade-in d1">📅 Official Schedule</div>
+  <h1 class="hero-title fade-in d2">
+    CLBPL Season 12<br/>Schedule
+  </h1>
+  <p class="hero-sub fade-in d3">16 Teams &nbsp;•&nbsp; 36 Matches &nbsp;•&nbsp; 3 Days</p>
+  <div class="hero-divider fade-in d4"></div>
+</header>
+
+
+<!-- ══ CONTAINER ════════════════════════════════════ -->
+<div class="container">
+
+  <!-- ── DAY 1 ──────────────────────────────────── -->
+  <div class="day-block fade-in d1">
+    <input type="checkbox" id="day1" class="day-toggle" />
+    <label for="day1" class="day-header">
+      <div class="day-icon">📅</div>
+      <div class="day-title-wrap">
+        <div class="day-title">Day 1 — Friday</div>
+        <div class="day-subtitle">11 Dec &nbsp;•&nbsp; 6 PM – 12 Midnight</div>
+      </div>
+      <span class="day-badge">6 Matches</span>
+      <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+    </label>
+    <div class="day-body">
+      <div class="day-body-inner">
+        <table class="match-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Time</th>
+              <th>Fixture</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="td-num">1</td>
+              <td class="td-time"><span class="time-pill">6:00 PM</span></td>
+              <td class="td-fixture"><span class="team-tag">A1</span><span class="vs-sep">vs</span><span class="team-tag">A16</span></td>
+            </tr>
+            <tr>
+              <td class="td-num">2</td>
+              <td class="td-time"><span class="time-pill">7:00 PM</span></td>
+              <td class="td-fixture"><span class="team-tag">A2</span><span class="vs-sep">vs</span><span class="team-tag">A15</span></td>
+            </tr>
+            <tr>
+              <td class="td-num">3</td>
+              <td class="td-time"><span class="time-pill">8:00 PM</span></td>
+              <td class="td-fixture"><span class="team-tag">A3</span><span class="vs-sep">vs</span><span class="team-tag">A14</span></td>
+            </tr>
+            <tr>
+              <td class="td-num">4</td>
+              <td class="td-time"><span class="time-pill">9:00 PM</span></td>
+              <td class="td-fixture"><span class="team-tag">A4</span><span class="vs-sep">vs</span><span class="team-tag">A13</span></td>
+            </tr>
+            <tr>
+              <td class="td-num">5</td>
+              <td class="td-time"><span class="time-pill">10:00 PM</span></td>
+              <td class="td-fixture"><span class="team-tag">A5</span><span class="vs-sep">vs</span><span class="team-tag">A12</span></td>
+            </tr>
+            <tr>
+              <td class="td-num">6</td>
+              <td class="td-time"><span class="time-pill">11:00 PM – 12:00 Midnight</span></td>
+              <td class="td-fixture"><span class="team-tag">A6</span><span class="vs-sep">vs</span><span class="team-tag">A11</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── DAY 2 ──────────────────────────────────── -->
+  <div class="day-block fade-in d2">
+    <input type="checkbox" id="day2" class="day-toggle" />
+    <label for="day2" class="day-header">
+      <div class="day-icon">📅</div>
+      <div class="day-title-wrap">
+        <div class="day-title">Day 2 — Saturday</div>
+        <div class="day-subtitle">12 Dec &nbsp;•&nbsp; 9 AM – 12 Midnight</div>
+      </div>
+      <span class="day-badge">15 Matches</span>
+      <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+    </label>
+    <div class="day-body">
+      <div class="day-body-inner">
+        <table class="match-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Time</th>
+              <th>Fixture</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="td-num">7</td>
+              <td class="td-time"><span class="time-pill">9:00 AM</span></td>
+              <td class="td-fixture"><span class="team-tag">A7</span><span class="vs-sep">vs</span><span class="team-tag">A10</span></td>
+            </tr>
+            <tr>
+              <td class="td-num">8</td>
+              <td class="td-time"><span class="time-pill">10:00 AM</span></td>
+              <td class="td-fixture"><span class="team-tag">A8</span><span class="vs-sep">vs</span><span class="team-tag">A9</span></td>
+            </tr>
+            <tr>
+              <td class="td-num">9</td>
+              <td class="td-time"><span class="time-pill">11:00 AM</span></td>
+              <td class="td-fixture"><span class="team-tag">A1</span><span class="vs-sep">vs</span><span class="team-tag">A15</span></td>
+            </tr>
+            <tr>
+              <td class="td-num">10</td>
+              <td class="td-time"><span class="time-pill">12:00 PM</span></td>
+              <td class="td-fixture"><span class="team-tag">A16</span><span class="vs-sep">vs</span><span class="team-tag">A14</span></td>
+            </tr>
+            <tr>
+              <td class="td-num">11</td>
+              <td class="td-time"><span class="time-pill">1:00 PM</span></td>
+              <td class="td-fixture"><span class="team-tag">A2</span><span class="vs-sep">vs</span><span class="team-tag">A13</span></td>
+            </tr>
+            <tr>
+              <td class="td-num">12</td>
+              <td class="td-time"><span class="time-pill">2:00 PM</span></td>
+              <td class="td-fixture"><span class="team-tag">A3</span><span class="vs-sep">vs</span><span class="team-tag">A12</span></td>
+            </tr>
+            <tr>
+              <td class="td-num">13</td>
+              <td class="td-time"><span class="time-pill">3:00 PM</span></td>
+              <td class="td-fixture"><span class="team-tag">A4</span><span class="vs-sep">vs</span><span class="team-tag">A11</span></td>
+            </tr>
+            <tr>
+              <td class="td-num">14</td>
+              <td class="td-time"><span class="time-pill">4:00 PM</span></td>
+              <td class="td-fixture"><span class="team-tag">A5</span><span class="vs-sep">vs</span><span class="team-tag">A10</span></td>
+            </tr>
+            <tr>
+              <td class="td-num">15</td>
+              <td class="td-time"><span class="time-pill">5:00 PM</span></td>
+              <td class="td-fixture"><span class="team-tag">A6</span><span class="vs-sep">vs</span><span class="team-tag">A9</span></td>
+            </tr>
+            <tr>
+              <td class="td-num">16</td>
+              <td class="td-time"><span class="time-pill">6:00 PM</span></td>
+              <td class="td-fixture"><span class="team-tag">A7</span><span class="vs-sep">vs</span><span class="team-tag">A8</span></td>
+            </tr>
+            <tr>
+              <td class="td-num">17</td>
+              <td class="td-time"><span class="time-pill">7:00 PM</span></td>
+              <td class="td-fixture"><span class="team-tag">A1</span><span class="vs-sep">vs</span><span class="team-tag">A14</span></td>
+            </tr>
+            <tr>
+              <td class="td-num">18</td>
+              <td class="td-time"><span class="time-pill">8:00 PM</span></td>
+              <td class="td-fixture"><span class="team-tag">A15</span><span class="vs-sep">vs</span><span class="team-tag">A13</span></td>
+            </tr>
+            <tr>
+              <td class="td-num">19</td>
+              <td class="td-time"><span class="time-pill">9:00 PM</span></td>
+              <td class="td-fixture"><span class="team-tag">A16</span><span class="vs-sep">vs</span><span class="team-tag">A12</span></td>
+            </tr>
+            <tr>
+              <td class="td-num">20</td>
+              <td class="td-time"><span class="time-pill">10:00 PM</span></td>
+              <td class="td-fixture"><span class="team-tag">A2</span><span class="vs-sep">vs</span><span class="team-tag">A11</span></td>
+            </tr>
+            <tr>
+              <td class="td-num">21</td>
+              <td class="td-time"><span class="time-pill">11:00 PM – 12:00 Midnight</span></td>
+              <td class="td-fixture"><span class="team-tag">A3</span><span class="vs-sep">vs</span><span class="team-tag">A10</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── DAY 3 ──────────────────────────────────── -->
+  <div class="day-block fade-in d3">
+    <input type="checkbox" id="day3" class="day-toggle" />
+    <label for="day3" class="day-header">
+      <div class="day-icon">🏆</div>
+      <div class="day-title-wrap">
+        <div class="day-title">Day 3 — Sunday</div>
+        <div class="day-subtitle">13 Dec &nbsp;•&nbsp; 9 AM – 10 PM</div>
+      </div>
+      <span class="day-badge">15 Matches</span>
+      <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+    </label>
+    <div class="day-body">
+      <div class="day-body-inner">
+        <table class="match-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Time</th>
+              <th>Fixture</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="td-num">22</td>
+              <td class="td-time"><span class="time-pill">9:00 AM</span></td>
+              <td class="td-fixture"><span class="team-tag">A4</span><span class="vs-sep">vs</span><span class="team-tag">A9</span></td>
+            </tr>
+            <tr>
+              <td class="td-num">23</td>
+              <td class="td-time"><span class="time-pill">10:00 AM</span></td>
+              <td class="td-fixture"><span class="team-tag">A5</span><span class="vs-sep">vs</span><span class="team-tag">A8</span></td>
+            </tr>
+            <tr>
+              <td class="td-num">24</td>
+              <td class="td-time"><span class="time-pill">11:00 AM</span></td>
+              <td class="td-fixture"><span class="team-tag">A6</span><span class="vs-sep">vs</span><span class="team-tag">A7</span></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Men's League Completed -->
+        <div class="ceremony-row">
+          <div class="ceremony-icon">🏁</div>
+          <div class="ceremony-text">Men's League Completed — Rankings 1–16 Calculated : 12:00 PM</div>
+        </div>
+
+        <table class="match-table" style="margin-top:4px">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Time</th>
+              <th>Fixture</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="td-num">25</td>
+              <td class="td-time"><span class="time-pill">12:00 PM</span></td>
+              <td class="td-fixture">QF1 — <span class="team-tag">Rank 1</span><span class="vs-sep">vs</span><span class="team-tag">Rank 8</span></td>
+            </tr>
+            <tr>
+              <td class="td-num">26</td>
+              <td class="td-time"><span class="time-pill">1:00 PM</span></td>
+              <td class="td-fixture">QF2 — <span class="team-tag">Rank 2</span><span class="vs-sep">vs</span><span class="team-tag">Rank 7</span></td>
+            </tr>
+            <tr>
+              <td class="td-num">27</td>
+              <td class="td-time"><span class="time-pill">2:00 PM</span></td>
+              <td class="td-fixture">QF3 — <span class="team-tag">Rank 3</span><span class="vs-sep">vs</span><span class="team-tag">Rank 6</span></td>
+            </tr>
+            <tr>
+              <td class="td-num">28</td>
+              <td class="td-time"><span class="time-pill">3:00 PM</span></td>
+              <td class="td-fixture">QF4 — <span class="team-tag">Rank 4</span><span class="vs-sep">vs</span><span class="team-tag">Rank 5</span></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Sunday Playoff Evening -->
+        <div class="ceremony-row">
+          <div class="ceremony-icon">🔥</div>
+          <div class="ceremony-text">Sunday Playoff Evening</div>
+        </div>
+
+        <table class="match-table" style="margin-top:4px">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Time</th>
+              <th>Fixture</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="td-num">29</td>
+              <td class="td-time"><span class="time-pill">4:00 PM</span></td>
+              <td class="td-fixture">
+                <div class="td-fixture-multi">
+                  <div class="ground-row">👩 <strong>Women's League — Round 1</strong></div>
+                  <div class="ground-row"><span class="ground-label">Ground 1</span><span class="team-tag">W1</span><span class="vs-sep">vs</span><span class="team-tag">W2</span></div>
+                  <div class="ground-row"><span class="ground-label">Ground 2</span><span class="team-tag">W3</span><span class="vs-sep">vs</span><span class="team-tag">W4</span></div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="td-num">30</td>
+              <td class="td-time"><span class="time-pill">5:00 PM</span></td>
+              <td class="td-fixture">🏏 <strong>Men's Semi Final 1</strong> — <span class="team-tag">QF1 <small>Winner</small></span><span class="vs-sep">vs</span><span class="team-tag">QF4 <small>Winner</small></span></td>
+            </tr>
+            <tr>
+              <td class="td-num">31</td>
+              <td class="td-time"><span class="time-pill">6:00 PM</span></td>
+              <td class="td-fixture">
+                <div class="td-fixture-multi">
+                  <div class="ground-row">👩 <strong>Women's League — Round 2</strong></div>
+                  <div class="ground-row"><span class="ground-label">Ground 1</span><span class="team-tag">W1</span><span class="vs-sep">vs</span><span class="team-tag">W3</span></div>
+                  <div class="ground-row"><span class="ground-label">Ground 2</span><span class="team-tag">W2</span><span class="vs-sep">vs</span><span class="team-tag">W4</span></div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="td-num">32</td>
+              <td class="td-time"><span class="time-pill">7:00 PM</span></td>
+              <td class="td-fixture">🏏 <strong>Men's Semi Final 2</strong> — <span class="team-tag">QF2 <small>Winner</small></span><span class="vs-sep">vs</span><span class="team-tag">QF3 <small>Winner</small></span></td>
+            </tr>
+            <tr>
+              <td class="td-num">33</td>
+              <td class="td-time"><span class="time-pill">8:00 PM</span></td>
+              <td class="td-fixture">👑 <strong>Women's Final</strong> — <span class="team-tag">Women's Rank 1</span><span class="vs-sep">vs</span><span class="team-tag">Women's Rank 2</span></td>
+            </tr>
+            <tr>
+              <td class="td-num">34</td>
+              <td class="td-time"><span class="time-pill">9:00 PM</span></td>
+              <td class="td-fixture">🏆🔥 <strong style="color:var(--gold)">CLBPL GRAND FINAL</strong> — <span class="team-tag">Men's SF1 <small>Winner</small></span><span class="vs-sep">vs</span><span class="team-tag">Men's SF2 <small>Winner</small></span></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Champion -->
+        <div class="ceremony-row">
+          <div class="ceremony-icon">🏆</div>
+          <div class="ceremony-text">CLBPL Season 12 Prize Distribution</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ══ FOOTER ═══════════════════════════════════════ -->
+<footer>
+    <p style="margin-top:5px;">Official Tournament Schedule &nbsp;•&nbsp; &copy; CLBPL Committee</p>
+    <p>Designed with ❤️ by <span class="pill pill-gold">Amit Gandhi</span></p>
+</footer>
+
+<script>
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.06 });
+
+  document.querySelectorAll('.day-block').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(18px)';
+    el.style.transition = 'opacity .5s ease, transform .5s ease';
+    io.observe(el);
+  });
+
+  // Swap placeholder team codes (A1..A16, W1..W4) for the real team names
+  // an admin has entered, where one has been set. Anything without a saved
+  // name just keeps showing its placeholder code.
+  function escapeHtmlLocal(str) {
+    return String(str ?? '').replace(/[&<>"']/g, (c) => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
+    }[c]));
+  }
+  fetch('/api/config')
+    .then((r) => (r.ok ? r.json() : {}))
+    .then((cfg) => {
+      const map = (cfg && cfg.teamNames) || {};
+      if (!map || !Object.keys(map).length) return;
+      document.querySelectorAll('.team-tag').forEach((el) => {
+        if (el.children.length) return; // skip tags that already hold a nested <small> (Winner/Loser, etc.)
+        const key = el.textContent.trim();
+        if (Object.prototype.hasOwnProperty.call(map, key)) {
+          el.innerHTML = escapeHtmlLocal(map[key]) + ' <small>' + escapeHtmlLocal(key) + '</small>';
+        }
+      });
+    })
+    .catch(() => {});
+</script>
+
+</body>
+</html>
+

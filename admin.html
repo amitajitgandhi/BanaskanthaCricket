@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>CLBPL Admin Dashboard</title>
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="public/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="public/favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="public/apple-touch-icon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="public/css/site-theme.css" rel="stylesheet" />
+</head>
+<body>
+
+<input type="checkbox" id="navToggle" class="nav-toggle" />
+<label for="navToggle" class="hamburger-btn" aria-label="Toggle menu"><span></span><span></span><span></span></label>
+<label for="navToggle" class="nav-backdrop"></label>
+<nav class="nav-drawer">
+  <a href="/"         class="nav-btn">🏠 Home</a>
+  <a href="/rules"    class="nav-btn">📋 Rules</a>
+  <a href="/schedule" class="nav-btn">📅 Schedule</a>
+  <a href="/register" class="nav-btn">📝 Register</a>
+  <a href="/players"  class="nav-btn">🏏 Players</a>
+  <a href="/auction-rules" class="nav-btn">🔨 Auction</a>
+  <a href="/admin"    class="nav-btn active">🔒 Admin</a>
+</nav>
+
+<header class="hero" style="padding-bottom:28px;">
+  <div class="badge">🔒 Admin</div>
+  <h1 class="hero-title" style="font-size:clamp(1.8rem,6vw,2.8rem);">CLBPL Season 12</h1>
+  <p class="hero-sub">Admin Dashboard</p>
+  <div class="hero-divider"></div>
+</header>
+
+<!-- ══ LOGIN ══ -->
+<div id="loginView" class="login-wrap">
+  <div class="panel">
+    <h2>Admin Login</h2>
+    <form id="loginForm">
+      <div class="field">
+        <label for="loginUser">Username</label>
+        <input type="text" id="loginUser" required autocomplete="username" />
+      </div>
+      <div class="field">
+        <label for="loginPass">Password</label>
+        <input type="password" id="loginPass" required autocomplete="current-password" />
+      </div>
+      <div id="loginMsg" class="msg"></div>
+      <button type="submit" class="btn-submit">Log In</button>
+    </form>
+  </div>
+</div>
+
+<!-- ══ DASHBOARD (hidden until authenticated) ══ -->
+<div id="dashboardView" class="container wide" hidden>
+  <div class="toolbar" style="align-items:center; justify-content:flex-end;">
+    <button class="btn" id="logoutBtn">Log Out</button>
+  </div>
+
+  <div class="tab-bar">
+    <button type="button" class="tab-btn active" data-tab="insight">📊 Insight</button>
+    <button type="button" class="tab-btn" data-tab="qr">💳 QR Codes</button>
+    <button type="button" class="tab-btn" data-tab="teams">🏷 Team Names</button>
+    <button type="button" class="tab-btn" data-tab="confirm">✅ Confirmations</button>
+  </div>
+
+  <!-- ── TAB 1: INSIGHT / SUMMARY ─────────────────── -->
+  <div id="tab-insight" class="tab-panel">
+    <div class="panel" style="margin-bottom:20px;">
+      <h2>Registration Control</h2>
+      <p class="note">Stop registrations to show visitors on the public Register page a "Registration is full" message with a WhatsApp link, instead of the form. New submissions are also blocked on the server while stopped, so this can't be bypassed from outside.</p>
+      <div class="upload-row" style="align-items:center;">
+        <span class="pill pill-gold" id="registrationStatusPill">Loading…</span>
+        <button type="button" class="btn small" id="toggleRegistrationBtn" disabled>…</button>
+      </div>
+    </div>
+
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="label">Total Registrations</div>
+        <div class="value" id="statTotal">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Confirmed</div>
+        <div class="value" id="statVerified">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Pending</div>
+        <div class="value" id="statPending">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Fees Collected (Confirmed)</div>
+        <div class="value" id="statFees">₹0</div>
+      </div>
+    </div>
+
+    <h2 style="margin-top:28px;">Payment Collection</h2>
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="label">Paid Online</div>
+        <div class="value" id="statPaidOnline">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Paid Cash to Amit</div>
+        <div class="value" id="statPaidCashAmit">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Paid Cash to Bhavesh</div>
+        <div class="value" id="statPaidCashBhavesh">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Payment Pending</div>
+        <div class="value" id="statPaymentPending">0</div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2>Export Registrations</h2>
+      <p class="note">Choose which columns to include and optionally filter the rows, then download a CSV.</p>
+      <button type="button" class="btn gold small" id="openExportBtn">⬇ Export CSV</button>
+
+      <div id="exportPanel" style="margin-top:16px;" hidden>
+        <div class="grid-2">
+          <div class="field">
+            <label for="exportStatusFilter">Status</label>
+            <select id="exportStatusFilter">
+              <option value="all">All</option>
+              <option value="Pending">Pending</option>
+              <option value="Confirmed">Confirmed</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="exportSearchFilter">Search filter</label>
+            <input type="text" id="exportSearchFilter" placeholder="Name, mobile, jersey, QR label…" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Columns to include</label>
+          <div id="exportColumnsGrid" class="export-columns-grid"></div>
+        </div>
+
+        <div class="upload-row" style="margin-top:4px;">
+          <button type="button" class="btn gold small" id="downloadExportBtn">Download CSV</button>
+          <button type="button" class="btn small" id="cancelExportBtn">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── TAB 2: QR CODES ──────────────────────────── -->
+  <div id="tab-qr" class="tab-panel" hidden>
+    <div class="panel">
+      <h2>Payment QR Codes</h2>
+      <p class="note">Upload the QR codes players can pay to. Toggle "Show on page" for the ones (and however many) you want visible on the registration form right now.</p>
+      <div id="qrAdminGrid" class="qr-admin-grid"></div>
+      <form id="qrUploadForm" class="upload-row">
+        <input type="file" id="qrFile" accept="image/*" required />
+        <input type="text" id="qrLabel" placeholder="Label (required, e.g. HDFC Bank)" required />
+        <button type="submit" class="btn gold small">Upload QR Code</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ── TAB 3: TEAM NAMES ─────────────────────────── -->
+  <div id="tab-teams" class="tab-panel" hidden>
+    <div class="panel">
+      <h2>Team Names</h2>
+      <p class="note">The schedule page shows placeholder codes (A1–A16, W1–W4) until you name each team here. Leave a field blank to go back to showing the placeholder on the schedule.</p>
+      <div id="teamNamesGrid" class="team-names-grid"></div>
+      <div class="upload-row" style="margin-top:14px;">
+        <button type="button" class="btn gold small" id="saveTeamNamesBtn">Save Team Names</button>
+        <span id="teamNamesMsg" style="align-self:center; font-size:.78rem; color:var(--muted);"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── TAB 4: PLAYER CONFIRMATIONS ───────────────── -->
+  <div id="tab-confirm" class="tab-panel" hidden>
+    <div class="panel">
+      <h2>Player Confirmations</h2>
+      <p class="note">Click a column header to sort by it (click again to reverse), right-click a header to copy that whole column, or use Columns to show/hide ones you don't need.</p>
+      <div class="toolbar">
+        <input type="search" id="searchBox" placeholder="Search by name, phone, email…" />
+        <select id="paymentFilter">
+          <option value="all">All Payments</option>
+          <option value="Pending">Pending</option>
+          <option value="Paid Online">Paid Online</option>
+          <option value="Paid Cash to Amit">Paid Cash to Amit</option>
+          <option value="Paid Cash to Bhavesh">Paid Cash to Bhavesh</option>
+        </select>
+        <button type="button" class="btn small" id="refreshConfirmBtn">↻ Refresh</button>
+        <div class="col-picker">
+          <button type="button" class="btn small" id="columnsBtn">☰ Columns</button>
+          <div class="col-picker-menu" id="columnsMenu" hidden></div>
+        </div>
+        <span style="align-self:center; color:var(--muted); font-size:.8rem;" id="countLabel"></span>
+      </div>
+      <div class="table-wrap" id="tableHolder"></div>
+    </div>
+  </div>
+
+  <!-- ══ EDIT REGISTRATION MODAL ══ -->
+  <div id="editRegModal" class="modal-overlay" hidden>
+    <div class="modal-box panel">
+      <h2>Edit Registration</h2>
+      <input type="hidden" id="editRegId" />
+      <div class="grid-2">
+        <div class="field">
+          <label for="editFullName">Full Name</label>
+          <input type="text" id="editFullName" />
+        </div>
+        <div class="field">
+          <label for="editMobileNumber">Mobile Number</label>
+          <input type="tel" id="editMobileNumber" />
+        </div>
+      </div>
+      <div class="grid-2">
+        <div class="field">
+          <label for="editDob">Date of Birth</label>
+          <input type="date" id="editDob" />
+        </div>
+        <div class="field">
+          <label for="editSkillset">Skillset</label>
+          <select id="editSkillset">
+            <option>Batsman</option>
+            <option>Bowler</option>
+            <option>All Rounder</option>
+          </select>
+        </div>
+      </div>
+      <div class="grid-2">
+        <div class="field">
+          <label for="editBowlingArm">Bowling Arm</label>
+          <select id="editBowlingArm">
+            <option>Left Arm</option>
+            <option>Right Arm</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="editBattingStyle">Batting Style</label>
+          <select id="editBattingStyle">
+            <option>Left Handed</option>
+            <option>Right Handed</option>
+          </select>
+        </div>
+      </div>
+      <div class="grid-2">
+        <div class="field">
+          <label for="editJerseyName">Jersey Name</label>
+          <input type="text" id="editJerseyName" />
+        </div>
+        <div class="field">
+          <label for="editJerseyNumber">Jersey Number</label>
+          <input type="number" id="editJerseyNumber" min="0" max="999" />
+        </div>
+      </div>
+      <div class="field">
+        <label for="editJerseySize">Jersey Size</label>
+        <select id="editJerseySize">
+          <option value="XXS-32">XXS (32) - Kids</option>
+          <option value="XS-34">XS (34) - Kids/Adult</option>
+          <option value="S-36">S (36) - Kids/Adult</option>
+          <option value="M-38">M (38) - Adult</option>
+          <option value="L-40">L (40) - Adult</option>
+          <option value="XL-42">XL (42) - Adult</option>
+          <option value="XXL-44">XXL (44) - Adult</option>
+          <option value="XXXL-46">XXXL (46) - Adult</option>
+          <option value="XXXL-48">XXXL (48) - Adult</option>
+          <option value="XXXL-50">XXXL (50) - Adult</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="editCricheroesLink">Cric Heroes Link</label>
+        <input type="url" id="editCricheroesLink" />
+      </div>
+      <div class="grid-2">
+        <div class="field">
+          <label for="editPaymentId">Payment ID</label>
+          <input type="text" id="editPaymentId" />
+        </div>
+        <div class="field">
+          <label for="editQrLabel">QR / Payment Method Label</label>
+          <input type="text" id="editQrLabel" />
+        </div>
+      </div>
+      <div id="editRegMsg" class="msg"></div>
+      <div class="upload-row" style="margin-top:4px;">
+        <button type="button" class="btn gold small" id="saveEditBtn">Save Changes</button>
+        <button type="button" class="btn small" id="cancelEditBtn">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>Internal Admin Tool &nbsp;•&nbsp; &copy; CLBPL Committee</p>
+</footer>
+
+<script src="public/js/admin.js"></script>
+</body>
+</html>

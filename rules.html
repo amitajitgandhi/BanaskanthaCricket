@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>CLBPL Season 12 – Rules</title>
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="public/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="public/favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="public/apple-touch-icon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ══ CSS VARIABLES ══════════════════════════════ */
+    :root {
+      --gold: #f5c518;
+      --gold-light: #ffe066;
+      --gold-dim: rgba(245,197,24,.18);
+      --green: #22c55e;
+      --darker: #07090f;
+      --dark: #0d1117;
+      --card: #111827;
+      --card2: #161d2e;
+      --border: #1e2d4a;
+      --border-hover: rgba(245,197,24,.45);
+      --text: #e2e8f0;
+      --muted: #64748b;
+      --red: #ef4444;
+      --blue: #3b82f6;
+      --purple: #8b5cf6;
+      --radius: 14px;
+      --font-head: 'Bebas Neue', sans-serif;
+      --font-body: 'Outfit', sans-serif;
+      --font-ui: 'Space Grotesk', sans-serif;
+    }
+
+    /* ══ RESET & BASE ═══════════════════════════════ */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--darker);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    img { max-width: 100%; display: block; }
+
+    /* ══ HERO ═══════════════════════════════════════ */
+    .hero {
+      position: relative;
+      text-align: center;
+      padding: env(safe-area-inset-top, 0) 16px 48px;
+      padding-top: max(56px, env(safe-area-inset-top, 56px));
+      background:
+        radial-gradient(ellipse 90% 55% at 50% 0%, rgba(245,197,24,.22) 0%, transparent 65%),
+        linear-gradient(180deg, #0c1422 0%, var(--darker) 100%);
+      overflow: hidden;
+    }
+
+    /* animated particles */
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(1px 1px at 20% 35%, rgba(245,197,24,.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 75% 18%, rgba(245,197,24,.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 55% 70%, rgba(255,255,255,.3) 0%, transparent 100%),
+        radial-gradient(1px 1px at 10% 60%, rgba(255,255,255,.2) 0%, transparent 100%),
+        radial-gradient(1px 1px at 90% 55%, rgba(245,197,24,.3) 0%, transparent 100%);
+      pointer-events: none;
+    }
+
+    /* pitch crease decoration */
+    .pitch-lines {
+      position: absolute;
+      bottom: 0; left: 50%;
+      transform: translateX(-50%);
+      width: min(260px, 70vw); height: 55px;
+      border: 1.5px solid rgba(245,197,24,.22);
+      border-bottom: none;
+      border-radius: 4px 4px 0 0;
+    }
+
+    /* ── Logo ── */
+    .hero-logo-wrap {
+      position: relative;
+      z-index: 2;
+      margin: 0 auto 20px;
+      width: min(140px, 36vw);
+      height: min(140px, 36vw);
+      border-radius: 50%;
+      border: 3px solid var(--gold);
+      box-shadow: 0 0 32px rgba(245,197,24,.4), 0 0 70px rgba(245,197,24,.14);
+      overflow: hidden;
+      background: #0d1117;
+      flex-shrink: 0;
+    }
+    .hero-logo-wrap img {
+      width: 100%; height: 100%;
+      object-fit: fill;
+      display: block;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: linear-gradient(135deg, var(--gold), #c9920f);
+      color: #000;
+      font-family: var(--font-ui);
+      font-weight: 700;
+      font-size: .72rem;
+      letter-spacing: 2.5px;
+      padding: 5px 18px;
+      border-radius: 50px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-title {
+      font-family: var(--font-head);
+      font-size: clamp(2.8rem, 10vw, 5.5rem);
+      font-weight: 400; /* Bebas Neue is always bold */
+      line-height: 0.95;
+      letter-spacing: 2px;
+      background: linear-gradient(160deg, #fff 0%, var(--gold-light) 45%, var(--gold) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-title .season-tag {
+      font-family: var(--font-ui);
+      font-size: clamp(.85rem, 3.5vw, 1.15rem);
+      font-weight: 600;
+      display: inline-block;
+      letter-spacing: 5px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-top: 10px;
+      text-transform: uppercase;
+    }
+
+    .hero-sub {
+      margin-top: 14px;
+      color: var(--muted);
+      font-family: var(--font-ui);
+      font-size: clamp(.8rem, 3.5vw, .95rem);
+      letter-spacing: 1.5px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-divider {
+      width: 80px; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 24px auto 0;
+    }
+
+    /* ══ STATS ROW ══════════════════════════════════ */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      padding: 28px 14px 6px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    @media(max-width: 480px) {
+      .stats-row { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .stat-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 10px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: transform .2s, border-color .2s, box-shadow .2s;
+      cursor: default;
+    }
+    .stat-card:hover { transform: translateY(-3px); border-color: var(--gold); box-shadow: 0 8px 24px rgba(245,197,24,.1); }
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    }
+    .stat-num {
+      font-family: var(--font-head);
+      font-size: clamp(1.6rem, 6vw, 2.1rem);
+      color: var(--gold);
+      line-height: 1;
+    }
+    .stat-label {
+      font-family: var(--font-ui);
+      font-size: .65rem;
+      color: var(--muted);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    /* ══ LAYOUT CONTAINER ═══════════════════════════ */
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 10px 14px 72px;
+    }
+
+    /* ══ COLLAPSIBLE SECTION ════════════════════════ */
+    .section-block {
+      margin-top: 20px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: border-color .25s;
+    }
+    .section-block:has(.section-toggle:checked) {
+      border-color: rgba(245,197,24,.5);
+    }
+
+    /* gold tile background when section is open */
+    .section-toggle:checked ~ .section-header {
+      background: linear-gradient(135deg, rgba(245,197,24,.22), rgba(245,197,24,.10));
+      border-bottom: 1px solid rgba(245,197,24,.3);
+    }
+
+    /* toggle checkbox hidden */
+    .section-toggle { display: none; }
+
+    /* clickable header */
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 16px;
+      background: var(--card2);
+      cursor: pointer;
+      user-select: none;
+      -webkit-user-select: none;
+      transition: background .2s;
+      /* min touch target */
+      min-height: 60px;
+    }
+    .section-header:active { background: #1f2e47; }
+
+    .section-icon {
+      font-size: 1.3rem;
+      width: 42px; height: 42px;
+      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, rgba(245,197,24,.14), rgba(245,197,24,.04));
+      border: 1px solid rgba(245,197,24,.25);
+      border-radius: 10px;
+      flex-shrink: 0;
+    }
+    .section-title {
+      font-family: var(--font-head);
+      font-size: clamp(1.25rem, 5vw, 1.55rem);
+      letter-spacing: 1.5px;
+      color: #fff;
+      flex: 1;
+    }
+    .chevron {
+      width: 22px; height: 22px;
+      fill: none;
+      stroke: var(--gold);
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex-shrink: 0;
+      transition: transform .35s cubic-bezier(.4,0,.2,1);
+    }
+
+    /* body panel — collapsed by default */
+    .section-body {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows .35s cubic-bezier(.4,0,.2,1);
+      background: var(--dark);
+    }
+    .section-body-inner {
+      overflow: hidden;
+      padding: 0 14px;
+    }
+
+    /* open state */
+    .section-toggle:checked ~ .section-header .chevron {
+      transform: rotate(180deg);
+    }
+    .section-toggle:checked ~ .section-body {
+      grid-template-rows: 1fr;
+    }
+    .section-toggle:checked ~ .section-body .section-body-inner {
+      padding: 16px 14px 20px;
+    }
+
+    /* ══ RULE CARDS ═════════════════════════════════ */
+    .rule-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 18px;
+      margin-bottom: 12px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .rule-card:last-child { margin-bottom: 0; }
+    .rule-card:hover { border-color: var(--border-hover); box-shadow: 0 4px 24px rgba(245,197,24,.06); }
+    .rule-card.accent-green { border-left: 3px solid var(--green); }
+    .rule-card.accent-gold  { border-left: 3px solid var(--gold); }
+    .rule-card.accent-blue  { border-left: 3px solid var(--blue); }
+    .rule-card.accent-red   { border-left: 3px solid var(--red); }
+    .rule-card.accent-purple{ border-left: 3px solid var(--purple); }
+
+    .rule-card-title {
+      font-family: var(--font-ui);
+      font-size: clamp(.9rem, 3.5vw, 1rem);
+      font-weight: 700;
+      color: var(--gold-light);
+      margin-bottom: 10px;
+      letter-spacing: .3px;
+    }
+
+    .rule-card p, .rule-card li {
+      font-family: var(--font-body);
+      font-size: clamp(.82rem, 3.2vw, .9rem);
+      color: var(--text);
+      line-height: 1.8;
+    }
+    .rule-card ul, .rule-card ol { padding-left: 18px; }
+    .rule-card li { margin-bottom: 5px; }
+    .rule-card li::marker { color: var(--gold); }
+
+    /* ══ GRIDS ══════════════════════════════════════ */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media(max-width:560px) { .grid-2 { grid-template-columns: 1fr; } }
+
+    .bracket-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media(max-width:480px) { .bracket-grid { grid-template-columns: 1fr; } }
+
+    /* ══ BRACKET BOXES ══════════════════════════════ */
+    .bracket-box {
+      background: var(--card2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 16px;
+    }
+    .bracket-box h4 {
+      font-family: var(--font-ui);
+      font-size: .82rem;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .bracket-box p {
+      font-family: var(--font-body);
+      font-size: clamp(.78rem, 3vw, .86rem);
+      color: var(--text);
+      line-height: 1.85;
+    }
+
+    /* ══ PILLS ══════════════════════════════════════ */
+    .pill {
+      display: inline-block;
+      padding: 1px 9px;
+      border-radius: 50px;
+      font-family: var(--font-ui);
+      font-size: .7rem;
+      font-weight: 700;
+      margin-left: 4px;
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+    .pill-gold   { background: rgba(245,197,24,.18); color: var(--gold); }
+    .pill-red    { background: rgba(239,68,68,.18);  color: #fca5a5; }
+    .pill-green  { background: rgba(34,197,94,.18);  color: #86efac; }
+    .pill-purple { background: rgba(139,92,246,.18); color: #c4b5fd; }
+
+    /* ══ SPECIAL BANNERS ════════════════════════════ */
+    .magic-ball-banner {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-left: 3px solid #7c3aed;
+      border-radius: var(--radius);
+      padding: 18px 18px;
+      margin-bottom: 12px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .magic-ball-banner:hover { border-color: rgba(139,92,246,.45); box-shadow: 0 4px 24px rgba(139,92,246,.06); }
+    .magic-ball-banner::before {
+      content: '⭐';
+      position: absolute;
+      font-size: 7rem;
+      right: -12px; top: -12px;
+      opacity: .04;
+      pointer-events: none;
+    }
+    .magic-ball-banner .rule-card-title { color: #a78bfa; }
+    .magic-ball-banner p, .magic-ball-banner li { color: var(--text); font-family: var(--font-body); font-size: clamp(.82rem, 3.2vw, .9rem); line-height: 1.8; }
+    .magic-ball-banner ul, .magic-ball-banner ol { padding-left: 18px; }
+    .magic-ball-banner li { margin-bottom: 5px; }
+    .magic-ball-banner li::marker { color: #a78bfa; }
+
+    .powerplay-banner {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--green);
+      border-radius: var(--radius);
+      padding: 18px 18px;
+      margin-bottom: 12px;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .powerplay-banner:hover { border-color: rgba(34,197,94,.45); box-shadow: 0 4px 24px rgba(34,197,94,.06); }
+    .powerplay-banner .rule-card-title { color: #86efac; }
+    .powerplay-banner p, .powerplay-banner li { color: var(--text); font-family: var(--font-body); font-size: clamp(.82rem, 3.2vw, .9rem); line-height: 1.8; }
+    .powerplay-banner ul, .powerplay-banner ol { padding-left: 18px; }
+    .powerplay-banner li { margin-bottom: 5px; }
+    .powerplay-banner li::marker { color: var(--green); }
+
+    /* ══ WARNING / INFO BOXES ═══════════════════════ */
+    .warning-box {
+      background: rgba(239,68,68,.07);
+      border: 1px solid rgba(239,68,68,.3);
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-top: 12px;
+    }
+    .warning-box p {
+      font-family: var(--font-body);
+      font-size: clamp(.8rem, 3vw, .88rem);
+      color: #fca5a5;
+      line-height: 1.75;
+    }
+
+    .info-box {
+      background: rgba(59,130,246,.07);
+      border: 1px solid rgba(59,130,246,.28);
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-top: 10px;
+    }
+    .info-box p {
+      font-family: var(--font-body);
+      font-size: clamp(.8rem, 3vw, .88rem);
+      color: #93c5fd;
+      line-height: 1.75;
+    }
+
+    /* ══ IMPORTANT NOTE BANNER ══════════════════════ */
+    .note-banner {
+      margin-top: 28px;
+      background: linear-gradient(135deg, rgba(245,197,24,.07), rgba(245,197,24,.02));
+      border: 1px solid rgba(245,197,24,.28);
+      border-radius: var(--radius);
+      padding: 24px 20px;
+      text-align: center;
+    }
+    .note-banner .note-icon { font-size: 1.8rem; margin-bottom: 10px; }
+    .note-banner p {
+      font-family: var(--font-ui);
+      font-size: clamp(.82rem, 3.2vw, .95rem);
+      line-height: 1.8;
+    }
+    .note-banner p:first-of-type { color: var(--gold-light); }
+    .note-banner p + p { color: var(--muted); margin-top: 10px; }
+
+    /* ══ HAMBURGER NAV ══════════════════════════════ */
+    .nav-toggle { display: none; }
+    .hamburger-btn {
+      position: fixed; top: max(16px, env(safe-area-inset-top, 16px)); right: 16px;
+      z-index: 50; width: 44px; height: 44px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 5px; background: var(--card2); border: 1px solid var(--border);
+      border-radius: 10px; cursor: pointer; transition: border-color .2s;
+    }
+    .hamburger-btn:hover { border-color: var(--gold); }
+    .hamburger-btn span { width: 20px; height: 2px; background: var(--gold); border-radius: 2px; transition: transform .25s, opacity .25s; }
+    .nav-toggle:checked ~ .hamburger-btn span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-toggle:checked ~ .hamburger-btn span:nth-child(2) { opacity: 0; }
+    .nav-toggle:checked ~ .hamburger-btn span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .nav-backdrop {
+      position: fixed; inset: 0; background: rgba(7,9,15,.7); backdrop-filter: blur(2px);
+      opacity: 0; pointer-events: none; transition: opacity .25s; z-index: 40; display: block;
+    }
+    .nav-toggle:checked ~ .nav-backdrop { opacity: 1; pointer-events: auto; }
+    .nav-drawer {
+      position: fixed; top: 0; right: 0; height: 100vh; width: min(260px, 78vw);
+      background: var(--dark); border-left: 1px solid var(--border); z-index: 45;
+      display: flex; flex-direction: column; gap: 10px;
+      padding: max(76px, calc(env(safe-area-inset-top, 0px) + 76px)) 20px 20px;
+      transform: translateX(100%); transition: transform .3s cubic-bezier(.4,0,.2,1);
+    }
+    .nav-toggle:checked ~ .nav-drawer { transform: translateX(0); }
+    .nav-drawer .nav-btn { width: 100%; text-align: left; border-radius: 10px; padding: 12px 16px; }
+
+    /* ══ FOOTER ═════════════════════════════════════ */
+    footer {
+      text-align: center;
+      padding: 24px 16px max(16px, env(safe-area-inset-bottom, 16px));
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-family: var(--font-ui);
+      font-size: .78rem;
+      background: var(--darker);
+    }
+    footer .ft-logo {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      object-fit: contain;
+      margin: 0 auto 8px;
+      background: #0d1117;
+    }
+    footer span { color: var(--gold); }
+
+    /* ══ PAGE NAV ═══════════════════════════════════ */
+    .page-nav {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      padding: 18px 14px 0;
+    }
+    .nav-btn {
+      font-family: var(--font-ui);
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 7px 18px;
+      border-radius: 50px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      background: var(--card2);
+      transition: border-color .2s, color .2s;
+    }
+    .nav-btn:hover, .nav-btn.active {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    /* ══ FADE-IN ANIMATION ══════════════════════════ */
+    @keyframes fadeUp { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:translateY(0); } }
+    .fade-in { animation: fadeUp .55s ease both; }
+    .d1 { animation-delay:.08s; }
+    .d2 { animation-delay:.16s; }
+    .d3 { animation-delay:.24s; }
+    .d4 { animation-delay:.32s; }
+  </style>
+</head>
+<body>
+
+<!-- ══ HAMBURGER NAV ══════════════════════════════ -->
+<input type="checkbox" id="navToggle" class="nav-toggle" />
+<label for="navToggle" class="hamburger-btn" aria-label="Toggle menu"><span></span><span></span><span></span></label>
+<label for="navToggle" class="nav-backdrop"></label>
+<nav class="nav-drawer">
+  <a href="/"         class="nav-btn">🏠 Home</a>
+  <a href="/rules"    class="nav-btn active">📋 Rules</a>
+  <a href="/schedule" class="nav-btn">📅 Schedule</a>
+  <a href="/register" class="nav-btn">📝 Register</a>
+  <a href="/players"  class="nav-btn">🏏 Players</a>
+  <a href="/auction-rules" class="nav-btn">🔨 Auction</a>
+  <a href="/admin"    class="nav-btn">🔒 Admin</a>
+</nav>
+
+<!-- ═══════════════════════════════════════ HERO ══ -->
+<header class="hero">
+  <div class="pitch-lines"></div>
+  <div class="hero-logo-wrap fade-in">
+    <img src="public/CLB_Logo.jpg" alt="CLBPL Logo" />
+  </div>
+  <div class="badge fade-in d1">🏏 Official Tournament Rules</div>
+  <h1 class="hero-title fade-in d2">
+    Cricket Lover Boys<br/>Premier League
+  </h1>
+  <p class="hero-sub fade-in d3">Season 12</p>
+  <div class="hero-divider fade-in d4"></div>
+</header>
+
+<!-- ═══════════════════════════════════════ STATS ══ -->
+
+<div class="container">
+
+  <!-- 1. TOURNAMENT OVERVIEW -->
+  <div class="section-block fade-in d1">
+    <input type="checkbox" id="sec1" class="section-toggle" />
+    <label for="sec1" class="section-header">
+      <div class="section-icon">🏆</div>
+      <span class="section-title">Tournament Overview</span>
+      <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+    </label>
+    <div class="section-body">
+      <div class="section-body-inner">
+          <div class="rule-card accent-gold">
+              <div class="rule-card-title">League Stage</div>
+              <p>Each team plays <strong>3 matches</strong>. Top <strong>8 teams</strong> advance to the Super 8 knockout round.</p>
+              <div class="info-box" style="margin-top:12px">
+                  <p><strong>Top Bracket</strong> — Teams ranked <strong>1–4</strong> compete for direct semifinal spots.<br/><strong>Bottom Bracket</strong> — Teams ranked <strong>5–8</strong> compete for remaining semifinal opportunities.</p>
+              </div>
+          </div>
+        <div class="bracket-grid">
+          <div class="rule-card">
+            <div class="rule-card-title">🔝 Top Bracket</div>
+            <p>TB1 — Rank 1 vs Rank 4 → <span class="pill pill-green">SF1</span><br/>TB2 — Rank 2 vs Rank 3 → <span class="pill pill-green">SF2</span></p>
+          </div>
+          <div class="rule-card">
+            <div class="rule-card-title">⬇️ Bottom Bracket</div>
+            <p>BB1 — Rank 5 vs Rank 8<br/>BB2 — Rank 6 vs Rank 7</p>
+          </div>
+          <div class="rule-card">
+            <div class="rule-card-title">🔀 Elimination</div>
+            <p>TB1 Loser vs BB2 Winner → <span class="pill pill-gold">SF3</span><br/>TB2 Loser vs BB1 Winner → <span class="pill pill-gold">SF4</span></p>
+          </div>
+          <div class="rule-card">
+            <div class="rule-card-title">🥊 Semis &amp; Final</div>
+            <p>SF1 vs SF4 &nbsp;|&nbsp; SF2 vs SF3<br/><strong style="color:var(--gold)">→ GRAND FINAL 🏆</strong></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. MATCH FORMAT -->
+  <div class="section-block fade-in d1">
+    <input type="checkbox" id="sec2" class="section-toggle" />
+    <label for="sec2" class="section-header">
+      <div class="section-icon">🎯</div>
+      <span class="section-title">Match Format</span>
+      <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+    </label>
+    <div class="section-body">
+      <div class="section-body-inner">
+        <div class="rule-card accent-green">
+          <div class="rule-card-title">⚡ Powerplay Over — Over 3 (2.1 to 2.6)</div>
+          <ul>
+            <li>Fixed at the <strong>3rd over</strong> of each innings.</li>
+          </ul>
+        </div>
+        <div class="rule-card accent-purple">
+          <div class="rule-card-title">⭐ Magic Ball Rule — Over 8 (7.1 to 7.6)</div>
+          <ul>
+            <li>All 6 balls of the 8th over are <strong>Magic Balls</strong>.</li>
+            <li>All runs (extras, through bat, byes, leg byes, overthrow) are <strong>doubled</strong>.</li>
+            <li>Wicket falls: <span class="pill pill-red">–5 runs</span> penalty.</li>
+            <li>Wicket on wide / no-ball: <em>no runs counted</em> (including extras) + flat <span class="pill pill-red">–5 penalty</span>.</li>
+            <li>Strike rotation follows <em>actual</em> runs scored, not doubled runs.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. RUN SCORING -->
+  <div class="section-block fade-in d2">
+    <input type="checkbox" id="sec3" class="section-toggle" />
+    <label for="sec3" class="section-header">
+      <div class="section-icon">🏏</div>
+      <span class="section-title">Run Scoring</span>
+      <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+    </label>
+    <div class="section-body">
+      <div class="section-body-inner">
+        <div class="grid-2">
+          <div class="rule-card accent-green">
+            <div class="rule-card-title">Boundary Rules</div>
+            <ul>
+              <li><strong>Front net boundary</strong> only — side nets do not count as boundary.</li>
+              <li>Side net catches → <span class="pill pill-green">NOT OUT</span></li>
+              <li>Ceiling net catches → <span class="pill pill-red">OUT</span></li>
+            </ul>
+          </div>
+          <div class="rule-card accent-blue">
+            <div class="rule-card-title">Ball Out of Play / Dead Ball</div>
+            <ul>
+              <li>Ball outside turf or any unreachable area → <span class="pill pill-gold">1 declared run</span></li>
+              <li>Ball resting on ceiling net then falls → <strong>Dead Ball</strong></li>
+              <li>Batsmen must change strike for next delivery (bat only — not byes or overthrow).</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. BATTING RULES -->
+  <div class="section-block fade-in d2">
+    <input type="checkbox" id="sec4" class="section-toggle" />
+    <label for="sec4" class="section-header">
+      <div class="section-icon">🦇</div>
+      <span class="section-title">Batting Rules</span>
+      <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+    </label>
+    <div class="section-body">
+      <div class="section-body-inner">
+        <div class="rule-card accent-gold">
+          <div class="rule-card-title">Opening Batter Rule <span class="pill pill-purple">League Only</span></div>
+          <ul>
+            <li>In 3 league matches: <strong>3, 3, and 4</strong> new batsmen start each game.</li>
+            <li>If a player is repeated in the top 3 and notified by opponent during the innings:
+              <ul>
+                <li>That player is declared <span class="pill pill-red">OUT</span></li>
+                <li>All runs scored by them are <span class="pill pill-red">DEDUCTED</span></li>
+              </ul>
+            </li>
+            <li>This rule does <em>not</em> apply in knockout matches.</li>
+          </ul>
+        </div>
+        <div class="grid-2">
+          <div class="rule-card accent-green">
+            <div class="rule-card-title">Byes &amp; Leg Byes</div>
+            <p>All byes &amp; leg byes are allowed, even when no shot is offered.</p>
+          </div>
+          <div class="rule-card accent-blue">
+            <div class="rule-card-title">Runner Rules</div>
+            <p>Only <strong>one runner</strong> is allowed per innings.</p>
+          </div>
+          <div class="rule-card accent-red">
+            <div class="rule-card-title">Retired Hurt</div>
+            <p>Retired Hurt is treated as <strong>retired out</strong> and cannot return to bat again.</p>
+          </div>
+          <div class="rule-card accent-gold">
+            <div class="rule-card-title">Hit Wicket</div>
+            <ul>
+              <li>Dislodging stumps with bat/body/clothing before ball is dead = <span class="pill pill-red">OUT</span></li>
+              <li>Hit a boundary/six but also hit wicket → hit wicket takes precedence → <span class="pill pill-red">OUT</span></li>
+              <li>On Magic Ball: team also loses <span class="pill pill-red">5 runs</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. FIELDING RESTRICTIONS -->
+  <div class="section-block fade-in d2">
+    <input type="checkbox" id="sec5" class="section-toggle" />
+    <label for="sec5" class="section-header">
+      <div class="section-icon">🛡️</div>
+      <span class="section-title">Fielding Restrictions</span>
+      <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+    </label>
+    <div class="section-body">
+      <div class="section-body-inner">
+        <div class="grid-2">
+          <div class="rule-card accent-green">
+            <div class="rule-card-title">Normal Overs</div>
+            <ul>
+              <li>Area behind bowling crease divided into <strong>two equal halves</strong> by a partition line.</li>
+              <li>Each half can have max <strong>2 fielders</strong>.</li>
+              <li>All others must remain <strong>ahead</strong> of the bowling crease.</li>
+            </ul>
+          </div>
+          <div class="rule-card accent-green" style="margin-bottom:0">
+            <div class="rule-card-title">⚡ Powerplay Fielding</div>
+            <ul>
+              <li>Max <strong>1 fielder</strong> on the boundary.</li>
+              <li>Max <strong>2 fielders</strong> between bowling crease and partition line.</li>
+              <li>All others must remain ahead of the bowling crease.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="warning-box">
+          <p>⚠️ <strong>Fielding team talking</strong> while ball is bowled — 1st: <strong>Warning</strong>. Next: <strong>No-Ball</strong>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. BOWLING & ACTION RULES -->
+  <div class="section-block fade-in d3">
+    <input type="checkbox" id="sec6" class="section-toggle" />
+    <label for="sec6" class="section-header">
+      <div class="section-icon">🌟</div>
+      <span class="section-title">Bowling &amp; Action Rules</span>
+      <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+    </label>
+    <div class="section-body">
+      <div class="section-body-inner">
+        <div class="rule-card accent-gold">
+          <div class="rule-card-title">Every Player Bowls 1 Over — No Repeat Overs</div>
+          <p style="color:var(--muted); font-size:.85rem;">Each player bowls exactly 1 over. No bowler may repeat unless forced by team shortage rules.</p>
+        </div>
+        <div class="rule-card accent-red">
+          <div class="rule-card-title">Speed Ball &amp; Hand Rotation Rule</div>
+          <ul>
+            <li><strong>First Instance:</strong>
+              <ul>
+                <li>Results in dot ball or wicket → <span class="pill pill-red">Dead Ball + Warning</span></li>
+                <li>Runs are scored → <span class="pill pill-gold">Warning only</span></li>
+              </ul>
+            </li>
+            <li>Any further instance in the same innings → <span class="pill pill-red">No-Ball</span></li>
+          </ul>
+          <div class="info-box">
+            <p>📢 Only the <strong>striker</strong> may appeal within <strong>5 seconds</strong>. Non-strikers and players outside the pitch are <strong>not allowed</strong> to appeal. Final decision rests solely with the umpire.</p>
+          </div>
+        </div>
+        <div class="grid-2">
+          <div class="rule-card accent-blue">
+            <div class="rule-card-title">Dead Ball Rule</div>
+            <p>A ball that bounces <strong>twice</strong> before reaching the striker is Dead Ball. Exception: if the second bounce occurs <em>behind</em> the batter, the delivery is legal.</p>
+          </div>
+          <div class="rule-card accent-green">
+            <div class="rule-card-title">Bowling Box Rule</div>
+            <ul>
+              <li>Touching side or back border → <span class="pill pill-red">No-Ball</span></li>
+              <li>Fully crossing the front line / overstepping → <span class="pill pill-red">No-Ball</span></li>
+            </ul>
+          </div>
+          <div class="rule-card accent-gold">
+            <div class="rule-card-title">Side &amp; Keeper Confirmation</div>
+            <ul>
+              <li>Bowler must confirm bowling side with umpire before every over or before switching.</li>
+              <li>Change in wicket-keeper must be confirmed with the umpire.</li>
+              <li>Failure to confirm → <span class="pill pill-red">No-Ball</span></li>
+            </ul>
+          </div>
+          <div class="rule-card accent-blue">
+            <div class="rule-card-title">Stumping Rule</div>
+            <p>All kinds of stumping are allowed <strong>except</strong> when the ball is collected <em>ahead of the stump</em> — that will result in a <span class="pill pill-red">No-Ball</span>.</p>
+          </div>
+        </div>
+        <div class="rule-card accent-red">
+          <div class="rule-card-title">No-Ball Consequences</div>
+          <p>Every no-ball is followed by a <strong>Free Hit</strong>. On a Free Hit, only <strong>Run Out</strong> will be considered.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. SCORING & TIEBREAKERS -->
+  <div class="section-block fade-in d3">
+    <input type="checkbox" id="sec7" class="section-toggle" />
+    <label for="sec7" class="section-header">
+      <div class="section-icon">📊</div>
+      <span class="section-title">Scoring &amp; Tiebreakers</span>
+      <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+    </label>
+    <div class="section-body">
+      <div class="section-body-inner">
+        <div class="grid-2">
+          <div class="rule-card accent-green">
+            <div class="rule-card-title">Scoring Requirement</div>
+            <p>One batting member must <strong>sit with the scorer</strong> during their innings. Disputes must be raised <em>immediately</em>.</p>
+          </div>
+          <div class="rule-card accent-gold">
+            <div class="rule-card-title">Tiebreaker Rules</div>
+            <p style="color:var(--muted); font-size:.8rem; margin-bottom:6px;">League:</p>
+            <ol><li>Most <strong>Sixes</strong></li><li>Most <strong>Fours</strong></li><li>Fewer <strong>Wickets Lost</strong></li></ol>
+            <p style="color:var(--muted); font-size:.8rem; margin:10px 0 6px;">Knockout:</p>
+            <p><span class="pill pill-gold">Super Over</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. PLAYER AVAILABILITY -->
+  <div class="section-block fade-in d3">
+    <input type="checkbox" id="sec8" class="section-toggle" />
+    <label for="sec8" class="section-header">
+      <div class="section-icon">👥</div>
+      <span class="section-title">Player Availability</span>
+      <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+    </label>
+    <div class="section-body">
+      <div class="section-body-inner">
+        <div class="rule-card accent-blue">
+          <div class="rule-card-title">Team Short of Players</div>
+          <ul>
+            <li>Minimum <strong>6 players</strong> required to start. Fewer than 6 → opponent receives a <span class="pill pill-gold">Bye</span>.</li>
+            <li><strong>Batting first:</strong> Any late-arriving player may join if they arrive before the end of the first innings.</li>
+            <li><strong>Bowling first:</strong> All players must be present before the first ball. Otherwise:
+              <ul>
+                <li>A committee-provided substitute fielder — may field anywhere <em>in front of</em> the bowling crease, not as wicketkeeper.</li>
+                <li>Only <strong>one committee substitute</strong> provided, regardless of how many players are missing.</li>
+                <li>A <strong>dead runner</strong> for the last wicket.</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <div class="rule-card accent-gold">
+          <div class="rule-card-title">Short Player Bowling Allocation</div>
+          <ul>
+            <li><strong>1 short:</strong> Any 1 of the two bowlers who conceded the most runs will bowl the 10th over.</li>
+            <li><strong>2+ short:</strong> After all available players bowl their mandatory 1 over, the two bowlers who conceded the most runs will bowl remaining overs <strong>alternately</strong>.</li>
+          </ul>
+          <div class="info-box"><p>📌 For this calculation, the Magic Over bowler's runs are counted as <strong>actual runs, not doubled</strong>.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 9. EQUIPMENT & DRESS CODE -->
+  <div class="section-block fade-in d4">
+    <input type="checkbox" id="sec9" class="section-toggle" />
+    <label for="sec9" class="section-header">
+      <div class="section-icon">👕</div>
+      <span class="section-title">Equipment &amp; Dress Code</span>
+      <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+    </label>
+    <div class="section-body">
+      <div class="section-body-inner">
+        <div class="rule-card accent-green">
+          <ul>
+            <li>Team <strong>jersey is mandatory</strong>.</li>
+            <li><span class="pill pill-red">Fiber bats are NOT allowed</span></li>
+            <li>Only <strong>sponsored caps</strong> permitted on the field.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 10. UMPIRE & COMMITTEE -->
+  <div class="section-block fade-in d4">
+    <input type="checkbox" id="sec10" class="section-toggle" />
+    <label for="sec10" class="section-header">
+      <div class="section-icon">⚖️</div>
+      <span class="section-title">Umpire &amp; Committee</span>
+      <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+    </label>
+    <div class="section-body">
+      <div class="section-body-inner">
+        <div class="grid-2">
+          <div class="rule-card accent-red">
+            <div class="rule-card-title">Umpire's Authority</div>
+            <p>The Umpire's decision is <strong>final and binding</strong> in all cases.</p>
+            <p style="margin-top:8px; color:#fca5a5; font-size:.85rem;">Any argument with the umpire will result in <span class="pill pill-red">Warning</span> followed by <span class="pill pill-red">Match Ban</span>.</p>
+          </div>
+          <div class="rule-card accent-blue">
+            <div class="rule-card-title">Committee Rights</div>
+            <p>The Tournament Committee reserves the right to <strong>revise, amend, or interpret</strong> any rule as necessary for the fair conduct of the tournament.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- IMPORTANT NOTE -->
+  <div class="note-banner fade-in d4">
+    <div class="note-icon">🏏</div>
+    <p>All standard <strong>ICC rules</strong> will apply wherever not specifically mentioned in these tournament rules.</p>
+    <p>All players and teams are expected to always respect the <strong>spirit of the game</strong> and the authority of the officials.</p>
+  </div>
+
+</div>
+
+<footer>
+    <p style="margin-top:5px;">Official Tournament Rules &nbsp;•&nbsp; &copy; CLBPL Committee</p>
+    <p>Designed with ❤️ by <span class="pill pill-gold">Amit Gandhi</span></p>
+</footer>
+
+<script>
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.section-block').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(18px)';
+    el.style.transition = 'opacity .5s ease, transform .5s ease';
+    io.observe(el);
+  });
+</script>
+
+</body>
+</html>

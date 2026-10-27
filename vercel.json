@@ -1,0 +1,23 @@
+{
+  "version": 2,
+  "outputDirectory": ".",
+  "rewrites": [
+    { "source": "/api/config", "destination": "/api/config.js" },
+    { "source": "/api/players", "destination": "/api/players.js" },
+    { "source": "/api/qr-active", "destination": "/api/qr-active.js" },
+    { "source": "/api/register", "destination": "/api/register.js" },
+    { "source": "/api/admin/login", "destination": "/api/admin/login.js" },
+    { "source": "/api/admin/qr-codes", "destination": "/api/admin/qr-codes.js" },
+    { "source": "/api/admin/team-names", "destination": "/api/admin/qr-codes.js?resource=team-names" },
+    { "source": "/api/admin/registration-status", "destination": "/api/admin/qr-codes.js?resource=registration-status" },
+    { "source": "/api/admin/registrations", "destination": "/api/admin/registrations.js" },
+    { "source": "/api/admin/export", "destination": "/api/admin/export.js" },
+    { "source": "/rules", "destination": "/rules.html" },
+    { "source": "/schedule", "destination": "/schedule.html" },
+    { "source": "/register", "destination": "/register.html" },
+    { "source": "/players", "destination": "/players.html" },
+    { "source": "/auction-rules", "destination": "/auction-rules.html" },
+    { "source": "/admin", "destination": "/admin.html" },
+    { "source": "/", "destination": "/index.html" }
+  ]
+}
