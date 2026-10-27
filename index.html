@@ -8,7 +8,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="public/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="public/favicon-16x16.png" />
   <link rel="apple-touch-icon" href="public/apple-touch-icon.png" />
-  <meta name="description" content="Cricket Lover Boys Premier League — Season 12. Official website for the Banaskantha Yuvak Mandal Cricket Tournament." />
+  <meta name="description" content="Official website for SBKYM Premier League Season 4, presented by Shri Banaskantha Yuvak Mandal, Pune." />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link href="public/css/site-theme.css" rel="stylesheet" />
   <style>
@@ -175,6 +175,38 @@
     }
     .growth-callout span { color: var(--gold); }
 
+
+    /* SBKYM Season 4 homepage */
+    .hero { padding-top: max(30px, env(safe-area-inset-top, 30px)); }
+    .hero-logo-wrap { width:min(150px,36vw); height:min(150px,36vw); border-radius:22px; border:2px solid rgba(255,255,255,.8); background:#fff; box-shadow:0 12px 38px rgba(0,0,0,.28); }
+    .hero-logo-wrap img { object-fit:contain; padding:5px; }
+    .hero-title { max-width:900px; margin:0 auto; }
+    .hero-sub { color:#e4e8f0; }
+    .hero-meta { display:flex; justify-content:center; flex-wrap:wrap; gap:10px 22px; margin-top:18px; color:var(--text); }
+    .hero-meta span { padding:9px 13px; border:1px solid rgba(255,255,255,.14); border-radius:999px; background:rgba(7,9,15,.45); font-size:.86rem; }
+    .home-actions { display:flex; justify-content:center; flex-wrap:wrap; gap:12px; margin-top:24px; position:relative; z-index:2; }
+    .home-actions a { display:inline-flex; align-items:center; justify-content:center; padding:12px 22px; border-radius:999px; font-family:var(--font-ui); font-weight:700; text-decoration:none; }
+    .home-actions .action-primary { background:var(--gold); color:#111; }
+    .home-actions .action-secondary { color:#fff; border:1px solid rgba(255,255,255,.32); background:rgba(255,255,255,.06); }
+    .identity-strip { display:grid; grid-template-columns:1fr 1fr; gap:16px; max-width:760px; margin:30px auto 0; }
+    .identity-card { display:flex; align-items:center; justify-content:center; gap:14px; min-height:115px; padding:16px; border:1px solid var(--border); border-radius:var(--radius); background:var(--card); }
+    .identity-card img { width:78px; height:78px; object-fit:contain; background:#fff; border-radius:10px; padding:4px; }
+    .identity-card strong { display:block; color:var(--gold-light); font-family:var(--font-ui); font-size:.92rem; }
+    .identity-card span { display:block; margin-top:5px; color:var(--muted); font-size:.78rem; line-height:1.45; }
+    .poster-section { display:grid; grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr); align-items:center; gap:28px; margin:38px auto 0; max-width:1000px; }
+    .poster-copy h2 { font-family:var(--font-head); font-size:clamp(2rem,5vw,3rem); line-height:1; color:#fff; letter-spacing:1px; }
+    .poster-copy p { margin-top:14px; color:var(--muted); line-height:1.8; }
+    .poster-facts { display:grid; gap:10px; margin-top:20px; }
+    .poster-fact { padding:12px 14px; border:1px solid var(--border); border-radius:10px; background:var(--card); }
+    .poster-fact strong { color:var(--gold-light); }
+    .poster-art { display:block; overflow:hidden; border:1px solid rgba(245,197,24,.45); border-radius:18px; box-shadow:0 18px 55px rgba(0,0,0,.35); }
+    .poster-art img { width:100%; height:auto; }
+    .quick-links { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:30px; }
+    .quick-link { padding:18px; text-align:center; text-decoration:none; color:var(--text); background:var(--card); border:1px solid var(--border); border-radius:var(--radius); transition:transform .2s,border-color .2s; }
+    .quick-link:hover { transform:translateY(-3px); border-color:var(--gold); }
+    .quick-link b { display:block; color:var(--gold-light); margin-bottom:5px; font-family:var(--font-ui); }
+    .quick-link span { color:var(--muted); font-size:.82rem; }
+    @media(max-width:640px) { .identity-strip,.poster-section,.quick-links { grid-template-columns:1fr; } .identity-card { justify-content:flex-start; } .poster-copy { text-align:center; } }
     /* ── Sponsorship ── */
     .sponsor-intro {
       max-width: 680px;
@@ -261,35 +293,56 @@
 
 <header class="hero">
   <div class="pitch-lines"></div>
-  <div class="hero-logo-wrap fade-in">
-    <img src="public/CLB_Logo.jpg" alt="Banaskantha Yuvak Mandal logo" />
-  </div>
-  <div class="badge fade-in d1">🏏 Banaskantha Yuvak Mandal</div>
-  <h1 class="hero-title fade-in d2">Banaskantha Yuvak Mandal<br/>Cricket Tournament</h1>
-  <p class="hero-sub fade-in d3">Community • Sportsmanship • Cricket</p>
+  <div class="hero-logo-wrap fade-in"><img src="public/SBKYM_Logo.jpeg" alt="Shri Banaskantha Yuvak Mandal (SBKYM), Pune logo" /></div>
+  <div class="badge fade-in d1">🏏 Shri Banaskantha Yuvak Mandal • Pune</div>
+  <h1 class="hero-title fade-in d2">SBKYM Premier League<br/><span style="font-size:.68em;letter-spacing:3px;">SEASON 4</span></h1>
+  <p class="hero-sub fade-in d3">Cricket • Community • Sportsmanship</p>
   <div class="hero-meta fade-in d3">
-    <span>📅 <strong id="metaDates">Loading…</strong></span>
-    <span>📍 <strong id="metaVenue">Loading…</strong></span>
+    <span>📅 <strong id="metaDates">11–13 December 2026</strong></span>
+    <span>📍 <strong id="metaVenue">Tembekar Ground, Bibwewadi, Pune</strong></span>
+  </div>
+  <div class="home-actions fade-in d4">
+    <a class="action-primary" href="/register">🏏 Player Registration</a>
+    <a class="action-secondary" href="/schedule">📅 View Schedule</a>
+    <a class="action-secondary" href="/rules">📋 Tournament Rules</a>
   </div>
   <div class="hero-divider fade-in d4"></div>
 </header>
 
 <div class="container">
+  <section class="identity-strip fade-in" aria-label="Organising organisations">
+    <div class="identity-card"><img src="public/SBKYM_Logo.jpeg" alt="SBKYM logo" /><div><strong>Shri Banaskantha Yuvak Mandal</strong><span>Organiser • Pune</span></div></div>
+    <div class="identity-card"><img src="public/SBVOS.jpeg" alt="Shri Banaskantha Visa Oswal Sangh logo" /><div><strong>Shri Banaskantha Visa Oswal Sangh</strong><span>Community association • Pune</span></div></div>
+  </section>
 
-  <!-- GROWTH STORY -->
+  <section class="poster-section fade-in" aria-labelledby="eventPosterTitle">
+    <div class="poster-copy">
+      <div class="anniversary-badge">🏆 Season 4 • Official Tournament</div>
+      <h2 id="eventPosterTitle">The Cricket Celebration Is Back</h2>
+      <p>Get ready for three days of competitive cricket, team spirit, and community celebration at the SBKYM Premier League.</p>
+      <div class="poster-facts">
+        <div class="poster-fact">📆 <strong>Friday–Sunday, 11–13 December 2026</strong></div>
+        <div class="poster-fact">📍 <strong>Tembekar Ground, Bibwewadi, Pune</strong></div>
+        <div class="poster-fact">🤝 <strong>Presented by Shri Banaskantha Yuvak Mandal</strong></div>
+      </div>
+      <div class="home-actions" style="justify-content:flex-start;"><a class="action-primary" href="/register">Register to Participate</a></div>
+    </div>
+    <a class="poster-art" href="public/SBKYM_Poster.jpeg" target="_blank" rel="noopener" aria-label="Open the official SBKYM Premier League Season 4 poster">
+      <img src="public/SBKYM_Poster.jpeg" alt="Official SBKYM Premier League Season 4 poster, 11–13 December 2026 at Tembekar Ground, Bibwewadi" loading="lazy" />
+    </a>
+  </section>
+
   <div class="section-heading fade-in">
-    <div class="anniversary-badge">🏏 Banaskantha Yuvak Mandal</div>
-    <h2>🏏 Celebrating Cricket & Community</h2>
-    <p>Bringing the Banaskantha community together through cricket, teamwork, and sportsmanship. Follow tournament updates, fixtures, registration information, and player announcements here.</p>
+    <div class="anniversary-badge">🏏 One Community • One Game</div>
+    <h2>Cricket Brings Us Together</h2>
+    <p>Follow tournament updates, fixtures, player registration, confirmed players, and official playing rules right here.</p>
+  </div>
+  <div class="quick-links fade-in">
+    <a class="quick-link" href="/schedule"><b>📅 Match Schedule</b><span>Check fixtures and match timings</span></a>
+    <a class="quick-link" href="/players"><b>🏏 Player Roster</b><span>View confirmed participants</span></a>
+    <a class="quick-link" href="/auction-rules"><b>🔨 Auction Rules</b><span>Understand the team auction format</span></a>
   </div>
 
-  <div class="growth-callout fade-in d3">Welcome to the <span>Banaskantha Yuvak Mandal</span> Cricket Tournament</div>
-    <div class="levelup-pill"><span class="up-arrow">↑</span> Team Arrangement</div>
-    <div class="levelup-pill"><span class="up-arrow">↑</span> Player Auction</div>
-    <div class="levelup-pill"><span class="up-arrow">↑</span> Trophies &amp; Rewards</div>
-  </div>
-
-  <!-- PAST SPONSORS / BRAND PROOF -->
   <!-- SPONSORSHIP -->
   <div class="section-heading fade-in d1" style="margin-top:56px;">
     <h2>🤝 Support the Tournament</h2>
@@ -357,7 +410,7 @@
     });
   }, { threshold: 0.08 });
 
-  document.querySelectorAll('.section-heading, .growth-compare, .levelup-row, .sponsor-showcase-intro, .sponsor-chip-row, .growth-callout, .sponsor-grid, .sponsor-cta').forEach(el => {
+  document.querySelectorAll('.section-heading, .identity-strip, .poster-section, .quick-links, .sponsor-grid, .sponsor-cta').forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(18px)';
     el.style.transition = 'opacity .5s ease, transform .5s ease';
