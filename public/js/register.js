@@ -182,7 +182,7 @@ async function handleSubmit(e) {
 
   let photoPath;
   try {
-    photoPath = await uploadToBucket('clbpl-photos', photoInput.files[0]);
+    photoPath = await uploadToBucket('sbkym-player-photos', photoInput.files[0]);
   } catch (err) {
     console.error(err);
     showMsg('Could not upload your photo (' + (err.message || 'please check your connection') + '). Please try again.', 'error');
