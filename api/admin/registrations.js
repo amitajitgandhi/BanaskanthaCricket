@@ -10,9 +10,9 @@ module.exports = async (req, res) => {
   try {
     const supabase = getSupabase();
     const { data, error } = await supabase
-      .from('clbpl_registrations')
+      .from('sbkym_registrations')
       .select('*')
-      .order('registered_at', { ascending: false });
+      .order('created_at', { ascending: false });
 
     if (error) throw error;
     res.status(200).json(data);
