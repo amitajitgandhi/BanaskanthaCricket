@@ -58,22 +58,10 @@ module.exports = async (req, res) => {
   try {
     const supabase = getSupabase();
 
-    // Belt-and-suspenders: the public /register page hides the form and
-    // shows a "Registration is full" message once the admin stops
-    // registrations, but that's only client-side -- re-check here so a
-    // direct POST to this endpoint can't slip a registration in while
-    // registrations are stopped.
-    const { data: settings, error: settingsError } = await supabase
-      .from('clbpl_app_settings')
-      .select('registration_open')
-      .eq('id', 1)
-      .single();
-    if (!settingsError && settings && settings.registration_open === false) {
-      return res.status(403).json({ error: 'Registration is currently closed. Please contact the committee.' });
-    }
+    const supabase = getSupabase();
 
     const { data, error } = await supabase
-      .from('clbpl_registrations')
+      .from('sbkym_registrations')
       .insert({
         form_number: String(b.formNumber).trim(),
         full_name: String(b.fullName).trim(),
