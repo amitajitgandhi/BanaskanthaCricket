@@ -21,7 +21,7 @@ module.exports = async (req, res) => {
   const b = req.body || {};
   const required = [
     'formNumber', 'fullName', 'gotra', 'mobileNumber', 'dob', 'skillset', 'bowlingArm', 'battingStyle',
-    'photoPath', 'cricheroesLink', 'jerseyName', 'jerseyNumber', 'jerseySize',
+    'photoPath', 'jerseyName', 'jerseyNumber', 'jerseySize',
   ];
   const missing = required.filter((f) => !String(b[f] || '').trim());
   if (missing.length) {
@@ -88,16 +88,6 @@ module.exports = async (req, res) => {
         jersey_name: String(b.jerseyName).trim(),
         jersey_number: String(b.jerseyNumber).trim(),
         jersey_size: String(b.jerseySize).trim(),
-        payment_id: paymentMethod === 'qr' ? String(b.paymentId).trim() : null,
-        // Which QR code (by label) or 'Cash' this registrant paid through —
-        // lets the admin dashboard show which rotation a payment belongs to.
-        qr_label: String(b.qrLabel).trim(),
-        fee_paid: config.fee,
-        screenshot_path: paymentMethod === 'qr' ? String(b.screenshotPath).trim() : null,
-        // Whether the payment ID above was auto-detected by OCR (true), left
-        // for manual entry (false), or not applicable for a Cash payment
-        // (null) -- surfaced in the admin dashboard's Confirmations tab.
-        payment_id_auto_detected: paymentMethod === 'qr' ? (b.paymentIdAutoDetected === true) : null,
         status: 'Pending',
       })
       .select('id')
