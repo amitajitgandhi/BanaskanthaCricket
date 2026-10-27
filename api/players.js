@@ -27,16 +27,16 @@ module.exports = async (req, res) => {
   try {
     const supabase = getSupabase();
     const { data, error } = await supabase
-      .from('clbpl_registrations')
-      .select('full_name, category, mobile_number, cricheroes_link, jersey_name, jersey_number, jersey_size')
-      .eq('status', 'Confirmed')
+      .from('sbkym_registrations')
+      .select('full_name, mobile_number, cricheroes_link, jersey_name, jersey_number, jersey_size')
+      .eq('status', 'Approved')
       .order('full_name', { ascending: true });
 
     if (error) throw error;
 
     const players = data.map((p) => ({
       full_name: p.full_name,
-      category: p.category,
+      category: null,
       mobile_masked: maskMobile(p.mobile_number),
       cricheroes_link: p.cricheroes_link,
       jersey_name: p.jersey_name,
