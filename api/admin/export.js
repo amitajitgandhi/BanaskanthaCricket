@@ -13,16 +13,16 @@ module.exports = async (req, res) => {
   try {
     const supabase = getSupabase();
     const { data, error } = await supabase
-      .from('clbpl_registrations')
+      .from('sbkym_registrations')
       .select('*')
-      .order('registered_at', { ascending: false });
+      .order('created_at', { ascending: false });
 
     if (error) throw error;
 
     const columns = [
-      'id', 'registered_at', 'full_name', 'mobile_number', 'dob', 'skillset', 'bowling_arm',
+      'id', 'created_at', 'form_number', 'full_name', 'gotra', 'mobile_number', 'dob', 'skillset', 'bowling_arm',
       'batting_style', 'cricheroes_link', 'jersey_name', 'jersey_number', 'jersey_size',
-      'payment_id', 'fee_paid', 'photo_path', 'screenshot_path', 'status',
+      'photo_path', 'status', 'admin_notes', 'updated_at',
     ];
     const lines = [columns.join(',')];
     for (const row of data) {
@@ -30,7 +30,7 @@ module.exports = async (req, res) => {
     }
 
     res.setHeader('Content-Type', 'text/csv');
-    res.setHeader('Content-Disposition', 'attachment; filename="clbpl-registrations.csv"');
+    res.setHeader('Content-Disposition', 'attachment; filename="sbkym-registrations.csv"');
     res.status(200).send(lines.join('\n'));
   } catch (err) {
     console.error(err);
