@@ -7,7 +7,7 @@ async function loadConfig() {
   document.getElementById('metaDates').textContent = cfg.eventDates;
   document.getElementById('metaVenue').textContent = cfg.venue;
   document.getElementById('metaDeadline').textContent = cfg.registrationDeadline;
-  document.getElementById('feeAmount').textContent = '₹' + cfg.fee;
+
   document.getElementById('orgName').textContent = cfg.organizerName;
 
   const waDigits = String(cfg.organizerPhone || '').replace(/\D/g, '');
@@ -39,104 +39,6 @@ async function loadConfig() {
   }
 
   return cfg;
-}
-
-// Which payment method the visitor picks — Cash, or a specific QR code (by
-// its label, rotated during the registration window). Only the label is
-// recorded on the registration, not a database id, so it reads clearly in
-// the admin dashboard even after a QR code is later removed.
-let selectedPaymentMethod = null; // 'qr' | 'cash'
-let selectedPaymentLabel = '';
-let qrCodesLoaded = false;
-// Whether the payment/transaction ID was successfully auto-detected via OCR
-// from the uploaded screenshot (true), entered/left for manual entry (false),
-// or not applicable because Cash was chosen (null).
-let paymentIdAutoDetected = null;
-
-function toggleDigitalFields(show) {
-  document.getElementById('digitalPaymentFields').style.display = show ? '' : 'none';
-  document.getElementById('paymentScreenshot').required = show;
-  document.getElementById('paymentId').required = show;
-}
-
-function toggleCashNote(show) {
-  document.getElementById('cashNote').style.display = show ? '' : 'none';
-}
-
-function loadMethodTiles() {
-  const holder = document.getElementById('methodGallery');
-
-  holder.innerHTML = `
-    <label class="qr-item qr-selectable">
-      <input type="radio" name="topMethodChoice" value="online" required />
-      <div class="qr-cash-icon">📱</div>
-      <div class="qr-label">Online</div>
-    </label>
-    <label class="qr-item qr-selectable">
-      <input type="radio" name="topMethodChoice" value="cash" required />
-      <div class="qr-cash-icon">💵</div>
-      <div class="qr-label">Cash</div>
-    </label>
-  `;
-
-  holder.querySelectorAll('input[name="topMethodChoice"]').forEach((radio) => {
-    radio.addEventListener('change', () => {
-      const onlineSection = document.getElementById('onlineQrSection');
-      if (radio.value === 'cash') {
-        selectedPaymentMethod = 'cash';
-        selectedPaymentLabel = 'Cash';
-        paymentIdAutoDetected = null;
-        onlineSection.style.display = 'none';
-        toggleDigitalFields(false);
-        toggleCashNote(true);
-      } else {
-        selectedPaymentMethod = null;
-        selectedPaymentLabel = '';
-        onlineSection.style.display = '';
-        toggleDigitalFields(false);
-        toggleCashNote(false);
-        if (!qrCodesLoaded) {
-          qrCodesLoaded = true;
-          loadQrCodes();
-        }
-      }
-    });
-  });
-}
-
-async function loadQrCodes() {
-  const holder = document.getElementById('qrGallery');
-  try {
-    const res = await fetch('/api/qr-active');
-    const codes = await res.json();
-
-    if (!codes.length) {
-      holder.innerHTML = '<div class="qr-loading">No QR codes are active right now — please choose Cash instead.</div>';
-      return;
-    }
-
-    holder.innerHTML = codes
-      .map(
-        (q) => `
-        <label class="qr-item qr-selectable">
-          <input type="radio" name="qrChoice" value="qr" data-label="${escapeHtml(q.label || 'QR Code')}" required />
-          <img src="${q.url}" alt="${q.label ? escapeHtml(q.label) : 'Payment QR code'}" />
-          <div class="qr-label">${q.label ? escapeHtml(q.label) : 'QR Code'}</div>
-        </label>
-      `
-      )
-      .join('');
-
-    holder.querySelectorAll('input[name="qrChoice"]').forEach((radio) => {
-      radio.addEventListener('change', () => {
-        selectedPaymentMethod = 'qr';
-        selectedPaymentLabel = radio.dataset.label || '';
-        toggleDigitalFields(true);
-      });
-    });
-  } catch (err) {
-    holder.innerHTML = '<div class="qr-loading">Could not load QR codes — please refresh.</div>';
-  }
 }
 
 function escapeHtml(str) {
@@ -236,13 +138,30 @@ async function uploadToBucket(bucket, file) {
 }
 
 function isValidCricheroesLink(url) {
-  return /^https:\/\/chshare\.link\/player\/[A-Za-z0-9_-]+\/?(\?.*)?$/i.test(String(url || '').trim());
+  return !String(url || '').trim() || /^https:\/\/chshare\.link\/player\/[A-Za-z0-9_-]+\/?(\?.*)?$/i.test(String(url || '').trim());
+}
+
+function calculateAge(dob) {
+  const birth = new Date(dob + 'T00:00:00');
+  const today = new Date();
+  let age = today.getFullYear() - birth.getFullYear();
+  if (today.getMonth() < birth.getMonth() || (today.getMonth() === birth.getMonth() && today.getDate() < birth.getDate())) age--;
+  return age;
 }
 
 async function handleSubmit(e) {
   e.preventDefault();
   const form = e.target;
   const btn = document.getElementById('submitBtn');
+
+  const dob = document.getElementById('dob').value;
+  if (!dob || calculateAge(dob) < 17) {
+    const message = 'Age criteria not met. Players must be at least 17 years old on the date of registration. Your registration cannot be submitted.';
+    window.alert(message);
+    showMsg(message, 'error');
+    document.getElementById('dob').focus();
+    return;
+  }
 
   const photoInput = document.getElementById('photoUpload');
   const photoErr = validatePhotoFile(photoInput.files[0]);
@@ -252,36 +171,9 @@ async function handleSubmit(e) {
     return;
   }
 
-  if (!document.querySelector('input[name="topMethodChoice"]:checked')) {
-    showMsg('Please select how you are paying (Cash or Online).', 'error');
-    return;
-  }
-
-  if (!selectedPaymentMethod) {
-    showMsg('Please select which QR code you paid to.', 'error');
-    return;
-  }
-
-  const fileInput = document.getElementById('paymentScreenshot');
-  let paymentIdValue = '';
-  if (selectedPaymentMethod === 'qr') {
-    if (!fileInput.files.length) {
-      showMsg('Please upload your payment screenshot.', 'error');
-      return;
-    }
-    paymentIdValue = document.getElementById('paymentId').value.trim();
-    if (!paymentIdValue) {
-      showMsg('Please enter your payment ID.', 'error');
-      return;
-    }
-    if (fileInput.files[0].size > MAX_PHOTO_BYTES) {
-      showMsg('Payment screenshot is larger than 10MB — please choose a smaller file.', 'error');
-      return;
-    }
-  }
-
-  if (!isValidCricheroesLink(form.cricheroesLink.value)) {
-    showMsg('Please enter a valid Cric Heroes link, e.g. https://chshare.link/player/nhh1FI', 'error');
+  const cricHeroesValue = form.cricheroesLink.value.trim();
+  if (cricHeroesValue && !isValidCricheroesLink(cricHeroesValue)) {
+    showMsg('Please enter a valid Cric Heroes link, or leave the field blank.', 'error');
     return;
   }
 
@@ -299,41 +191,24 @@ async function handleSubmit(e) {
     return;
   }
 
-  let screenshotPath = '';
-  if (selectedPaymentMethod === 'qr') {
-    btn.textContent = 'Uploading screenshot…';
-    try {
-      screenshotPath = await uploadToBucket('clbpl-screenshots', fileInput.files[0]);
-    } catch (err) {
-      console.error(err);
-      showMsg('Could not upload your payment screenshot (' + (err.message || 'please check your connection') + '). Please try again.', 'error');
-      btn.disabled = false;
-      btn.textContent = 'Submit Registration';
-      return;
-    }
-  }
-
-  btn.textContent = 'Submitting…';
-
   const payload = {
+    formNumber: form.formNumber.value.trim(),
     fullName: form.fullName.value,
+    gotra: form.gotra.value.trim(),
     mobileNumber: form.mobileNumber.value,
     dob: form.dob.value,
     skillset: form.skillset.value,
     bowlingArm: form.bowlingArm.value,
     battingStyle: form.battingStyle.value,
-    cricheroesLink: form.cricheroesLink.value,
+    cricheroesLink: form.cricheroesLink.value.trim(),
     jerseyName: form.jerseyName.value,
     jerseyNumber: form.jerseyNumber.value,
     jerseySize: form.jerseySize.value,
-    paymentId: paymentIdValue,
-    paymentMethod: selectedPaymentMethod,
-    qrLabel: selectedPaymentLabel,
-    paymentIdAutoDetected: selectedPaymentMethod === 'cash' ? null : paymentIdAutoDetected,
+
     confirmCorrect: document.getElementById('confirmCorrect').checked,
     agreeTC: document.getElementById('agreeTC').checked,
     photoPath,
-    screenshotPath,
+
   };
 
   try {
@@ -351,10 +226,7 @@ async function handleSubmit(e) {
       return;
     }
 
-    const followUp = selectedPaymentMethod === 'cash'
-      ? 'Please make the payment at the earliest — ideally within 24 hours of this submission — or your spot may be given to the next player on the waiting list.'
-      : 'We will verify your payment shortly.';
-    const successPrefix = 'Registration submitted! Your reference ID is ' + result.id + '. ' + followUp + ' Once your payment is verified, you will appear in the confirmed players list at';
+    const successPrefix = 'Registration submitted! Your reference ID is ' + result.id + '. The committee will review your details.';
     showSuccessMsg(successPrefix, '/players', '/players');
     form.reset();
     setOcrStatus('', '');
@@ -370,15 +242,8 @@ async function handleSubmit(e) {
 
 document.addEventListener('DOMContentLoaded', () => {
   loadConfig();
-  loadMethodTiles();
+
   document.getElementById('regForm').addEventListener('submit', handleSubmit);
-  document.getElementById('paymentScreenshot').addEventListener('change', (e) => {
-    const file = e.target.files && e.target.files[0];
-    if (file) runOcr(file);
-  });
-  document.getElementById('paymentId').addEventListener('input', () => {
-    paymentIdAutoDetected = false;
-  });
   document.getElementById('mobileNumber').addEventListener('input', (e) => {
     // Keep only digits and cap at 10 -- the backend also rejects anything
     // else, but stripping live avoids a confusing "invalid format" message
