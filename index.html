@@ -242,111 +242,6 @@
     }
     .sponsor-cta .btn-primary { display: inline-block; width: auto; padding: 13px 28px; text-decoration: none; }
 
-    /* ── Gallery / slideshow ── */
-    .gallery-wrap {
-      margin-top: 26px;
-      position: relative;
-      border-radius: var(--radius);
-      overflow: hidden;
-      border: 1px solid var(--border);
-      background: var(--card);
-      aspect-ratio: 16/10;
-      max-height: 420px;
-    }
-    .gallery-track {
-      display: flex;
-      height: 100%;
-      transition: transform .5s cubic-bezier(.4,0,.2,1);
-    }
-    .gallery-slide {
-      flex: 0 0 100%;
-      height: 100%;
-      position: relative;
-    }
-    .gallery-slide img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-    .gallery-placeholder {
-      width: 100%; height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      background: linear-gradient(160deg, var(--card2), var(--card));
-      color: var(--muted);
-      font-family: var(--font-ui);
-      text-align: center;
-      padding: 20px;
-    }
-    .gallery-placeholder .ph-icon { font-size: 2.4rem; }
-    .gallery-placeholder p { font-size: .85rem; letter-spacing: .5px; }
-    .gallery-dots {
-      display: flex;
-      justify-content: center;
-      gap: 8px;
-      margin-top: 14px;
-    }
-    .gallery-dot {
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      background: var(--border);
-      cursor: pointer;
-      transition: background .2s, transform .2s;
-      border: none;
-      padding: 0;
-    }
-    .gallery-dot.active { background: var(--gold); transform: scale(1.3); }
-    .gallery-nav-btn {
-      position: absolute;
-      top: 50%; transform: translateY(-50%);
-      width: 38px; height: 38px;
-      border-radius: 50%;
-      background: rgba(7,9,15,.55);
-      border: 1px solid rgba(245,197,24,.35);
-      color: var(--gold);
-      font-size: 1.1rem;
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer;
-      z-index: 3;
-    }
-    .gallery-nav-btn.prev { left: 12px; }
-    .gallery-nav-btn.next { right: 12px; }
-    .gallery-follow {
-      text-align: center;
-      margin-top: 18px;
-    }
-
-    /* ── Caption ticker (flows right → left along the bottom of the photo) ── */
-    .gallery-caption-bar {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 48px;
-      overflow: hidden;
-      background: linear-gradient(0deg, rgba(7,9,15,.78), rgba(7,9,15,.18));
-      z-index: 2;
-      display: flex;
-      align-items: center;
-      pointer-events: none;
-    }
-    .gallery-caption-text {
-      display: inline-block;
-      white-space: nowrap;
-      padding-left: 100%;
-      font-family: var(--font-ui);
-      font-weight: 700;
-      font-size: 1.15rem;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--gold-light);
-      text-shadow: 0 1px 6px rgba(0,0,0,.6);
-    }
-    @keyframes marqueeScroll {
-      0%   { transform: translate3d(0, 0, 0); }
-      100% { transform: translate3d(-100%, 0, 0); }
-    }
   </style>
 </head>
 <body>
@@ -442,24 +337,6 @@
     <a href="https://wa.me/917798130022?text=Hi%2C%20I%27m%20interested%20in%20supporting%20the%20Banaskantha%20Yuvak%20Mandal%20Cricket%20Tournament." id="sponsorWhatsapp" target="_blank" rel="noopener" class="btn-primary">📞 Contact for Sponsorship</a>
   </div>
 
-  <!-- GALLERY / SLIDESHOW -->
-  <div class="section-heading fade-in" style="margin-top:56px;">
-    <h2>📸 Tournament Moments</h2>
-    <p>A glimpse of the energy, excitement, and community spirit at our cricket tournament.</p>
-  </div>
-
-  <div class="gallery-wrap fade-in d1" id="galleryWrap">
-    <div class="gallery-caption-bar" id="galleryCaptionBar" style="display:none;">
-      <span class="gallery-caption-text" id="galleryCaptionText"></span>
-    </div>
-    <div class="gallery-track" id="galleryTrack"></div>
-  </div>
-  <div class="gallery-dots" id="galleryDots"></div>
-
-  <div class="gallery-follow fade-in d2">
-    <a href="https://www.facebook.com/profile.php?id=61589068418086" target="_blank" rel="noopener" class="btn gold">📘 Follow us on Facebook</a>
-  </div>
-
 </div>
 
 <footer>
@@ -480,7 +357,7 @@
     });
   }, { threshold: 0.08 });
 
-  document.querySelectorAll('.section-heading, .growth-compare, .levelup-row, .sponsor-showcase-intro, .sponsor-chip-row, .growth-callout, .sponsor-grid, .sponsor-cta, .gallery-wrap, .gallery-follow').forEach(el => {
+  document.querySelectorAll('.section-heading, .growth-compare, .levelup-row, .sponsor-showcase-intro, .sponsor-chip-row, .growth-callout, .sponsor-grid, .sponsor-cta').forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(18px)';
     el.style.transition = 'opacity .5s ease, transform .5s ease';
@@ -502,96 +379,7 @@
   }
   loadConfig();
 
-  // Gallery / slideshow — add new photos to public/gallery/ and list them
-  // here. The caption shown on each photo is auto-generated from its
-  // filename (underscores/CamelCase become spaces, e.g.
-  // "Season11_RunnerUp.jpg" -> "Season 11 Runner Up").
-  const galleryImages = [
-    'public/gallery/Committee.jpg',
-    'public/gallery/Food_Area_Ribbon_Cutting.jpg',
-    'public/gallery/Ground_Ribbon_Cutting.jpg',
-    'public/gallery/Player_Auction.jpg',
-    'public/gallery/Season11_RunnerUp.jpg',
-    'public/gallery/Season11_Winner.jpg',
-    'public/gallery/Sponsor_Felicitation.jpg',
-    'public/gallery/Trophy_Reveal_by_Sponsor.jpg',
-  ];
 
-  const SMALL_WORDS = new Set(['by', 'of', 'the', 'and', 'a', 'an', 'in', 'on', 'for', 'to', 'vs']);
-
-  function filenameToCaption(path) {
-    let name = path.split('/').pop().replace(/\.[^/.]+$/, ''); // strip folder + extension
-    name = name.replace(/[_-]+/g, ' ');                        // underscores/hyphens -> spaces
-    name = name.replace(/([a-z])([A-Z])/g, '$1 $2');            // camelCase -> spaced
-    name = name.replace(/([A-Za-z])(\d)/g, '$1 $2');            // letter|digit boundary
-    name = name.replace(/(\d)([A-Za-z])/g, '$1 $2');
-    name = name.replace(/\s+/g, ' ').trim();
-    return name.split(' ').map((w, i) => {
-      const lw = w.toLowerCase();
-      if (i > 0 && SMALL_WORDS.has(lw)) return lw;
-      return w.charAt(0).toUpperCase() + w.slice(1).toLowerCase();
-    }).join(' ');
-  }
-
-  const track = document.getElementById('galleryTrack');
-  const dotsWrap = document.getElementById('galleryDots');
-  const captionBar = document.getElementById('galleryCaptionBar');
-  const captionText = document.getElementById('galleryCaptionText');
-  let current = 0;
-  let timer = null;
-
-  function renderGallery() {
-    if (!galleryImages.length) {
-      track.innerHTML = `
-        <div class="gallery-slide">
-          <div class="gallery-placeholder">
-            <div class="ph-icon">🏏📷</div>
-            <p>Photos coming soon — stay tuned!</p>
-          </div>
-        </div>`;
-      dotsWrap.innerHTML = '';
-      captionBar.style.display = 'none';
-      return;
-    }
-    track.innerHTML = galleryImages.map(src => `
-      <div class="gallery-slide"><img src="${src}" alt="${filenameToCaption(src)} — Banaskantha Yuvak Mandal" loading="lazy" /></div>
-    `).join('');
-    dotsWrap.innerHTML = galleryImages.map((_, i) => `
-      <button class="gallery-dot${i === 0 ? ' active' : ''}" data-i="${i}" aria-label="Go to photo ${i + 1}"></button>
-    `).join('');
-    dotsWrap.querySelectorAll('.gallery-dot').forEach(dot => {
-      dot.addEventListener('click', () => goTo(parseInt(dot.dataset.i, 10)));
-    });
-    captionBar.style.display = 'flex';
-    updateCaption(0);
-    startAutoplay();
-  }
-
-  function updateCaption(i) {
-    const caption = filenameToCaption(galleryImages[i]);
-    captionText.textContent = caption;
-    // restart the marquee animation for the new caption
-    captionText.style.animation = 'none';
-    void captionText.offsetWidth; // force reflow
-    const duration = Math.max(6, caption.length * 0.22).toFixed(1);
-    captionText.style.animation = `marqueeScroll ${duration}s linear infinite`;
-  }
-
-  function goTo(i) {
-    current = (i + galleryImages.length) % galleryImages.length;
-    track.style.transform = `translateX(-${current * 100}%)`;
-    dotsWrap.querySelectorAll('.gallery-dot').forEach((d, idx) => d.classList.toggle('active', idx === current));
-    updateCaption(current);
-  }
-
-  function startAutoplay() {
-    if (timer) clearInterval(timer);
-    if (galleryImages.length > 1) {
-      timer = setInterval(() => goTo(current + 1), 4000);
-    }
-  }
-
-  renderGallery();
 </script>
 
 </body>
