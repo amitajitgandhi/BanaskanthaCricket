@@ -290,7 +290,7 @@ async function handleSubmit(e) {
 
   let photoPath;
   try {
-    photoPath = await uploadToBucket('clbpl-photos', photoInput.files[0]);
+    photoPath = await uploadToBucket('bym-photos', photoInput.files[0]);
   } catch (err) {
     console.error(err);
     showMsg('Could not upload your photo (' + (err.message || 'please check your connection') + '). Please try again.', 'error');
@@ -303,7 +303,7 @@ async function handleSubmit(e) {
   if (selectedPaymentMethod === 'qr') {
     btn.textContent = 'Uploading screenshot…';
     try {
-      screenshotPath = await uploadToBucket('clbpl-screenshots', fileInput.files[0]);
+      screenshotPath = await uploadToBucket('bym-screenshots', fileInput.files[0]);
     } catch (err) {
       console.error(err);
       showMsg('Could not upload your payment screenshot (' + (err.message || 'please check your connection') + '). Please try again.', 'error');
@@ -355,7 +355,7 @@ async function handleSubmit(e) {
       ? 'Please make the payment at the earliest — ideally within 24 hours of this submission — or your spot may be given to the next player on the waiting list.'
       : 'We will verify your payment shortly.';
     const successPrefix = 'Registration submitted! Your reference ID is ' + result.id + '. ' + followUp + ' Once your payment is verified, you will appear in the confirmed players list at';
-    showSuccessMsg(successPrefix, 'https://clbpl.vercel.app/players', 'clbpl.vercel.app/players');
+    showSuccessMsg(successPrefix, '/players', '/players');
     form.reset();
     setOcrStatus('', '');
     setPhotoStatus('', '');
