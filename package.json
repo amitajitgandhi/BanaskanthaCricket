@@ -1,8 +1,8 @@
 {
-  "name": "clbpl-site",
+  "name": "banaskantha-yuvak-mandal-cricket-tournament",
   "version": "1.0.0",
   "private": true,
-  "description": "Cricket Lover Boys Premier League — site + registration + admin dashboard (Vercel + Supabase)",
+  "description": "Banaskantha Yuvak Mandal Cricket Tournament website with registration and admin dashboard (Vercel + Supabase)",
   "dependencies": {
     "@supabase/supabase-js": "^2.45.4"
   }
