@@ -1,8 +1,6 @@
 const config = require('../lib/config');
-const { getSupabase } = require('../lib/supabase');
 
 module.exports = async (req, res) => {
-  const supabase = getSupabase();
   const teamNames = {};
   const registrationOpen = true;
 
