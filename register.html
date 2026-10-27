@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Banaskantha Yuvak Mandal Cricket Tournament – Player Registration</title>
+  <title>SBKYM Premier League Season 4 – Player Registration</title>
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="32x32" href="public/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="public/favicon-16x16.png" />
@@ -48,8 +48,16 @@
     <form id="regForm">
       <div class="grid-2">
         <div class="field">
+          <label for="formNumber">Form Number *</label>
+          <input type="text" id="formNumber" name="formNumber" required />
+        </div>
+        <div class="field">
           <label for="fullName">Full Name *</label>
           <input type="text" id="fullName" name="fullName" required />
+        </div>
+        <div class="field">
+          <label for="gotra">Gotra *</label>
+          <input type="text" id="gotra" name="gotra" required />
         </div>
         <div class="field">
           <label for="mobileNumber">Mobile Number *</label>
@@ -70,6 +78,7 @@
             <option>Batsman</option>
             <option>Bowler</option>
             <option>All Rounder</option>
+            <option>Wicket-Keeper</option>
           </select>
         </div>
       </div>
@@ -101,8 +110,8 @@
       </div>
 
       <div class="field">
-        <label for="cricheroesLink">Cric Heroes Link *</label>
-        <input type="url" id="cricheroesLink" name="cricheroesLink" placeholder="https://chshare.link/player/nhh1FI" required />
+        <label for="cricheroesLink">Cric Heroes Link (Optional)</label>
+        <input type="url" id="cricheroesLink" name="cricheroesLink" placeholder="https://chshare.link/player/nhh1FI" />
         <div class="hint">Format: https://chshare.link/player/[ID]</div>
         <div class="hint cricheroes-help" style="margin-top:6px;">
           <a href="https://youtube.com/shorts/6m46nte3oZ8?si=SdC_aOO5fAYh5OLf" target="_blank" rel="noopener">How to get the URL (Android)</a>
@@ -128,65 +137,18 @@
         <label for="jerseySize">Jersey Size *</label>
         <select id="jerseySize" name="jerseySize" required>
           <option value="">Select size</option>
-          <option value="XXS-32">XXS (32) - Kids</option>
-          <option value="XS-34">XS (34) - Kids/Adult</option>
-          <option value="S-36">S (36) - Kids/Adult</option>
-          <option value="M-38">M (38) - Adult</option>
-          <option value="L-40">L (40) - Adult</option>
-          <option value="XL-42">XL (42) - Adult</option>
-          <option value="XXL-44">XXL (44) - Adult</option>
-          <option value="XXXL-46">XXXL (46) - Adult</option>
-          <option value="XXXL-48">XXXL (48) - Adult</option>
-          <option value="XXXL-50">XXXL (50) - Adult</option>
+          <option value="S">S</option>
+          <option value="M">M</option>
+          <option value="L">L</option>
+          <option value="XL">XL</option>
+          <option value="XXL">XXL</option>
+          <option value="XXXL">XXXL</option>
         </select>
       </div>
 
       <div class="notice">
         🪪 Please carry a valid age/ID proof on match day — it may be needed for verification.
-        Please double-check all details before paying.
-      </div>
-
-      <h2 style="margin-top:26px;">Payment</h2>
-
-      <div class="pay-box">
-        <div class="pay-details">
-          <div class="fee-label">Registration Fee</div>
-          <div class="fee" id="feeAmount">…</div>
-          <div class="fine-print">Refund not allowed.</div>
-        </div>
-      </div>
-
-      <div id="methodGallery" class="qr-gallery" style="margin-top:16px;"></div>
-
-      <div id="onlineQrSection" style="display:none; margin-top:16px;">
-        <div id="qrGallery" class="qr-gallery">
-          <div class="qr-loading">Loading QR codes…</div>
-        </div>
-        <div style="margin-top:10px; color: var(--muted); font-size:.8rem;">
-          Select the QR code you paid to, then upload your payment screenshot below —
-          we'll try to auto-read the payment ID for you.
-        </div>
-      </div>
-
-      <div id="digitalPaymentFields" style="display:none;">
-        <div class="field" style="margin-top:16px;">
-          <label for="paymentScreenshot">Screenshot Upload *</label>
-          <input type="file" id="paymentScreenshot" name="paymentScreenshot" accept="image/*" />
-          <div id="ocrStatus" class="ocr-status"></div>
-        </div>
-
-        <div class="field">
-          <label for="paymentId">Payment ID *
-            <span class="hint">(auto-filled from your screenshot when possible — please double-check it)</span>
-          </label>
-          <input type="text" id="paymentId" placeholder="e.g. 123456789012" />
-        </div>
-      </div>
-
-      <div id="cashNote" class="notice" style="display:none; margin:16px 0;">
-        💵 You've chosen to pay by Cash. Please make the payment at the earliest —
-        ideally within <strong>24 hours</strong> of submitting this form — otherwise your
-        spot may be given to the next player on the waiting list.
+        Please double-check all details before submitting.
       </div>
 
       <div class="checkbox-row">
