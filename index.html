@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Banaskantha Yuvak Mandal Cricket Tournament</title>
+  <title>SBKYM Premier League Season 4</title>
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="32x32" href="public/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="public/favicon-16x16.png" />
@@ -184,10 +184,7 @@
     .hero-sub { color:#e4e8f0; }
     .hero-meta { display:flex; justify-content:center; flex-wrap:wrap; gap:10px 22px; margin-top:18px; color:var(--text); }
     .hero-meta span { padding:9px 13px; border:1px solid rgba(255,255,255,.14); border-radius:999px; background:rgba(7,9,15,.45); font-size:.86rem; }
-    .home-actions { display:flex; justify-content:center; flex-wrap:wrap; gap:12px; margin-top:24px; position:relative; z-index:2; }
-    .home-actions a { display:inline-flex; align-items:center; justify-content:center; padding:12px 22px; border-radius:999px; font-family:var(--font-ui); font-weight:700; text-decoration:none; }
-    .home-actions .action-primary { background:var(--gold); color:#111; }
-    .home-actions .action-secondary { color:#fff; border:1px solid rgba(255,255,255,.32); background:rgba(255,255,255,.06); }
+    /* Page navigation is intentionally available only through the hamburger menu. */
     .identity-strip { display:grid; grid-template-columns:1fr 1fr; gap:16px; max-width:760px; margin:30px auto 0; }
     .identity-card { display:flex; align-items:center; justify-content:center; gap:14px; min-height:115px; padding:16px; border:1px solid var(--border); border-radius:var(--radius); background:var(--card); }
     .identity-card img { width:78px; height:78px; object-fit:contain; background:#fff; border-radius:10px; padding:4px; }
@@ -201,12 +198,22 @@
     .poster-fact strong { color:var(--gold-light); }
     .poster-art { display:block; overflow:hidden; border:1px solid rgba(245,197,24,.45); border-radius:18px; box-shadow:0 18px 55px rgba(0,0,0,.35); }
     .poster-art img { width:100%; height:auto; }
-    .quick-links { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:30px; }
-    .quick-link { padding:18px; text-align:center; text-decoration:none; color:var(--text); background:var(--card); border:1px solid var(--border); border-radius:var(--radius); transition:transform .2s,border-color .2s; }
-    .quick-link:hover { transform:translateY(-3px); border-color:var(--gold); }
-    .quick-link b { display:block; color:var(--gold-light); margin-bottom:5px; font-family:var(--font-ui); }
-    .quick-link span { color:var(--muted); font-size:.82rem; }
-    @media(max-width:640px) { .identity-strip,.poster-section,.quick-links { grid-template-columns:1fr; } .identity-card { justify-content:flex-start; } .poster-copy { text-align:center; } }
+    .sponsor-announcement { margin:36px auto 0; max-width:940px; padding:28px; border:1px solid rgba(245,197,24,.32); border-radius:var(--radius); background:linear-gradient(145deg,rgba(245,197,24,.09),rgba(17,24,39,.92)); }
+    .sponsor-announcement h2 { font-family:var(--font-head); text-align:center; font-size:clamp(1.8rem,5vw,2.6rem); color:var(--gold-light); }
+    .sponsor-eyebrow { margin:8px 0 20px; text-align:center; color:var(--muted); font-family:var(--font-ui); letter-spacing:2px; text-transform:uppercase; font-size:.75rem; }
+    .title-sponsor-name { margin:0 auto; max-width:800px; text-align:center; font-size:clamp(1.15rem,3.3vw,1.8rem); font-weight:700; color:#fff; line-height:1.6; }
+    .sponsor-family { margin-top:20px; text-align:center; }
+    .sponsor-family h3 { font-family:var(--font-ui); color:var(--gold-light); font-size:1rem; margin-bottom:8px; }
+    .sponsor-names { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-top:10px; }
+    .sponsor-name { padding:8px 13px; border-radius:999px; background:var(--card2); border:1px solid var(--border); color:var(--text); font-size:.85rem; }
+    .organizer-panel { margin-top:22px; padding-top:18px; border-top:1px solid var(--border); text-align:center; }
+    .organizer-panel h3 { font-family:var(--font-ui); color:var(--gold-light); }
+    .organizer-panel p { margin-top:8px; color:var(--text); line-height:1.8; }
+    .sponsor-dates { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:22px; }
+    .sponsor-date { padding:12px 8px; border-radius:10px; background:rgba(0,0,0,.22); border:1px solid var(--border); text-align:center; }
+    .sponsor-date strong { display:block; color:var(--gold-light); font-family:var(--font-ui); }
+    .sponsor-date span { display:block; margin-top:5px; color:var(--text); font-size:.82rem; }
+    @media(max-width:640px) { .identity-strip,.poster-section { grid-template-columns:1fr; } .identity-card { justify-content:flex-start; } .poster-copy { text-align:center; } .sponsor-announcement { padding:20px 14px; } .sponsor-dates { grid-template-columns:1fr; } }
     /* ── Sponsorship ── */
     .sponsor-intro {
       max-width: 680px;
@@ -301,11 +308,6 @@
     <span>📅 <strong id="metaDates">11–13 December 2026</strong></span>
     <span>📍 <strong id="metaVenue">Tembekar Ground, Bibwewadi, Pune</strong></span>
   </div>
-  <div class="home-actions fade-in d4">
-    <a class="action-primary" href="/register">🏏 Player Registration</a>
-    <a class="action-secondary" href="/schedule">📅 View Schedule</a>
-    <a class="action-secondary" href="/rules">📋 Tournament Rules</a>
-  </div>
   <div class="hero-divider fade-in d4"></div>
 </header>
 
@@ -325,7 +327,7 @@
         <div class="poster-fact">📍 <strong>Tembekar Ground, Bibwewadi, Pune</strong></div>
         <div class="poster-fact">🤝 <strong>Presented by Shri Banaskantha Yuvak Mandal</strong></div>
       </div>
-      <div class="home-actions" style="justify-content:flex-start;"><a class="action-primary" href="/register">Register to Participate</a></div>
+      
     </div>
     <a class="poster-art" href="public/SBKYM_Poster.jpeg" target="_blank" rel="noopener" aria-label="Open the official SBKYM Premier League Season 4 poster">
       <img src="public/SBKYM_Poster.jpeg" alt="Official SBKYM Premier League Season 4 poster, 11–13 December 2026 at Tembekar Ground, Bibwewadi" loading="lazy" />
@@ -337,64 +339,42 @@
     <h2>Cricket Brings Us Together</h2>
     <p>Follow tournament updates, fixtures, player registration, confirmed players, and official playing rules right here.</p>
   </div>
-  <div class="quick-links fade-in">
-    <a class="quick-link" href="/schedule"><b>📅 Match Schedule</b><span>Check fixtures and match timings</span></a>
-    <a class="quick-link" href="/players"><b>🏏 Player Roster</b><span>View confirmed participants</span></a>
-    <a class="quick-link" href="/auction-rules"><b>🔨 Auction Rules</b><span>Understand the team auction format</span></a>
-  </div>
 
-  <!-- SPONSORSHIP -->
-  <div class="section-heading fade-in d1" style="margin-top:56px;">
-    <h2>🤝 Support the Tournament</h2>
-  </div>
-  <p class="sponsor-intro fade-in d1">
-    Support the Banaskantha Yuvak Mandal Cricket Tournament and be part of a celebration of cricket, community spirit, and sporting talent.
-  </p>
 
-  <div class="sponsor-grid fade-in d2">
-    <div class="sponsor-card">
-      <div class="sponsor-icon">👁️</div>
-      <h3>High Visibility</h3>
-      <p>Branding across the venue, social media, and live coverage.</p>
+  <!-- TITLE SPONSOR ANNOUNCEMENT (transcribed from Sponsor.jpeg) -->
+  <section class="sponsor-announcement fade-in" aria-labelledby="titleSponsorHeading">
+    <h2 id="titleSponsorHeading">Official Title Sponsor</h2>
+    <p class="sponsor-eyebrow">SBKYM Premier League • Season 4</p>
+    <p class="title-sponsor-name">श्रीमान शा. पारसमलजी हस्तीमलजी लुंकड़<br/>अ. सौ. कमलाबेन पारसमलजी लुंकड़</p>
+    <div class="sponsor-family">
+      <h3>With Best Wishes From</h3>
+      <div class="sponsor-names">
+        <span class="sponsor-name">Maheshji</span>
+        <span class="sponsor-name">Shaileshji</span>
+        <span class="sponsor-name">Alkeshji</span>
+        <span class="sponsor-name">Shripalji</span>
+        <span class="sponsor-name">Harsh</span>
+        <span class="sponsor-name">Kumarpal</span>
+        <span class="sponsor-name">Darshan</span>
+        <span class="sponsor-name">Naman</span>
+      </div>
     </div>
-    <div class="sponsor-card">
-      <div class="sponsor-icon">🤝</div>
-      <h3>Direct Engagement</h3>
-      <p>Reach an enthusiastic Jain community audience.</p>
+    <div class="sponsor-dates" aria-label="Tournament dates">
+      <div class="sponsor-date"><strong>Friday</strong><span>11 December 2026</span></div>
+      <div class="sponsor-date"><strong>Saturday</strong><span>12 December 2026</span></div>
+      <div class="sponsor-date"><strong>Sunday</strong><span>13 December 2026</span></div>
     </div>
-    <div class="sponsor-card">
-      <div class="sponsor-icon">🌐</div>
-      <h3>Networking</h3>
-      <p>Connect with business leaders and influencers.</p>
+    <div class="organizer-panel">
+      <h3>Organised by Team SBKYM Pune</h3>
+      <p><strong>Alkesh Lunkad</strong> — President<br/><strong>Sanghvi Rahul Bhansali</strong> — Secretary</p>
+      <p style="color:var(--muted);font-size:.84rem;">Tembekar Ground, Bibwewadi, Pune</p>
     </div>
-    <div class="sponsor-card">
-      <div class="sponsor-icon">💛</div>
-      <h3>Positive Association</h3>
-      <p>Energetic, family-friendly sporting event.</p>
-    </div>
-    <div class="sponsor-card">
-      <div class="sponsor-icon">🎶</div>
-      <h3>Entertainment Factor</h3>
-      <p>DJ &amp; Dhol keep the energy high all evening.</p>
-    </div>
-    <div class="sponsor-card">
-      <div class="sponsor-icon">🏏</div>
-      <h3>Community Impact</h3>
-      <p>Support local talent and contribute to sports development.</p>
-    </div>
-  </div>
-
-  <div class="sponsor-cta fade-in d3">
-    <h3>Let's Create Brand Together!</h3>
-    <p>Be part of one of Pune's biggest community sporting events. Build your brand, celebrate cricket, and strengthen community ties.</p>
-    <a href="https://wa.me/917798130022?text=Hi%2C%20I%27m%20interested%20in%20supporting%20the%20Banaskantha%20Yuvak%20Mandal%20Cricket%20Tournament." id="sponsorWhatsapp" target="_blank" rel="noopener" class="btn-primary">📞 Contact for Sponsorship</a>
-  </div>
+  </section>
 
 </div>
 
 <footer>
-  <p style="margin-top:5px;">Banaskantha Yuvak Mandal Cricket Tournament &nbsp;•&nbsp; &copy; Banaskantha Yuvak Mandal</p>
-  <p style="margin-top:8px;"><a href="https://www.facebook.com/profile.php?id=61589068418086" target="_blank" rel="noopener" class="pill pill-gold" style="text-decoration:none;">📘 Facebook</a></p>
+  <p style="margin-top:5px;">SBKYM Premier League — Season 4 &nbsp;•&nbsp; &copy; Shri Banaskantha Yuvak Mandal, Pune</p>
   <p style="margin-top:8px;">Designed with ❤️ by <span class="pill pill-gold">Amit Gandhi</span></p>
 </footer>
 
@@ -410,7 +390,7 @@
     });
   }, { threshold: 0.08 });
 
-  document.querySelectorAll('.section-heading, .identity-strip, .poster-section, .quick-links, .sponsor-grid, .sponsor-cta').forEach(el => {
+  document.querySelectorAll('.section-heading, .identity-strip, .poster-section, .sponsor-announcement').forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(18px)';
     el.style.transition = 'opacity .5s ease, transform .5s ease';
@@ -418,8 +398,7 @@
   });
 
   // Tournament dates/venue, from /api/config
-  // (Sponsorship WhatsApp number is hardcoded above, separate from the
-  // registration-query contact in lib/config.js)
+  // Public contact details are managed separately from tournament config.
   async function loadConfig() {
     try {
       const res = await fetch('/api/config');
