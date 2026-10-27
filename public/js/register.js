@@ -290,7 +290,7 @@ async function handleSubmit(e) {
 
   let photoPath;
   try {
-    photoPath = await uploadToBucket('bym-photos', photoInput.files[0]);
+    photoPath = await uploadToBucket('clbpl-photos', photoInput.files[0]);
   } catch (err) {
     console.error(err);
     showMsg('Could not upload your photo (' + (err.message || 'please check your connection') + '). Please try again.', 'error');
@@ -303,7 +303,7 @@ async function handleSubmit(e) {
   if (selectedPaymentMethod === 'qr') {
     btn.textContent = 'Uploading screenshot…';
     try {
-      screenshotPath = await uploadToBucket('bym-screenshots', fileInput.files[0]);
+      screenshotPath = await uploadToBucket('clbpl-screenshots', fileInput.files[0]);
     } catch (err) {
       console.error(err);
       showMsg('Could not upload your payment screenshot (' + (err.message || 'please check your connection') + '). Please try again.', 'error');
