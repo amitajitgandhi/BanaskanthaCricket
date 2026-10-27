@@ -330,6 +330,60 @@
       .identity-card strong { font-size:.86rem; }
       .identity-card span { font-size:.75rem; }
     }
+  
+    /* Homepage layout: mobile-first, clear information hierarchy */
+    .top-identity { max-width:920px; margin:0 auto; padding:22px 16px 6px; display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    .top-identity .identity-card { justify-content:flex-start; text-align:left; min-width:0; padding:13px; gap:12px; }
+    .top-identity .identity-card img { width:66px; height:66px; flex:0 0 66px; }
+    .top-identity .identity-card strong { font-size:.88rem; line-height:1.35; }
+    .top-identity .identity-card span { font-size:.75rem; line-height:1.4; }
+    .hero { padding:22px 16px 32px; }
+    .season-label { font-size:.68em; letter-spacing:3px; }
+    .hero-meta span { max-width:100%; overflow-wrap:anywhere; }
+    .home-container { max-width:900px; padding-top:22px; }
+    .sponsor-announcement { margin:0 auto 18px; }
+    .sponsor-announcement h2 { margin-top:4px; }
+    .organizer-card,.community-section,.why-sponsor-section { margin:18px auto 0; padding:24px; border:1px solid var(--border); border-radius:var(--radius); background:var(--card); text-align:center; }
+    .section-kicker { color:var(--gold); font:700 .72rem var(--font-ui); letter-spacing:1.8px; text-transform:uppercase; margin-bottom:9px; }
+    .organizer-card h2,.community-section h2,.why-sponsor-section h2 { color:#fff; font:2rem var(--font-head); letter-spacing:1px; line-height:1.08; }
+    .organizer-people { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:18px; }
+    .organizer-people div { padding:14px 10px; background:var(--card2); border:1px solid var(--border); border-radius:10px; }
+    .organizer-people span,.organizer-people strong { display:block; }
+    .organizer-people span { color:var(--muted); font-size:.75rem; margin-bottom:5px; }
+    .organizer-people strong { color:var(--gold-light); font-size:.9rem; }
+    .community-section { background:linear-gradient(145deg,rgba(245,197,24,.08),var(--card)); }
+    .community-mark { font-size:2rem; margin-bottom:8px; }
+    .community-section > p:last-child,.why-sponsor-section > p:last-child { max-width:650px; margin:14px auto 0; color:var(--text); line-height:1.8; font-size:.94rem; }
+    .sponsor-benefits { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; margin-top:20px; text-align:left; }
+    .sponsor-benefits div { padding:15px; background:var(--card2); border:1px solid var(--border); border-radius:12px; min-width:0; }
+    .sponsor-benefits span,.sponsor-benefits strong,.sponsor-benefits small { display:block; }
+    .sponsor-benefits span { font-size:1.5rem; margin-bottom:8px; }
+    .sponsor-benefits strong { color:var(--gold-light); font-family:var(--font-ui); font-size:.88rem; }
+    .sponsor-benefits small { color:var(--muted); margin-top:6px; line-height:1.55; font-size:.78rem; }
+    .home-register-button { display:flex; align-items:center; justify-content:center; gap:12px; width:100%; max-width:520px; margin:22px auto 8px; padding:16px 20px; border-radius:12px; background:linear-gradient(135deg,var(--gold),#c9920f); color:#08090c; font:700 1rem var(--font-ui); text-decoration:none; box-shadow:0 8px 24px rgba(245,197,24,.18); }
+    .home-register-button b { font-size:1.2rem; }
+    @media(max-width:640px) {
+      .top-identity { grid-template-columns:1fr; padding:16px 14px 2px; gap:9px; }
+      .top-identity .identity-card { min-height:84px; padding:10px 12px; }
+      .top-identity .identity-card img { width:58px; height:58px; flex-basis:58px; }
+      .top-identity .identity-card strong { font-size:.85rem; }
+      .hero { padding:24px 14px 26px; }
+      .hero-title { font-size:clamp(2.25rem,9vw,3.3rem); line-height:1; letter-spacing:1px; }
+      .hero-sub { line-height:1.5; letter-spacing:1px; }
+      .hero-meta { display:grid; grid-template-columns:1fr; max-width:380px; gap:8px; margin:18px auto 0; }
+      .hero-meta span { justify-content:flex-start; border-radius:11px; padding:11px 12px; text-align:left; }
+      .home-container { padding:12px 14px 34px; }
+      .sponsor-announcement { padding:22px 14px; }
+      .title-sponsor-name { font-size:1.12rem; line-height:1.6; }
+      .organizer-card,.community-section,.why-sponsor-section { padding:21px 16px; margin-top:14px; }
+      .organizer-card h2,.community-section h2,.why-sponsor-section h2 { font-size:1.8rem; }
+      .organizer-people { grid-template-columns:1fr; gap:9px; }
+      .sponsor-benefits { grid-template-columns:1fr; gap:9px; }
+      .sponsor-benefits div { display:grid; grid-template-columns:34px 1fr; column-gap:8px; align-items:start; padding:13px; }
+      .sponsor-benefits span { grid-row:span 2; margin:0; }
+      .sponsor-benefits small { margin-top:4px; }
+      .home-register-button { margin-top:18px; padding:16px; }
+    }
   </style>
 </head>
 <body>
@@ -348,73 +402,71 @@
 </nav>
 
 
+<section class="identity-strip top-identity" aria-label="Organising organisations">
+  <div class="identity-card">
+    <img src="/public/SBKYM_Logo.jpeg" alt="SBKYM logo">
+    <div><strong>Shri Banaskantha Yuvak Mandal</strong><span>Organiser • Pune</span></div>
+  </div>
+  <div class="identity-card">
+    <img src="/public/SBVOS.jpeg" alt="Shri Banaskantha Visa Oswal Sangh logo">
+    <div><strong>Shri Banaskantha Visa Oswal Sangh</strong><span>Community association • Pune</span></div>
+  </div>
+</section>
 
-
-  <header class="hero">
+<header class="hero">
   <div class="pitch-lines"></div>
-  
-  <div class="badge fade-in d1">🏏 Shri Banaskantha Yuvak Mandal • Pune</div>
-  <h1 class="hero-title fade-in d2">SBKYM Premier League<br/><span style="font-size:.68em;letter-spacing:3px;">SEASON 4</span></h1>
-  <p class="hero-sub fade-in d3">Cricket • Community • Sportsmanship</p>
-  <p class="home-intro">Three days of cricket, camaraderie and community pride.</p>
-  <div class="hero-meta fade-in d3">
+  <div class="badge">🏏 Official Tournament Website</div>
+  <h1 class="hero-title">SBKYM Premier League<br><span class="season-label">SEASON 4</span></h1>
+  <p class="hero-sub">Cricket • Community • Sportsmanship</p>
+  <div class="hero-meta">
     <span>📅 <strong id="metaDates">11–13 December 2026</strong></span>
     <span>📍 <strong id="metaVenue">Tembekar Ground, Bibwewadi, Pune</strong></span>
   </div>
-  <div class="hero-divider fade-in d4"></div>
+  <div class="hero-divider"></div>
 </header>
 
-<div class="container">
-  <section class="home-quick-actions" aria-label="Tournament links">
-    <a class="home-action primary" href="/register"><span>📝</span><span><strong>Player Registration</strong><small>Register to participate</small></span><b>→</b></a>
-    <a class="home-action" href="/schedule"><span>📅</span><span><strong>Match Schedule</strong><small>Fixtures and match timings</small></span><b>→</b></a>
-    <a class="home-action" href="/rules"><span>📋</span><span><strong>Tournament Rules</strong><small>Read before you play</small></span><b>→</b></a>
-  </section>
-
-  <section class="poster-section fade-in" aria-labelledby="eventPosterTitle">
-    <div class="poster-copy">
-      <h2 id="eventPosterTitle">The Cricket Celebration Is Back</h2>
-      <p>Get ready for three days of competitive cricket, team spirit, and community celebration at the SBKYM Premier League.</p>
-
-      
-    </div>
-    <a class="poster-art" href="public/SBKYM_Poster.jpeg" target="_blank" rel="noopener" aria-label="Open the official SBKYM Premier League Season 4 poster">
-      <img src="public/SBKYM_Poster.jpeg" alt="Official SBKYM Premier League Season 4 poster, 11–13 December 2026 at Tembekar Ground, Bibwewadi" loading="lazy" />
-    </a>
-  </section>
-
-    <!-- TITLE SPONSOR ANNOUNCEMENT -->
-  <section class="sponsor-announcement fade-in" aria-labelledby="titleSponsorHeading">
+<main class="container home-container">
+  <section class="sponsor-announcement" aria-labelledby="titleSponsorHeading">
+    <p class="sponsor-eyebrow">Season 4 • Proudly Presented By</p>
     <h2 id="titleSponsorHeading">Official Title Sponsor</h2>
-    <p class="sponsor-eyebrow">SBKYM Premier League • Season 4</p>
-    <p class="title-sponsor-name">श्रीमान शा. पारसमलजी हस्तीमलजी लुंकड़<br/>अ. सौ. कमलाबेन पारसमलजी लुंकड़</p>
+    <p class="title-sponsor-name">श्रीमान शा. पारसमलजी हस्तीमलजी लुंकड़<br>अ. सौ. कमलाबेन पारसमलजी लुंकड़</p>
     <div class="sponsor-family">
       <h3>With Best Wishes From</h3>
       <div class="sponsor-names">
         <span class="sponsor-name">Maheshji</span><span class="sponsor-name">Shaileshji</span><span class="sponsor-name">Alkeshji</span><span class="sponsor-name">Shripalji</span><span class="sponsor-name">Harsh</span><span class="sponsor-name">Kumarpal</span><span class="sponsor-name">Darshan</span><span class="sponsor-name">Naman</span>
       </div>
     </div>
-    <div class="organizer-panel">
-      <h3>Organised by Team SBKYM Pune</h3>
-      <p><strong>Alkesh Lunkad</strong> — President<br/><strong>Sanghvi Rahul Bhansali</strong> — Secretary</p>
+  </section>
+
+  <section class="organizer-card" aria-labelledby="organizerHeading">
+    <p class="section-kicker">The Team Behind the Tournament</p>
+    <h2 id="organizerHeading">Organised by Team SBKYM Pune</h2>
+    <div class="organizer-people">
+      <div><span>President</span><strong>Alkesh Lunkad</strong></div>
+      <div><span>Secretary</span><strong>Sanghvi Rahul Bhansali</strong></div>
     </div>
   </section>
-  <section class="identity-strip fade-in" aria-label="Organising organisations">
-    <div class="identity-card"><img src="public/SBKYM_Logo.jpeg" alt="SBKYM logo"><div><strong>Shri Banaskantha Yuvak Mandal</strong><span>Organiser • Pune</span></div></div>
-    <div class="identity-card"><img src="public/SBVOS.jpeg" alt="Shri Banaskantha Visa Oswal Sangh logo"><div><strong>Shri Banaskantha Visa Oswal Sangh</strong><span>Community association • Pune</span></div></div>
+
+  <section class="community-section" aria-labelledby="communityHeading">
+    <div class="community-mark">🏏</div>
+    <p class="section-kicker">One Community • One Game</p>
+    <h2 id="communityHeading">Cricket Brings Us Together</h2>
+    <p>More than a tournament, SBKYM Premier League is a celebration of friendship, teamwork and community pride. It brings players and families together through the spirit of cricket, fair play and shared memories.</p>
   </section>
 
+  <section class="why-sponsor-section" aria-labelledby="whySponsorHeading">
+    <p class="section-kicker">Partner With Us</p>
+    <h2 id="whySponsorHeading">Why Sponsor Us?</h2>
+    <p>Connect your brand with an engaged community, support local sporting talent, and be part of a tournament built around teamwork, relationships and community spirit.</p>
+    <div class="sponsor-benefits">
+      <div><span>🤝</span><strong>Community Reach</strong><small>Build meaningful connections with local families and players.</small></div>
+      <div><span>📣</span><strong>Brand Visibility</strong><small>Get your business in front of an active tournament audience.</small></div>
+      <div><span>🏆</span><strong>Support the Game</strong><small>Help create a memorable sporting experience for everyone.</small></div>
+    </div>
+  </section>
 
-
-
-  <div class="section-heading fade-in">
-    <div class="anniversary-badge">🏏 One Community • One Game</div>
-    <h2>Cricket Brings Us Together</h2>
-    <p>Follow tournament updates, fixtures, player registration, confirmed players, and official playing rules right here.</p>
-  </div>
-
-
-</div>
+  <a class="home-register-button" href="/register"><span>📝</span> Player Registration <b>→</b></a>
+</main>
 
 <footer>
   <p style="margin-top:5px;">SBKYM Premier League — Season 4 &nbsp;•&nbsp; &copy; Shri Banaskantha Yuvak Mandal, Pune</p>
