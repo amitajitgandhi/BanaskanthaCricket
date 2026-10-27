@@ -58,8 +58,6 @@ module.exports = async (req, res) => {
   try {
     const supabase = getSupabase();
 
-    const supabase = getSupabase();
-
     const { data, error } = await supabase
       .from('sbkym_registrations')
       .insert({
