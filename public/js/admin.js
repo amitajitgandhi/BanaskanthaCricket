@@ -50,14 +50,14 @@ async function handleLogin(e) {
   }
 
   authToken = result.token;
-  sessionStorage.setItem('clbpl_admin_token', authToken);
+  sessionStorage.setItem('sbkym_admin_token', authToken);
   showDashboard();
   initDashboard();
 }
 
 function handleLogout() {
   authToken = null;
-  sessionStorage.removeItem('clbpl_admin_token');
+  sessionStorage.removeItem('sbkym_admin_token');
   showLogin();
 }
 
@@ -65,9 +65,9 @@ function handleLogout() {
 
 function renderStats(entries) {
   const total = entries.length;
-  const confirmed = entries.filter((e) => e.status === 'Confirmed').length;
+  const confirmed = entries.filter((e) => e.status === 'Approved').length;
   const pending = total - confirmed;
-  const fees = entries.filter((e) => e.status === 'Confirmed').reduce((sum, e) => sum + (Number(e.fee_paid) || 0), 0);
+  const fees = entries.filter((e) => e.status === 'Approved').reduce((sum, e) => sum + (Number(e.fee_paid) || 0), 0);
 
   document.getElementById('statTotal').textContent = total;
   document.getElementById('statVerified').textContent = confirmed;
@@ -89,7 +89,7 @@ function renderStats(entries) {
 
 // ---------- Confirmations table: sortable + copyable columns ----------
 
-let confirmSortKey = 'registered_at';
+let confirmSortKey = 'created_at';
 let confirmSortDir = 'desc';
 
 function compareValues(a, b) {
@@ -127,10 +127,11 @@ function copyColumnToClipboard(text, th) {
 }
 
 const CONFIRM_COLUMNS = [
-  { key: 'registered_at', label: 'Registered',
-    getValue: (e) => new Date(e.registered_at).getTime() || 0,
-    getText: (e) => fmtDate(e.registered_at),
-    renderCell: (e) => escapeHtml(fmtDate(e.registered_at)) },
+  { key: 'created_at', label: 'Registered',
+    getValue: (e) => new Date(e.created_at).getTime() || 0,
+    getText: (e) => fmtDate(e.created_at),
+    renderCell: (e) => escapeHtml(fmtDate(e.created_at)) },
+  { key: 'form_number', label: 'Form Number', getValue: (e) => e.form_number || '', getText: (e) => e.form_number || '', renderCell: (e) => escapeHtml(e.form_number) },
   { key: 'full_name', label: 'Name',
     getValue: (e) => (e.full_name || '').toLowerCase(),
     getText: (e) => e.full_name || '',
@@ -139,9 +140,9 @@ const CONFIRM_COLUMNS = [
     getValue: (e) => e.status || '',
     getText: (e) => e.status || 'Pending',
     renderCell: (e) => `
-          <select class="status-select ${e.status === 'Confirmed' ? 'pill-green' : 'pill-gold'}" data-id="${e.id}" style="background:transparent; border:1px solid var(--border); border-radius:8px; padding:4px 8px; font-family:var(--font-ui); font-size:.72rem; font-weight:700; color:${e.status === 'Confirmed' ? '#86efac' : 'var(--gold)'};">
-            <option value="Pending" ${e.status !== 'Confirmed' ? 'selected' : ''}>Pending</option>
-            <option value="Confirmed" ${e.status === 'Confirmed' ? 'selected' : ''}>Confirmed</option>
+          <select class="status-select ${e.status === 'Approved' ? 'pill-green' : 'pill-gold'}" data-id="${e.id}" style="background:transparent; border:1px solid var(--border); border-radius:8px; padding:4px 8px; font-family:var(--font-ui); font-size:.72rem; font-weight:700; color:${e.status === 'Approved' ? '#86efac' : 'var(--gold)'};">
+            <option value="Pending" ${e.status !== 'Approved' ? 'selected' : ''}>Pending</option>
+            <option value="Approved" ${e.status === 'Approved' ? 'selected' : ''}>Approved</option>
           </select>` },
   { key: 'category', label: 'Category',
     getValue: (e) => e.category || '',
@@ -164,6 +165,7 @@ const CONFIRM_COLUMNS = [
             <option value="Paid Cash to Amit" ${e.payment_collection_status === 'Paid Cash to Amit' ? 'selected' : ''}>Paid Cash to Amit</option>
             <option value="Paid Cash to Bhavesh" ${e.payment_collection_status === 'Paid Cash to Bhavesh' ? 'selected' : ''}>Paid Cash to Bhavesh</option>
           </select>` },
+  { key: 'gotra', label: 'Gotra', getValue: (e) => e.gotra || '', getText: (e) => e.gotra || '', renderCell: (e) => escapeHtml(e.gotra) },
   { key: 'mobile_number', label: 'Mobile',
     getValue: (e) => e.mobile_number || '', getText: (e) => e.mobile_number || '',
     renderCell: (e) => escapeHtml(e.mobile_number) },
@@ -211,7 +213,7 @@ const CONFIRM_COLUMNS = [
 // per-browser (localStorage) so the chosen view survives a page refresh.
 // Independent of the CSV export's own column selector below -- hiding a
 // column on-screen doesn't affect what gets exported, and vice versa.
-const CONFIRM_HIDDEN_COLS_KEY = 'clbplConfirmHiddenColumns';
+const CONFIRM_HIDDEN_COLS_KEY = 'sbkymConfirmHiddenColumns';
 
 function loadHiddenColumns() {
   try {
@@ -410,7 +412,7 @@ function renderTable(entries) {
     btn.addEventListener('click', () => {
       const entry = allEntries.find((e) => String(e.id) === String(btn.dataset.id));
       if (entry && entry.photo_path) {
-        window.open(`${window.__CLBPL_PHOTO_BASE__}${entry.photo_path}`, '_blank', 'noopener');
+        fetch(`/api/admin/registrations/${entry.id}/photo`, { headers: authHeaders() }).then((res) => res.json()).then((result) => { if (result.url) window.open(result.url, '_blank', 'noopener'); else alert(result.error || 'Could not load photo.'); }).catch(() => alert('Could not load photo.'));
       } else {
         alert('No photo on file.');
       }
@@ -556,7 +558,7 @@ async function loadRegistrations() {
 // loaded into allEntries — no server round trip, so adding/removing
 // columns or filters here never needs an API change.
 const EXPORT_COLUMNS = [
-  { key: 'registered_at', label: 'Registered' },
+  { key: 'created_at', label: 'Registered' },
   { key: 'full_name', label: 'Name' },
   { key: 'mobile_number', label: 'Mobile' },
   { key: 'dob', label: 'DOB' },
@@ -585,7 +587,7 @@ function csvEscape(value) {
 }
 
 function exportValue(row, key) {
-  if (key === 'registered_at') return fmtDate(row.registered_at);
+  if (key === 'created_at') return fmtDate(row.created_at);
   if (key === 'payment_collection_status') return row.payment_collection_status || 'Pending';
   return row[key];
 }
@@ -621,7 +623,7 @@ function handleDownloadExport() {
       [e.full_name, e.mobile_number, e.jersey_name, e.qr_label].some((f) => String(f || '').toLowerCase().includes(search))
     );
   }
-  rows.sort((a, b) => new Date(b.registered_at) - new Date(a.registered_at));
+  rows.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
 
   if (!rows.length) {
     alert('No registrations match these filters.');
@@ -805,7 +807,7 @@ async function loadPhotoBase() {
   try {
     const res = await fetch('/api/config');
     const cfg = await res.json();
-    window.__CLBPL_PHOTO_BASE__ = `${cfg.supabaseUrl}/storage/v1/object/public/clbpl-photos/`;
+    window.__CLBPL_PHOTO_BASE__ = '';
   } catch (err) {
     window.__CLBPL_PHOTO_BASE__ = '';
   }
@@ -907,7 +909,8 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   document.getElementById('saveEditBtn').addEventListener('click', handleSaveEdit);
   document.getElementById('cancelEditBtn').addEventListener('click', closeEditModal);
-  document.getElementById('paymentFilter').addEventListener('change', applyFilter);
+  const paymentFilter = document.getElementById('paymentFilter');
+  if (paymentFilter) paymentFilter.addEventListener('change', applyFilter);
   document.getElementById('qrUploadForm').addEventListener('submit', handleQrUpload);
   document.getElementById('saveTeamNamesBtn').addEventListener('click', handleSaveTeamNames);
   document.getElementById('openExportBtn').addEventListener('click', () => toggleExportPanel(true));
@@ -917,7 +920,7 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.addEventListener('click', () => switchTab(btn.dataset.tab));
   });
 
-  const saved = sessionStorage.getItem('clbpl_admin_token');
+  const saved = sessionStorage.getItem('sbkym_admin_token');
   if (saved) {
     authToken = saved;
     showDashboard();
