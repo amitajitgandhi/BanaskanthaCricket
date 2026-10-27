@@ -8,6 +8,21 @@
   <link rel="apple-touch-icon" href="/public/SBKYM_Logo.jpeg" />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link href="public/css/site-theme.css" rel="stylesheet" />
+  <style>
+    .age-modal-overlay{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(2,6,15,.78);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+    .age-modal-overlay[hidden]{display:none}
+    .age-modal{width:min(100%,420px);overflow:hidden;border:1px solid rgba(245,197,24,.3);border-radius:24px;background:linear-gradient(155deg,#182131 0%,#0b111c 75%);box-shadow:0 24px 80px rgba(0,0,0,.55);color:#f8fafc;text-align:center;animation:ageModalIn .22s ease-out}
+    .age-modal-top{padding:26px 24px 10px}
+    .age-modal-icon{display:grid;place-items:center;width:62px;height:62px;margin:0 auto 16px;border:1px solid rgba(245,197,24,.3);border-radius:50%;background:rgba(245,197,24,.12);font-size:29px}
+    .age-modal h2{margin:0;color:#fff;font:700 1.5rem/1.2 'Space Grotesk',sans-serif;letter-spacing:-.3px}
+    .age-modal p{margin:12px 0 0;color:#cbd5e1;font:400 .98rem/1.65 'Outfit',sans-serif}
+    .age-modal-note{margin:18px 24px 0;padding:12px;border:1px solid rgba(245,197,24,.18);border-radius:12px;background:rgba(245,197,24,.07);color:#f5d76e;font-size:.86rem;line-height:1.5}
+    .age-modal-actions{padding:22px 24px 24px}
+    .age-modal-button{width:100%;min-height:50px;border:0;border-radius:13px;background:linear-gradient(135deg,#f5c518,#d99b0b);color:#10131a;font:700 1rem 'Space Grotesk',sans-serif;cursor:pointer;box-shadow:0 6px 18px rgba(245,197,24,.16)}
+    .age-modal-button:focus-visible{outline:3px solid #fff;outline-offset:3px}
+    @keyframes ageModalIn{from{opacity:0;transform:translateY(8px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+    @media(prefers-reduced-motion:reduce){.age-modal{animation:none}}
+  </style>
 </head>
 <body>
 
@@ -171,6 +186,18 @@
       <a id="orgWhatsapp" href="#" target="_blank" rel="noopener" class="pill pill-gold" style="text-decoration:none; display:block; width:fit-content; margin-top:8px;">click here to whatsapp</a>
     </p>
   </div>
+</div>
+
+<div id="ageCriteriaModal" class="age-modal-overlay" hidden>
+  <section class="age-modal" role="alertdialog" aria-modal="true" aria-labelledby="ageModalTitle" aria-describedby="ageModalMessage">
+    <div class="age-modal-top">
+      <div class="age-modal-icon" aria-hidden="true">🪪</div>
+      <h2 id="ageModalTitle">Age Requirement Not Met</h2>
+      <p id="ageModalMessage">Players must be at least <strong>17 years old</strong> on the date of registration. You cannot submit this registration yet.</p>
+    </div>
+    <div class="age-modal-note">Please check your date of birth. If you believe this is an error, contact the tournament committee.</div>
+    <div class="age-modal-actions"><button type="button" class="age-modal-button" id="ageModalOk">Review Date of Birth</button></div>
+  </section>
 </div>
 
 <div id="registrationClosedModal" class="modal-overlay" hidden>
