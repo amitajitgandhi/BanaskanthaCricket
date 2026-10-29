@@ -103,7 +103,7 @@ function showMsg(text, type) {
 // Same as showMsg(), but renders a clickable link for the players-list URL
 // instead of plain text -- built with DOM nodes (not innerHTML) so nothing
 // in `prefix` can ever be interpreted as markup.
-function showSuccessMsg(referenceId, linkUrl, linkText) {
+function showSuccessMsg(referenceId) {
   const el = document.getElementById('formMsg');
   el.textContent = '';
 
@@ -120,14 +120,7 @@ function showSuccessMsg(referenceId, linkUrl, linkText) {
   });
 
   el.appendChild(document.createElement('br'));
-  el.appendChild(document.createTextNode('Your registration reference ID is ' + referenceId + '. '));
-
-  const a = document.createElement('a');
-  a.href = linkUrl;
-  a.target = '_blank';
-  a.rel = 'noopener';
-  a.textContent = linkText;
-  el.appendChild(a);
+  el.appendChild(document.createTextNode('Your registration reference ID is ' + referenceId + '.'));
   el.className = 'msg success';
 }
 
@@ -269,7 +262,7 @@ async function handleSubmit(e) {
       return;
     }
 
-    showSuccessMsg(result.id, '/players', 'View registered players');
+    showSuccessMsg(result.id);
     form.reset();
     setOcrStatus('', '');
     setPhotoStatus('', '');
