@@ -123,6 +123,42 @@
       .s4-title { font-size:clamp(.98rem,4.35vw,1.1rem); gap:3px; letter-spacing:0; }
       .s4-title .gem { font-size:.58em; }
     }
+  
+    /* Edge-to-edge responsive title with animated gold glow */
+    .s4-title {
+      display:block;
+      width:100%;
+      max-width:100%;
+      box-sizing:border-box;
+      margin-inline:auto;
+      padding:0 2px;
+      white-space:nowrap;
+      text-align:center;
+      font-size:clamp(1rem, 5.4vw, 4.5rem);
+      line-height:1;
+      letter-spacing:clamp(-.7px, .04vw, 1.2px);
+      text-shadow:0 0 8px rgba(255,205,70,.24), 0 0 20px rgba(255,184,28,.18);
+      animation:titleGlow 2.8s ease-in-out infinite;
+    }
+    .s4-title .tournament-title-text {
+      display:inline-block;
+      max-width:100%;
+      white-space:nowrap;
+      font-size:1em;
+    }
+    @keyframes titleGlow {
+      0%,100% { text-shadow:0 0 7px rgba(255,205,70,.22),0 0 16px rgba(255,184,28,.14); }
+      50% { text-shadow:0 0 12px rgba(255,220,100,.55),0 0 28px rgba(255,184,28,.34),0 0 42px rgba(255,184,28,.16); }
+    }
+    @media(max-width:390px) {
+      .s4-title { font-size:5.15vw; letter-spacing:-.25px; padding-inline:0; }
+    }
+    @media(max-width:340px) {
+      .s4-title { font-size:4.9vw; letter-spacing:-.45px; }
+    }
+    @media(prefers-reduced-motion:reduce) {
+      .s4-title { animation:none; }
+    }
   </style>
 </head>
 <body>
@@ -157,7 +193,7 @@
       <div class="s4-organiser">SHREE BANASKANTHA YUVAK MANDAL, PUNE</div>
       <div class="s4-presents">Presents</div>
 
-      <h1 class="s4-title" id="tournamentTitle"><span class="gem" aria-hidden="true">💎</span><span class="tournament-title-text">SBKYM PREMIER LEAGUE</span><span class="gem" aria-hidden="true">💎</span></h1>
+      <h1 class="s4-title" id="tournamentTitle"><span class="tournament-title-text">SBKYM PREMIER LEAGUE</span></h1>
       <div class="s4-season">🔥 SEASON - 4 🔥</div>
 
       <h2 class="s4-cup"><span class="trophy">🏆</span> P H LUNKAD CUP <span class="trophy">🏆</span></h2>
