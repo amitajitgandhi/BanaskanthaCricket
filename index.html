@@ -159,6 +159,18 @@
     @media(prefers-reduced-motion:reduce) {
       .s4-title { animation:none; }
     }
+  
+    /* Keep the tournament title visibly larger than the powered-by sponsor name */
+    .s4-title { font-size:clamp(1.35rem, 6.1vw, 4.5rem); }
+    .s4-title .tournament-title-text { font-size:1em; }
+    .s4-powered-name { font-size:clamp(1rem, 3.8vw, 1.8rem); }
+    @media(max-width:390px) {
+      .s4-title { font-size:5.5vw; letter-spacing:-.3px; }
+      .s4-powered-name { font-size:clamp(.9rem, 3.8vw, 1.1rem); }
+    }
+    @media(max-width:340px) {
+      .s4-title { font-size:5.2vw; letter-spacing:-.45px; }
+    }
   </style>
 </head>
 <body>
