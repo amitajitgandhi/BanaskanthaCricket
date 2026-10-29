@@ -89,6 +89,40 @@
     @media(max-width:380px) {
       .s4-title .gem { margin-top:.38em; }
     }
+  
+    /* One-line tournament title, including both diamonds, at all mobile widths */
+    .s4-title {
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-wrap:nowrap;
+      gap:clamp(3px,1.2vw,10px);
+      width:100%;
+      white-space:nowrap;
+      font-size:clamp(1.05rem,4.65vw,4.5rem);
+      letter-spacing:clamp(0px,.12vw,1.5px);
+      line-height:1;
+    }
+    .s4-title .gem {
+      display:inline-block;
+      flex:0 0 auto;
+      font-size:.62em;
+      line-height:1;
+      margin:0;
+      vertical-align:middle;
+    }
+    .s4-title .tournament-title-text {
+      display:inline-block;
+      flex:0 1 auto;
+      min-width:0;
+      white-space:nowrap;
+      text-align:center;
+      line-height:1;
+    }
+    @media(max-width:360px) {
+      .s4-title { font-size:clamp(.98rem,4.35vw,1.1rem); gap:3px; letter-spacing:0; }
+      .s4-title .gem { font-size:.58em; }
+    }
   </style>
 </head>
 <body>
@@ -123,7 +157,7 @@
       <div class="s4-organiser">SHREE BANASKANTHA YUVAK MANDAL, PUNE</div>
       <div class="s4-presents">Presents</div>
 
-      <h1 class="s4-title" id="tournamentTitle"><span class="gem">💎</span><span class="tournament-title-text">SBKYM PREMIER LEAGUE</span><span class="gem">💎</span></h1>
+      <h1 class="s4-title" id="tournamentTitle"><span class="gem" aria-hidden="true">💎</span><span class="tournament-title-text">SBKYM PREMIER LEAGUE</span><span class="gem" aria-hidden="true">💎</span></h1>
       <div class="s4-season">🔥 SEASON - 4 🔥</div>
 
       <h2 class="s4-cup"><span class="trophy">🏆</span> P H LUNKAD CUP <span class="trophy">🏆</span></h2>
