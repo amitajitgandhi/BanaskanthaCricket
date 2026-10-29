@@ -81,6 +81,14 @@
     .s4-title .gem { flex:0 0 auto; white-space:nowrap; }
     .s4-title .tournament-title-text { min-width:0; }
     @media(max-width:380px) { .s4-title { gap:5px; font-size:clamp(1.35rem,6.4vw,2.2rem); } }
+  
+    /* Keep the diamond accents aligned with the first line of the wrapping title */
+    .s4-title { position:relative; }
+    .s4-title .gem { align-self:flex-start; line-height:1; margin-top:.42em; vertical-align:baseline; }
+    .s4-title .tournament-title-text { display:block; text-align:center; line-height:.98; overflow-wrap:normal; }
+    @media(max-width:380px) {
+      .s4-title .gem { margin-top:.38em; }
+    }
   </style>
 </head>
 <body>
