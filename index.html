@@ -76,6 +76,11 @@
     }
     @media(min-width:601px) and (max-width:760px) { .s4-logo-card { flex-direction:column; text-align:center; } }
     @media(prefers-reduced-motion:reduce) { *,*:before,*:after { scroll-behavior:auto!important; transition:none!important; } }
+  
+    .s4-title { display:flex; align-items:center; justify-content:center; gap:clamp(6px,2vw,14px); flex-wrap:nowrap; width:100%; }
+    .s4-title .gem { flex:0 0 auto; white-space:nowrap; }
+    .s4-title .tournament-title-text { min-width:0; }
+    @media(max-width:380px) { .s4-title { gap:5px; font-size:clamp(1.35rem,6.4vw,2.2rem); } }
   </style>
 </head>
 <body>
@@ -111,7 +116,7 @@
       <div class="s4-organiser">SHREE BANASKANTHA YUVAK MANDAL, PUNE</div>
       <div class="s4-presents">Presents</div>
 
-      <h1 class="s4-title" id="tournamentTitle"><span class="gem">💎</span> SBKYM PREMIER LEAGUE <span class="gem">💎</span></h1>
+      <h1 class="s4-title" id="tournamentTitle"><span class="gem">💎</span><span class="tournament-title-text">SBKYM PREMIER LEAGUE</span><span class="gem">💎</span></h1>
       <div class="s4-season">🔥 SEASON - 4 🔥</div>
 
       <h2 class="s4-cup"><span class="trophy">🏆</span> P H LUNKAD CUP <span class="trophy">🏆</span></h2>
