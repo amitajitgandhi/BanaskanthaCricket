@@ -103,10 +103,25 @@ function showMsg(text, type) {
 // Same as showMsg(), but renders a clickable link for the players-list URL
 // instead of plain text -- built with DOM nodes (not innerHTML) so nothing
 // in `prefix` can ever be interpreted as markup.
-function showSuccessMsg(prefix, linkUrl, linkText) {
+function showSuccessMsg(referenceId, linkUrl, linkText) {
   const el = document.getElementById('formMsg');
   el.textContent = '';
-  el.appendChild(document.createTextNode(prefix + ' '));
+
+  const lines = [
+    'Registration submitted successfully.',
+    'We will review your details and contact you if any discrepancies or clarifications are required.',
+    'If a player remains unsold during the auction, the applicable registration fee will be refunded.',
+    'See you at the auction soon! Stay tuned for more details.',
+  ];
+
+  lines.forEach((line, index) => {
+    if (index > 0) el.appendChild(document.createElement('br'));
+    el.appendChild(document.createTextNode(line));
+  });
+
+  el.appendChild(document.createElement('br'));
+  el.appendChild(document.createTextNode('Your registration reference ID is ' + referenceId + '. '));
+
   const a = document.createElement('a');
   a.href = linkUrl;
   a.target = '_blank';
@@ -254,8 +269,7 @@ async function handleSubmit(e) {
       return;
     }
 
-    const successPrefix = 'Registration submitted! Your reference ID is ' + result.id + '. The committee will review your details.';
-    showSuccessMsg(successPrefix, '/players', '/players');
+    showSuccessMsg(result.id, '/players', 'View registered players');
     form.reset();
     setOcrStatus('', '');
     setPhotoStatus('', '');
