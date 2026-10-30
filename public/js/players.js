@@ -11,6 +11,7 @@ let sortDirection = 'asc';
 
 const PLAYER_SORTERS = {
   index: (p) => p.__originalIndex,
+  form_number: (p) => String(p.form_number || '').toLocaleLowerCase(),
   full_name: (p) => String(p.full_name || '').toLocaleLowerCase(),
   category: (p) => CATEGORY_ORDER[p.category] ?? 99,
   mobile_masked: (p) => String(p.mobile_masked || '').toLocaleLowerCase(),
@@ -50,6 +51,7 @@ function renderPlayers(players) {
   const holder = document.getElementById('playersHolder');
   const columns = [
     { key: 'index', label: '#', aria: 'Sort by row number' },
+    { key: 'form_number', label: 'Form Number', aria: 'Sort by form number' },
     { key: 'full_name', label: 'Name', aria: 'Sort by player name' },
     { key: 'category', label: 'Category', aria: 'Sort by category' },
     { key: 'mobile_masked', label: 'Mobile', aria: 'Sort by mobile' },
@@ -85,6 +87,7 @@ const rows = sortedPlayers
     (p, i) => `
       <tr>
         <td>${i + 1}</td>
+        <td>${escapeHtml(p.form_number || '—')}</td>
         <td>${escapeHtml(p.full_name)}</td>
         <td>${escapeHtml(p.category || '—')}</td>
         <td>${p.mobile_masked ? escapeHtml(p.mobile_masked) : '—'}</td>
