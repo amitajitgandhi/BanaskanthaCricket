@@ -28,13 +28,14 @@ module.exports = async (req, res) => {
     const supabase = getSupabase();
     const { data, error } = await supabase
       .from('sbkym_registrations')
-      .select('full_name, mobile_number, cricheroes_link, jersey_name, jersey_number, jersey_size')
+      .select('form_number, full_name, mobile_number, cricheroes_link, jersey_name, jersey_number, jersey_size')
       .eq('status', 'Approved')
       .order('full_name', { ascending: true });
 
     if (error) throw error;
 
     const players = data.map((p) => ({
+      form_number: p.form_number,
       full_name: p.full_name,
       category: null,
       mobile_masked: maskMobile(p.mobile_number),
