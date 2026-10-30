@@ -149,12 +149,10 @@ function isValidCricheroesLink(url) {
   return !String(url || '').trim() || /^https:\/\/chshare\.link\/player\/[A-Za-z0-9_-]+\/?(\?.*)?$/i.test(String(url || '').trim());
 }
 
-function calculateAge(dob) {
-  const birth = new Date(dob + 'T00:00:00');
-  const today = new Date();
-  let age = today.getFullYear() - birth.getFullYear();
-  if (today.getMonth() < birth.getMonth() || (today.getMonth() === birth.getMonth() && today.getDate() < birth.getDate())) age--;
-  return age;
+const DOB_CUTOFF = '2009-12-10';
+
+function isEligibleDateOfBirth(dob) {
+  return Boolean(dob) && dob <= DOB_CUTOFF;
 }
 
 
@@ -192,8 +190,8 @@ async function handleSubmit(e) {
   const btn = document.getElementById('submitBtn');
 
   const dob = document.getElementById('dob').value;
-  if (!dob || calculateAge(dob) < 17) {
-    const message = 'Age criteria not met. Players must be at least 17 years old on the date of registration. Your registration cannot be submitted.';
+  if (!isEligibleDateOfBirth(dob)) {
+    const message = 'Date of birth criteria not met. Players must have been born on or before 10 December 2009. Your registration cannot be submitted.';
     showMsg(message, 'error');
     openAgeCriteriaModal();
     return;
@@ -235,6 +233,7 @@ async function handleSubmit(e) {
     dob: form.dob.value,
     skillset: form.skillset.value,
     bowlingArm: form.bowlingArm.value,
+    bowlingStyle: form.bowlingStyle.value,
     battingStyle: form.battingStyle.value,
     cricheroesLink: form.cricheroesLink.value.trim(),
     jerseyName: form.jerseyName.value,
