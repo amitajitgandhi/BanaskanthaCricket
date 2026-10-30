@@ -3,11 +3,12 @@ const { rejectUnlessAdmin } = require('../../../../lib/auth');
 const VALID_STATUSES = ['Pending', 'Approved', 'Rejected'];
 const VALID_SKILLSET = ['Batsman', 'Bowler', 'All Rounder', 'Wicket-Keeper'];
 const VALID_BOWLING_ARM = ['Left Arm', 'Right Arm'];
+const VALID_BOWLING_STYLE = ['Fast Bowler', 'Spinner', 'Does Not Bowl'];
 const VALID_BATTING_STYLE = ['Left Handed', 'Right Handed'];
 const FIELD_MAP = {
   formNumber: 'form_number', fullName: 'full_name', gotra: 'gotra',
   mobileNumber: 'mobile_number', dob: 'dob', skillset: 'skillset',
-  bowlingArm: 'bowling_arm', battingStyle: 'batting_style',
+  bowlingArm: 'bowling_arm', bowlingStyle: 'bowling_style', battingStyle: 'batting_style',
   jerseyName: 'jersey_name', jerseyNumber: 'jersey_number',
   jerseySize: 'jersey_size', cricheroesLink: 'cricheroes_link',
 };
@@ -41,11 +42,12 @@ module.exports = async (req, res) => {
   for (const [key, column] of Object.entries(FIELD_MAP)) {
     if (body[key] === undefined) continue;
     const value = String(body[key] ?? '').trim();
-    if (['formNumber','fullName','gotra','mobileNumber','dob','skillset','bowlingArm','battingStyle','jerseyName','jerseyNumber','jerseySize'].includes(key) && !value) {
+    if (['formNumber','fullName','gotra','mobileNumber','dob','skillset','bowlingArm','bowlingStyle','battingStyle','jerseyName','jerseyNumber','jerseySize'].includes(key) && !value) {
       return res.status(400).json({ error: key + ' cannot be empty.' });
     }
     if (key === 'skillset' && !VALID_SKILLSET.includes(value)) return res.status(400).json({ error: 'Please select a valid skillset.' });
     if (key === 'bowlingArm' && !VALID_BOWLING_ARM.includes(value)) return res.status(400).json({ error: 'Please select a valid bowling arm.' });
+    if (key === 'bowlingStyle' && !VALID_BOWLING_STYLE.includes(value)) return res.status(400).json({ error: 'Please select a valid bowling style.' });
     if (key === 'battingStyle' && !VALID_BATTING_STYLE.includes(value)) return res.status(400).json({ error: 'Please select a valid batting style.' });
     if (key === 'dob') {
       const birth = new Date(value + 'T00:00:00');
