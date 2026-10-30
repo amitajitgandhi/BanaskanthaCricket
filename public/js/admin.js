@@ -184,6 +184,9 @@ const CONFIRM_COLUMNS = [
   { key: 'batting_style', label: 'Batting Style',
     getValue: (e) => e.batting_style || '', getText: (e) => e.batting_style || '',
     renderCell: (e) => escapeHtml(e.batting_style) },
+  { key: 'jersey_name', label: 'Jersey Name',
+    getValue: (e) => e.jersey_name || '', getText: (e) => e.jersey_name || '',
+    renderCell: (e) => escapeHtml(e.jersey_name) },
   { key: 'jersey_number', label: 'Jersey',
     getValue: (e) => Number(e.jersey_number) || 0,
     getText: (e) => `${e.jersey_name || ''} #${e.jersey_number || ''} (${e.jersey_size || ''})`,
@@ -564,7 +567,9 @@ async function loadRegistrations() {
 // columns or filters here never needs an API change.
 const EXPORT_COLUMNS = [
   { key: 'created_at', label: 'Registered' },
+  { key: 'form_number', label: 'Form Number' },
   { key: 'full_name', label: 'Name' },
+  { key: 'gotra', label: 'Gotra' },
   { key: 'mobile_number', label: 'Mobile' },
   { key: 'dob', label: 'DOB' },
   { key: 'skillset', label: 'Skillset' },
