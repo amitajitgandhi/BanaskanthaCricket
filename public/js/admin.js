@@ -178,6 +178,9 @@ const CONFIRM_COLUMNS = [
   { key: 'bowling_arm', label: 'Bowling Arm',
     getValue: (e) => e.bowling_arm || '', getText: (e) => e.bowling_arm || '',
     renderCell: (e) => escapeHtml(e.bowling_arm) },
+  { key: 'bowling_style', label: 'Bowling Style',
+    getValue: (e) => e.bowling_style || '', getText: (e) => e.bowling_style || '',
+    renderCell: (e) => escapeHtml(e.bowling_style || '—') },
   { key: 'batting_style', label: 'Batting Style',
     getValue: (e) => e.batting_style || '', getText: (e) => e.batting_style || '',
     renderCell: (e) => escapeHtml(e.batting_style) },
@@ -462,6 +465,7 @@ function openEditModal(entry) {
   document.getElementById('editDob').value = entry.dob || '';
   document.getElementById('editSkillset').value = entry.skillset || '';
   document.getElementById('editBowlingArm').value = entry.bowling_arm || '';
+  document.getElementById('editBowlingStyle').value = entry.bowling_style || 'Does Not Bowl';
   document.getElementById('editBattingStyle').value = entry.batting_style || '';
   document.getElementById('editJerseyName').value = entry.jersey_name || '';
   document.getElementById('editJerseyNumber').value = entry.jersey_number || '';
@@ -489,6 +493,7 @@ async function handleSaveEdit() {
     dob: document.getElementById('editDob').value,
     skillset: document.getElementById('editSkillset').value,
     bowlingArm: document.getElementById('editBowlingArm').value,
+    bowlingStyle: document.getElementById('editBowlingStyle').value,
     battingStyle: document.getElementById('editBattingStyle').value,
     jerseyName: document.getElementById('editJerseyName').value,
     jerseyNumber: document.getElementById('editJerseyNumber').value,
@@ -564,6 +569,7 @@ const EXPORT_COLUMNS = [
   { key: 'dob', label: 'DOB' },
   { key: 'skillset', label: 'Skillset' },
   { key: 'bowling_arm', label: 'Bowling Arm' },
+  { key: 'bowling_style', label: 'Bowling Style' },
   { key: 'batting_style', label: 'Batting Style' },
   { key: 'jersey_name', label: 'Jersey Name' },
   { key: 'jersey_number', label: 'Jersey Number' },
