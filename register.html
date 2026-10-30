@@ -109,6 +109,15 @@
           </select>
         </div>
         <div class="field">
+          <label for="bowlingStyle">Bowling Style *</label>
+          <select id="bowlingStyle" name="bowlingStyle" required>
+            <option value="">Select bowling style</option>
+            <option value="Fast Bowler">Fast Bowler</option>
+            <option value="Spinner">Spinner</option>
+            <option value="Does Not Bowl">Does Not Bowl</option>
+          </select>
+        </div>
+        <div class="field">
           <label for="battingStyle">Batting Style *</label>
           <select id="battingStyle" name="battingStyle" required>
             <option value="">Select batting style</option>
@@ -196,7 +205,7 @@
     <div class="age-modal-top">
       <div class="age-modal-icon" aria-hidden="true">🪪</div>
       <h2 id="ageModalTitle">Age Requirement Not Met</h2>
-      <p id="ageModalMessage">Players must be at least <strong>17 years old</strong> on the date of registration. You cannot submit this registration yet.</p>
+      <p id="ageModalMessage">To be eligible, your date of birth must be on or before <strong>10 December 2009</strong>. You cannot submit this registration if you were born after this date.</p>
     </div>
     <div class="age-modal-note">Please check your date of birth. If you believe this is an error, contact the tournament committee.</div>
     <div class="age-modal-actions"><button type="button" class="age-modal-button" id="ageModalOk">Review Date of Birth</button></div>
