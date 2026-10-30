@@ -11,6 +11,7 @@ function isValidCricheroesLink(url) {
 
 const VALID_SKILLSET = ['Batsman', 'Bowler', 'All Rounder', 'Wicket-Keeper'];
 const VALID_BOWLING_ARM = ['Left Arm', 'Right Arm'];
+const VALID_BOWLING_STYLE = ['Fast Bowler', 'Spinner', 'Does Not Bowl'];
 const VALID_BATTING_STYLE = ['Left Handed', 'Right Handed'];
 
 module.exports = async (req, res) => {
@@ -20,7 +21,7 @@ module.exports = async (req, res) => {
 
   const b = req.body || {};
   const required = [
-    'formNumber', 'fullName', 'gotra', 'mobileNumber', 'dob', 'skillset', 'bowlingArm', 'battingStyle',
+    'formNumber', 'fullName', 'gotra', 'mobileNumber', 'dob', 'skillset', 'bowlingArm', 'bowlingStyle', 'battingStyle',
     'photoPath', 'jerseyName', 'jerseyNumber', 'jerseySize',
   ];
   const missing = required.filter((f) => !String(b[f] || '').trim());
@@ -28,11 +29,11 @@ module.exports = async (req, res) => {
     return res.status(400).json({ error: `Missing required field(s): ${missing.join(', ')}` });
   }
 
-  const birth = new Date(String(b.dob || '') + 'T00:00:00');
-  const now = new Date();
-  let age = now.getFullYear() - birth.getFullYear();
-  if (now.getMonth() < birth.getMonth() || (now.getMonth() === birth.getMonth() && now.getDate() < birth.getDate())) age--;
-  if (Number.isNaN(birth.getTime()) || age < 17) return res.status(400).json({ error: 'Age criteria not met. Players must be at least 17 years old on the date of registration. Your registration cannot be submitted.' });
+  const dob = String(b.dob || '').trim();
+  const birth = new Date(dob + 'T00:00:00');
+  if (Number.isNaN(birth.getTime()) || !/^\d{4}-\d{2}-\d{2}$/.test(dob) || dob > '2009-12-10') {
+    return res.status(400).json({ error: 'Date of birth criteria not met. Players must have been born on or before 10 December 2009. Your registration cannot be submitted.' });
+  }
   if (!isValidMobile(b.mobileNumber)) {
     return res.status(400).json({ error: 'Please enter a valid mobile number.' });
   }
@@ -41,6 +42,9 @@ module.exports = async (req, res) => {
   }
   if (!VALID_BOWLING_ARM.includes(b.bowlingArm)) {
     return res.status(400).json({ error: 'Please select a valid bowling arm.' });
+  }
+  if (!VALID_BOWLING_STYLE.includes(b.bowlingStyle)) {
+    return res.status(400).json({ error: 'Please select a valid bowling style.' });
   }
   if (!VALID_BATTING_STYLE.includes(b.battingStyle)) {
     return res.status(400).json({ error: 'Please select a valid batting style.' });
@@ -68,6 +72,7 @@ module.exports = async (req, res) => {
         dob: String(b.dob).trim(),
         skillset: String(b.skillset).trim(),
         bowling_arm: String(b.bowlingArm).trim(),
+        bowling_style: String(b.bowlingStyle).trim(),
         batting_style: String(b.battingStyle).trim(),
         photo_path: String(b.photoPath).trim(),
         cricheroes_link: String(b.cricheroesLink || '').trim() || null,
