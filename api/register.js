@@ -22,7 +22,7 @@ module.exports = async (req, res) => {
   const b = req.body || {};
   const required = [
     'formNumber', 'fullName', 'gotra', 'mobileNumber', 'dob', 'skillset', 'bowlingArm', 'bowlingStyle', 'battingStyle',
-    'photoPath', 'jerseyName', 'jerseyNumber', 'jerseySize',
+    'photoPath', 'jerseyName', 'jerseyNumber', 'jerseySize', 'trackPantSize',
   ];
   const missing = required.filter((f) => !String(b[f] || '').trim());
   if (missing.length) {
@@ -34,6 +34,7 @@ module.exports = async (req, res) => {
   if (Number.isNaN(birth.getTime()) || !/^\d{4}-\d{2}-\d{2}$/.test(dob) || dob > '2009-12-10') {
     return res.status(400).json({ error: 'Date of birth criteria not met. Players must have been born on or before 10 December 2009. Your registration cannot be submitted.' });
   }
+  if (![28,30,32,34,36,38,40].includes(Number(b.trackPantSize))) return res.status(400).json({ error: 'Please select a valid track pant size.' });
   if (!isValidMobile(b.mobileNumber)) {
     return res.status(400).json({ error: 'Please enter a valid mobile number.' });
   }
@@ -79,6 +80,7 @@ module.exports = async (req, res) => {
         jersey_name: String(b.jerseyName).trim(),
         jersey_number: String(b.jerseyNumber).trim(),
         jersey_size: String(b.jerseySize).trim(),
+        track_pant_size: String(b.trackPantSize).trim(),
         status: 'Pending',
       })
       .select('id')
