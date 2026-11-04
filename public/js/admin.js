@@ -191,6 +191,10 @@ const CONFIRM_COLUMNS = [
     getValue: (e) => Number(e.jersey_number) || 0,
     getText: (e) => `${e.jersey_name || ''} #${e.jersey_number || ''} (${e.jersey_size || ''})`,
     renderCell: (e) => `${escapeHtml(e.jersey_name)} #${escapeHtml(e.jersey_number)} (${escapeHtml(e.jersey_size)})` },
+  { key: 'track_pant_size', label: 'Track Pant Size',
+    getValue: (e) => e.track_pant_size || '',
+    getText: (e) => e.track_pant_size || '—',
+    renderCell: (e) => escapeHtml(e.track_pant_size || '—') },
   { key: 'cricheroes_link', label: 'Cric Heroes',
     getValue: (e) => e.cricheroes_link || '', getText: (e) => e.cricheroes_link || '',
     renderCell: (e) => e.cricheroes_link ? `<a href="${escapeHtml(e.cricheroes_link)}" target="_blank" rel="noopener">Link</a>` : '—' },
@@ -544,7 +548,7 @@ function applyFilter() {
   }
   if (q) {
     filtered = filtered.filter((e) =>
-      [e.full_name, e.mobile_number, e.payment_id, e.jersey_name, e.qr_label].some((f) => String(f || '').toLowerCase().includes(q))
+      [e.full_name, e.mobile_number, e.payment_id, e.jersey_name, e.track_pant_size, e.qr_label].some((f) => String(f || '').toLowerCase().includes(q))
     );
   }
   renderTable(filtered);
@@ -634,7 +638,7 @@ function handleDownloadExport() {
   if (statusFilter !== 'all') rows = rows.filter((e) => e.status === statusFilter);
   if (search) {
     rows = rows.filter((e) =>
-      [e.full_name, e.mobile_number, e.jersey_name, e.qr_label].some((f) => String(f || '').toLowerCase().includes(search))
+      [e.full_name, e.mobile_number, e.jersey_name, e.track_pant_size, e.qr_label].some((f) => String(f || '').toLowerCase().includes(search))
     );
   }
   rows.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
