@@ -239,6 +239,7 @@ async function handleSubmit(e) {
     jerseyName: form.jerseyName.value,
     jerseyNumber: form.jerseyNumber.value,
     jerseySize: form.jerseySize.value,
+    trackPantSize: form.trackPantSize.value,
 
     confirmCorrect: document.getElementById('confirmCorrect').checked,
     agreeTC: document.getElementById('agreeTC').checked,
