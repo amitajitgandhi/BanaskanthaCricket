@@ -16,6 +16,7 @@
     { "source": "/schedule", "destination": "/schedule.html" },
     { "source": "/register", "destination": "/register.html" },
     { "source": "/players", "destination": "/players.html" },
+    { "source": "/teams", "destination": "/teams.html" },
     { "source": "/auction-rules", "destination": "/auction-rules.html" },
     { "source": "/admin", "destination": "/admin.html" },
     { "source": "/", "destination": "/index.html" }
