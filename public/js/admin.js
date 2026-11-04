@@ -473,6 +473,7 @@ function openEditModal(entry) {
   document.getElementById('editJerseyName').value = entry.jersey_name || '';
   document.getElementById('editJerseyNumber').value = entry.jersey_number || '';
   document.getElementById('editJerseySize').value = entry.jersey_size || '';
+  document.getElementById('editTrackPantSize').value = entry.track_pant_size || '';
   document.getElementById('editCricheroesLink').value = entry.cricheroes_link || '';
   document.getElementById('editPaymentId').value = entry.payment_id || '';
   document.getElementById('editQrLabel').value = entry.qr_label || '';
@@ -501,6 +502,7 @@ async function handleSaveEdit() {
     jerseyName: document.getElementById('editJerseyName').value,
     jerseyNumber: document.getElementById('editJerseyNumber').value,
     jerseySize: document.getElementById('editJerseySize').value,
+    trackPantSize: document.getElementById('editTrackPantSize').value,
     cricheroesLink: document.getElementById('editCricheroesLink').value,
     paymentId: document.getElementById('editPaymentId').value,
     qrLabel: document.getElementById('editQrLabel').value,
@@ -579,6 +581,7 @@ const EXPORT_COLUMNS = [
   { key: 'jersey_name', label: 'Jersey Name' },
   { key: 'jersey_number', label: 'Jersey Number' },
   { key: 'jersey_size', label: 'Jersey Size' },
+  { key: 'track_pant_size', label: 'Track Pant Size' },
   { key: 'cricheroes_link', label: 'Cric Heroes Link' },
   { key: 'payment_id', label: 'Payment ID' },
   { key: 'payment_id_auto_detected', label: 'OCR Auto-Detected' },
