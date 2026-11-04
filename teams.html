@@ -1,7 +1,53 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/><title>SBKYM Premier League – Teams</title><link rel="icon" href="/public/SBKYM_Logo.jpeg" type="image/jpeg"/><link rel="apple-touch-icon" href="/public/SBKYM_Logo.jpeg"/><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/><link href="public/css/site-theme.css" rel="stylesheet"/><style>.teams-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:14px}.team-card{padding:20px;border:1px solid var(--border,rgba(148,163,184,.18));border-radius:16px;background:linear-gradient(145deg,rgba(245,197,24,.08),rgba(255,255,255,.025))}.team-number{color:var(--gold,#f5c518);font-size:.75rem;font-weight:700;letter-spacing:1.5px}.team-card h2{margin:8px 0 16px}.team-detail{display:flex;flex-direction:column;gap:4px;margin-top:12px}.team-detail span{color:var(--muted);font-size:.72rem;text-transform:uppercase;letter-spacing:1px}.sample-note{padding:12px 14px;border:1px solid rgba(245,197,24,.25);border-radius:12px;background:rgba(245,197,24,.07);color:var(--muted);font-size:.85rem;line-height:1.6}</style></head><body>
-<input type="checkbox" id="navToggle" class="nav-toggle"/><label for="navToggle" class="hamburger-btn" aria-label="Toggle menu"><span></span><span></span><span></span></label><label for="navToggle" class="nav-backdrop"></label><nav class="nav-drawer"><a href="/" class="nav-btn">🏠 Home</a><a href="/register" class="nav-btn">📝 Register</a><a href="/players" class="nav-btn">🏏 Players</a><a href="/teams" class="nav-btn active">👥 Teams</a><a href="/admin" class="nav-btn">🔒 Admin</a></nav>
-<header class="hero" style="padding-bottom:28px"><div class="hero-logo-wrap fade-in"><img src="public/SBKYM_Logo.jpeg" alt="SBKYM logo"/></div><div class="badge">👥 Tournament Teams</div><h1 class="hero-title">SBKYM Premier League<br/>Season 4</h1><p class="hero-sub">Meet the eight teams</p><div class="hero-divider"></div></header>
-<main class="container"><div class="panel"><h2>Teams &amp; Home Players</h2><p class="sample-note">Sample information for layout preview only. Team names, owners and home players will be updated with the official list.</p><div id="teamsGrid" class="teams-grid" aria-live="polite"></div></div></main>
-<footer class="site-footer"><p>SBKYM Premier League — Season 4 &nbsp;•&nbsp; &copy; Shree Banaskantha Yuvak Mandal, Pune</p><p>Designed with ❤️ by <span class="pill pill-gold">Amit Gandhi</span></p></footer><script>
-const teams=Array.from({length:8},(_,i)=>({name:`Team ${i+1}`,owner:`Owner ${i+1}`,homePlayer:`Home Player ${i+1}`}));const esc=v=>String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));document.getElementById('teamsGrid').innerHTML=teams.map((t,i)=>`<article class="team-card"><div class="team-number">TEAM ${String(i+1).padStart(2,'0')}</div><h2>${esc(t.name)}</h2><div class="team-detail"><span>Team Owner</span><strong>${esc(t.owner)}</strong></div><div class="team-detail"><span>Home Player</span><strong>${esc(t.homePlayer)}</strong></div></article>`).join('');
-</script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<title>SBKYM Premier League – Season 4 Teams</title>
+<link rel="icon" href="/public/SBKYM_Logo.jpeg" type="image/jpeg"/><link rel="apple-touch-icon" href="/public/SBKYM_Logo.jpeg"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="public/css/site-theme.css" rel="stylesheet"/>
+<style>
+.teams-intro{text-align:center;padding:26px 16px 30px}.mandal-name{font-family:'Noto Sans Devanagari',sans-serif;font-size:clamp(1.05rem,3vw,1.45rem);font-weight:700;line-height:1.6}.presents{font-size:.82rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin:9px 0}.league-title{font-size:clamp(1.65rem,5vw,2.7rem);font-weight:800;letter-spacing:1px;margin:5px 0}.season{font-size:1.15rem;font-weight:800;letter-spacing:3px;margin:8px 0 20px}.cup{font-size:clamp(1.2rem,3.7vw,1.8rem);font-weight:800;margin:0}.powered{font-size:.76rem;letter-spacing:3px;color:var(--muted);margin:9px 0}.sponsor{font-size:clamp(1.15rem,3.5vw,1.55rem);font-weight:800;letter-spacing:1.5px}.gold-rule{width:90px;height:3px;margin:22px auto;background:var(--gold,#f5c518);border-radius:4px}.owners-heading{text-align:center;font-size:clamp(1rem,3vw,1.35rem);font-weight:700;margin:10px 0 24px}.teams-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,285px),1fr));gap:16px}.team-card{padding:20px;border:1px solid var(--border,rgba(148,163,184,.18));border-radius:17px;background:linear-gradient(145deg,rgba(245,197,24,.09),rgba(255,255,255,.025));box-shadow:0 8px 24px rgba(0,0,0,.08)}.team-number{color:var(--gold,#f5c518);font-size:.7rem;font-weight:700;letter-spacing:2px}.team-card h2{font-size:1.15rem;line-height:1.35;margin:8px 0 17px;font-weight:800}.team-detail{display:flex;flex-direction:column;gap:7px;margin-top:13px}.team-detail-label{color:var(--muted);font-size:.7rem;text-transform:uppercase;letter-spacing:1.4px;font-weight:700}.owner-name{font-family:'Noto Sans Devanagari','Outfit',sans-serif;font-size:.92rem;line-height:1.7;font-weight:500}.home-player{font-size:.94rem;font-weight:600;line-height:1.5}.team-divider{height:1px;background:var(--border,rgba(148,163,184,.18));margin-top:15px}.closing{text-align:center;padding:30px 12px 10px;line-height:1.9}.closing-mandal{font-family:'Noto Sans Devanagari',sans-serif;font-size:1.1rem;font-weight:700}.closing-team{font-size:1.05rem;font-weight:800;letter-spacing:1px}.office-bearers{font-size:.9rem;color:var(--muted);margin-top:10px}.office-bearers strong{color:inherit}
+</style>
+</head>
+<body>
+<input type="checkbox" id="navToggle" class="nav-toggle"/><label for="navToggle" class="hamburger-btn" aria-label="Toggle menu"><span></span><span></span><span></span></label><label for="navToggle" class="nav-backdrop"></label>
+<nav class="nav-drawer"><a href="/" class="nav-btn">🏠 Home</a><a href="/register" class="nav-btn">📝 Register</a><a href="/players" class="nav-btn">🏏 Players</a><a href="/teams" class="nav-btn active">👥 Teams</a><a href="/admin" class="nav-btn">🔒 Admin</a></nav>
+<header class="hero" style="padding-bottom:18px"><div class="hero-logo-wrap fade-in"><img src="public/SBKYM_Logo.jpeg" alt="SBKYM logo"/></div><div class="badge">🏆 Official Team Line-up</div><h1 class="hero-title">SBKYM PREMIER LEAGUE<br/>SEASON 4</h1><p class="hero-sub">PH Lunkad Cup</p><div class="hero-divider"></div></header>
+<main class="container">
+<section class="panel">
+<div class="teams-intro">
+<div class="mandal-name">श्री बनासकांठा युवक मंडल, पुणे</div>
+<div class="presents">Presents</div>
+<div class="league-title">💎 SBKYM PREMIER LEAGUE 💎</div>
+<div class="season">🔥 SEASON - 4 🔥</div>
+<div class="cup">🏆 PH LUNKAD CUP 🏆</div>
+<div class="powered">➖➖ POWERED BY ➖➖</div>
+<div class="sponsor">🌟 CHINTAMANI GROUP 🌟</div>
+<div class="gold-rule"></div>
+</div>
+<h2 class="owners-heading">⚜️ Proud Team Owners &amp; Home Players ⚜️</h2>
+<div id="teamsGrid" class="teams-grid" aria-live="polite"></div>
+<div class="closing">
+<div class="closing-mandal">⚜️ श्री बनासकांठा युवक मंडल ⚜️</div>
+<div class="closing-team">❤️ TEAM SBKYM PUNE ❤️</div>
+<div class="office-bearers"><strong>Alkesh Lunkad</strong> – President<br/><strong>Rahul Bhansali</strong> – Secretary</div>
+</div>
+</section>
+</main>
+<footer class="site-footer"><p>SBKYM Premier League — Season 4 &nbsp;•&nbsp; &copy; Shree Banaskantha Yuvak Mandal, Pune</p><p>Designed with ❤️ by <span class="pill pill-gold">Amit Gandhi</span></p></footer>
+<script>
+const teams=[
+{name:"BHANSALI ROYALS",owners:["संघवी श्री. અમૃતલાલજી ધુડાજી ભંસાલી","संघवी श्री. राजमलजी अमृतलालजी भंसाली"],homePlayer:"Sanghvi Rahul R. Bhansali"},
+{name:"TATED TITANS",owners:["श्री. पोपटलालजी हस्तीमलजी तातेड"],homePlayer:"Paresh P. Tated"},
+{name:"CTS SUPER KINGS",owners:["श्री. पारसमलजी हस्तीमलजी लुंकड"],homePlayer:"Harsh M. Lunkad"},
+{name:"NAKODA CHAMPIONS",owners:["अ. सौ. पवनदेवी मोतीलालजी सलेचा"],homePlayer:"Nitin M. Salecha"},
+{name:"AMBIKA ROYALS",owners:["संघवी श्री. बाबूलालजी चिमनलालजी लुंकड","श्री. विजयकुमारजी गणेशमलजी लुंकड"],homePlayer:"Rupam B. Lunkad"},
+{name:"CD STRIKERS",owners:["अ. सौ. नजूदेवी चंपालालजी विनाकिया"],homePlayer:"Shubham S. Vinakiya"},
+{name:"SANGHVI CHALLENGERS",owners:["श्रीमती नजूदेवी मफतलालजी विनाकिया","श्रीमती शारदाबेन पन्नालालजी बोहरा"],homePlayer:"Vinod M. Vinakiya"},
+{name:"PARVA BRIGHTERS",owners:["श्री. पारसमलजी रामलालजी लुंकड"],homePlayer:"Bhavik P. Lunkad"}
+];
+const esc=v=>String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+document.getElementById('teamsGrid').innerHTML=teams.map((t,i)=>`<article class="team-card"><div class="team-number">TEAM ${String(i+1).padStart(2,'0')}</div><h2>⚜️ ${esc(t.name)} ⚜️</h2><div class="team-detail"><span class="team-detail-label">▪️ Owner${t.owners.length>1?'s':''}</span><div class="owner-name">${t.owners.map(esc).join('<br/>')}</div></div><div class="team-divider"></div><div class="team-detail"><span class="team-detail-label">▪️ Home Player</span><div class="home-player">${esc(t.homePlayer)}</div></div></article>`).join('');
+</script>
+</body></html>
