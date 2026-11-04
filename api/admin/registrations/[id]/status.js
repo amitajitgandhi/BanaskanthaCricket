@@ -10,7 +10,7 @@ const FIELD_MAP = {
   mobileNumber: 'mobile_number', dob: 'dob', skillset: 'skillset',
   bowlingArm: 'bowling_arm', bowlingStyle: 'bowling_style', battingStyle: 'batting_style',
   jerseyName: 'jersey_name', jerseyNumber: 'jersey_number',
-  jerseySize: 'jersey_size', cricheroesLink: 'cricheroes_link',
+  jerseySize: 'jersey_size', trackPantSize: 'track_pant_size', cricheroesLink: 'cricheroes_link',
 };
 module.exports = async (req, res) => {
   if (rejectUnlessAdmin(req, res)) return;
@@ -45,6 +45,7 @@ module.exports = async (req, res) => {
     if (['formNumber','fullName','gotra','mobileNumber','dob','skillset','bowlingArm','bowlingStyle','battingStyle','jerseyName','jerseyNumber','jerseySize'].includes(key) && !value) {
       return res.status(400).json({ error: key + ' cannot be empty.' });
     }
+    if (key === 'trackPantSize' && value && !['28','30','32','34','36','38','40'].includes(value)) return res.status(400).json({ error: 'Please select a valid track pant size.' });
     if (key === 'skillset' && !VALID_SKILLSET.includes(value)) return res.status(400).json({ error: 'Please select a valid skillset.' });
     if (key === 'bowlingArm' && !VALID_BOWLING_ARM.includes(value)) return res.status(400).json({ error: 'Please select a valid bowling arm.' });
     if (key === 'bowlingStyle' && !VALID_BOWLING_STYLE.includes(value)) return res.status(400).json({ error: 'Please select a valid bowling style.' });
