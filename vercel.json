@@ -14,6 +14,7 @@
     { "source": "/api/admin/export", "destination": "/api/admin/export.js" },
     { "source": "/rules", "destination": "/rules.html" },
     { "source": "/schedule", "destination": "/schedule.html" },
+    { "source": "/fixtures", "destination": "/fixtures.html" },
     { "source": "/register", "destination": "/register.html" },
     { "source": "/players", "destination": "/players.html" },
     { "source": "/teams", "destination": "/teams.html" },
