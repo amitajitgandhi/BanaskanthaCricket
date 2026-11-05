@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>SBKYM Premier League Season 4 – Fixtures</title>
+<link rel="icon" href="/public/SBKYM_Logo.jpeg" type="image/jpeg">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="public/css/site-theme.css" rel="stylesheet">
+<style>
+:root{--fx-gold:#f5c518;--fx-gold-light:#ffe58a;--fx-bg:#07090f;--fx-card:#111827;--fx-border:#26334b;--fx-muted:#94a3b8}
+*{box-sizing:border-box}body{background:var(--fx-bg);color:#e2e8f0;font-family:Outfit,sans-serif;overflow-x:hidden}
+.fx-hero{text-align:center;padding:40px 16px 28px;background:radial-gradient(ellipse at 50% 0,rgba(245,197,24,.19),transparent 65%),linear-gradient(180deg,#101a2d,#07090f)}
+.fx-logo{width:82px;height:82px;object-fit:contain;border:2px solid var(--fx-gold);border-radius:50%;padding:4px;margin:0 auto 15px;background:#fff}
+.fx-badge{display:inline-block;border:1px solid rgba(245,197,24,.4);background:rgba(245,197,24,.1);color:var(--fx-gold-light);border-radius:30px;padding:6px 15px;font:700 .7rem 'Space Grotesk';letter-spacing:2px;text-transform:uppercase}
+.fx-hero h1{margin:14px 0 5px;font:clamp(2.4rem,8vw,4.2rem)/.95 'Bebas Neue';letter-spacing:1.5px;color:#fff}
+.fx-hero p{color:#aab7ca;font:500 .88rem 'Space Grotesk';letter-spacing:1px}
+.fx-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:620px;margin:22px auto 0}
+.fx-stat{padding:12px 8px;border:1px solid var(--fx-border);border-radius:12px;background:rgba(17,24,39,.8)}
+.fx-stat strong{display:block;color:var(--fx-gold);font:2rem 'Bebas Neue'}
+.fx-stat span{font:600 .62rem 'Space Grotesk';letter-spacing:1px;color:var(--fx-muted);text-transform:uppercase}
+.fx-container{max-width:850px;margin:auto;padding:10px 14px 60px}
+.fx-day{margin:18px 0;border:1px solid var(--fx-border);border-radius:16px;overflow:hidden;background:#0b111d}
+.fx-day-head{display:flex;align-items:center;gap:12px;padding:16px;background:linear-gradient(110deg,rgba(245,197,24,.13),rgba(17,24,39,.95))}
+.fx-day-icon{width:44px;height:44px;display:grid;place-items:center;border-radius:12px;background:rgba(245,197,24,.13);font-size:1.4rem}
+.fx-day-title{flex:1;min-width:0}.fx-day-title h2{margin:0;color:white;font:1.5rem 'Bebas Neue';letter-spacing:1px}.fx-day-title p{margin:3px 0 0;color:var(--fx-muted);font-size:.75rem}
+.fx-day-count{color:var(--fx-gold);font:700 .66rem 'Space Grotesk';white-space:nowrap}
+.fx-table-wrap{padding:0 12px 10px;overflow-x:auto}
+.fx-table{width:100%;border-collapse:collapse;min-width:310px}
+.fx-table th{text-align:left;padding:12px 8px;color:var(--fx-gold);font:700 .65rem 'Space Grotesk';letter-spacing:1.4px;text-transform:uppercase;border-bottom:1px solid rgba(245,197,24,.25)}
+.fx-table td{padding:13px 8px;border-bottom:1px solid rgba(38,51,75,.8);font-size:.86rem;vertical-align:middle}
+.fx-table tr:last-child td{border-bottom:0}.fx-num{width:30px;color:#718096;font:1rem 'Bebas Neue'}
+.fx-time{display:inline-block;padding:5px 9px;border-radius:8px;border:1px solid rgba(59,130,246,.28);background:rgba(59,130,246,.1);color:#bfdbfe;font:600 .72rem 'Space Grotesk';white-space:nowrap}
+.fx-match{display:flex;align-items:center;gap:7px;flex-wrap:wrap}.fx-team{display:inline-block;padding:5px 9px;border:1px solid rgba(245,197,24,.25);border-radius:7px;background:rgba(245,197,24,.1);color:var(--fx-gold-light);font:700 .76rem 'Space Grotesk'}
+.fx-vs{color:#738198;font:700 .65rem 'Space Grotesk';text-transform:uppercase}
+.fx-special{display:flex;align-items:center;gap:9px;padding:13px 10px;margin:8px 0;border:1px solid rgba(245,197,24,.25);border-radius:10px;background:rgba(245,197,24,.07);color:var(--fx-gold-light);font-weight:700;font-size:.88rem}
+.fx-special time{margin-left:auto;color:var(--fx-gold);font:600 .72rem 'Space Grotesk';white-space:nowrap}
+.fx-note{margin:14px 2px 0;padding:12px 14px;border-radius:10px;background:rgba(148,163,184,.07);color:#aab7ca;font-size:.78rem;line-height:1.6}
+.fx-footer{text-align:center;padding:22px 12px;color:#8290a5;border-top:1px solid var(--fx-border);font-size:.78rem}
+@media(max-width:480px){.fx-day-head{padding:13px 11px}.fx-table td{padding:11px 5px}.fx-time{font-size:.66rem;padding:5px 6px}.fx-team{font-size:.7rem;padding:5px 7px}.fx-table th{padding:10px 5px}.fx-stats{gap:7px}.fx-stat span{font-size:.56rem}}
+</style>
+</head>
+<body>
+<input type="checkbox" id="navToggle" class="nav-toggle">
+<label for="navToggle" class="hamburger-btn" aria-label="Toggle menu"><span></span><span></span><span></span></label>
+<label for="navToggle" class="nav-backdrop"></label>
+<nav class="nav-drawer">
+<a href="/" class="nav-btn">🏠 Home</a><a href="/register" class="nav-btn">📝 Register</a><a href="/players" class="nav-btn">🏏 Players</a><a href="/teams" class="nav-btn">👥 Teams</a><a href="/fixtures" class="nav-btn active">🏏 Fixtures</a><a href="/admin" class="nav-btn">🔒 Admin</a>
+</nav>
+<header class="fx-hero">
+<img class="fx-logo" src="/public/SBKYM_Logo.jpeg" alt="SBKYM logo">
+<div class="fx-badge">🏆 Official Match Fixtures</div>
+<h1>SBKYM PREMIER LEAGUE</h1><p>SEASON 4 &nbsp;•&nbsp; P H LUNKAD CUP</p>
+<div class="fx-stats"><div class="fx-stat"><strong>16</strong><span>League Matches</span></div><div class="fx-stat"><strong>2</strong><span>Semi Finals</span></div><div class="fx-stat"><strong>1</strong><span>Grand Final</span></div></div>
+</header>
+<main class="fx-container">
+<section class="fx-day">
+<div class="fx-day-head"><div class="fx-day-icon">🏏</div><div class="fx-day-title"><h2>Day 1 — Friday</h2><p>11 December 2026</p></div><span class="fx-day-count">8 MATCHES</span></div>
+<div class="fx-table-wrap"><table class="fx-table"><thead><tr><th>#</th><th>Time</th><th>Fixture</th></tr></thead><tbody>
+<tr><td class="fx-num">01</td><td><span class="fx-time">10:00 AM – 12:00 PM</span></td><td><div class="fx-match"><span class="fx-team">A1</span><span class="fx-vs">vs</span><span class="fx-team">B1</span></div></td></tr>
+<tr><td class="fx-num">02</td><td><span class="fx-time">12:00 – 1:30 PM</span></td><td><div class="fx-match"><span class="fx-team">A2</span><span class="fx-vs">vs</span><span class="fx-team">B2</span></div></td></tr>
+<tr><td class="fx-num">03</td><td><span class="fx-time">2:30 – 4:00 PM</span></td><td><div class="fx-match"><span class="fx-team">A3</span><span class="fx-vs">vs</span><span class="fx-team">B3</span></div></td></tr>
+<tr><td class="fx-num">04</td><td><span class="fx-time">4:00 – 5:30 PM</span></td><td><div class="fx-match"><span class="fx-team">A4</span><span class="fx-vs">vs</span><span class="fx-team">B4</span></div></td></tr>
+<tr><td class="fx-num">05</td><td><span class="fx-time">5:30 – 7:00 PM</span></td><td><div class="fx-match"><span class="fx-team">A1</span><span class="fx-vs">vs</span><span class="fx-team">B2</span></div></td></tr>
+<tr><td class="fx-num">06</td><td><span class="fx-time">7:00 – 8:30 PM</span></td><td><div class="fx-match"><span class="fx-team">A2</span><span class="fx-vs">vs</span><span class="fx-team">B1</span></div></td></tr>
+<tr><td class="fx-num">07</td><td><span class="fx-time">8:30 – 10:00 PM</span></td><td><div class="fx-match"><span class="fx-team">A3</span><span class="fx-vs">vs</span><span class="fx-team">B4</span></div></td></tr>
+<tr><td class="fx-num">08</td><td><span class="fx-time">10:00 – 11:30 PM</span></td><td><div class="fx-match"><span class="fx-team">A4</span><span class="fx-vs">vs</span><span class="fx-team">B3</span></div></td></tr>
+</tbody></table></div>
+</section>
+<section class="fx-day">
+<div class="fx-day-head"><div class="fx-day-icon">🏏</div><div class="fx-day-title"><h2>Day 2 — Saturday</h2><p>12 December 2026</p></div><span class="fx-day-count">8 MATCHES</span></div>
+<div class="fx-table-wrap"><table class="fx-table"><thead><tr><th>#</th><th>Time</th><th>Fixture</th></tr></thead><tbody>
+<tr><td class="fx-num">09</td><td><span class="fx-time">8:30 – 10:00 AM</span></td><td><div class="fx-match"><span class="fx-team">A1</span><span class="fx-vs">vs</span><span class="fx-team">B4</span></div></td></tr>
+<tr><td class="fx-num">10</td><td><span class="fx-time">10:00 – 11:30 AM</span></td><td><div class="fx-match"><span class="fx-team">A3</span><span class="fx-vs">vs</span><span class="fx-team">B2</span></div></td></tr>
+<tr><td class="fx-num">11</td><td><span class="fx-time">11:30 AM – 1:00 PM</span></td><td><div class="fx-match"><span class="fx-team">A2</span><span class="fx-vs">vs</span><span class="fx-team">B3</span></div></td></tr>
+<tr><td class="fx-num">12</td><td><span class="fx-time">2:30 – 4:00 PM</span></td><td><div class="fx-match"><span class="fx-team">A4</span><span class="fx-vs">vs</span><span class="fx-team">B1</span></div></td></tr>
+<tr><td class="fx-num">13</td><td><span class="fx-time">4:00 – 5:30 PM</span></td><td><div class="fx-match"><span class="fx-team">A2</span><span class="fx-vs">vs</span><span class="fx-team">B4</span></div></td></tr>
+<tr><td class="fx-num">14</td><td><span class="fx-time">5:30 – 7:00 PM</span></td><td><div class="fx-match"><span class="fx-team">A1</span><span class="fx-vs">vs</span><span class="fx-team">B3</span></div></td></tr>
+<tr><td class="fx-num">15</td><td><span class="fx-time">7:00 – 8:30 PM</span></td><td><div class="fx-match"><span class="fx-team">A3</span><span class="fx-vs">vs</span><span class="fx-team">B1</span></div></td></tr>
+<tr><td class="fx-num">16</td><td><span class="fx-time">8:30 – 10:00 PM</span></td><td><div class="fx-match"><span class="fx-team">A4</span><span class="fx-vs">vs</span><span class="fx-team">B2</span></div></td></tr>
+</tbody></table></div>
+</section>
+<section class="fx-day">
+<div class="fx-day-head"><div class="fx-day-icon">🏆</div><div class="fx-day-title"><h2>Day 3 — Sunday</h2><p>13 December 2026</p></div><span class="fx-day-count">FINALS DAY</span></div>
+<div class="fx-table-wrap">
+<div class="fx-special">🥇 Semi Final 1 <time>10:00 AM – 12:00 PM</time></div>
+<div class="fx-special">🥈 Semi Final 2 <time>12:00 – 2:00 PM</time></div>
+<div class="fx-special">🤝 Sponsors Match <time>3:00 – 4:00 PM</time></div>
+<div class="fx-special" style="border-color:rgba(245,197,24,.55);background:linear-gradient(100deg,rgba(245,197,24,.17),rgba(245,197,24,.05))">🏆 GRAND FINAL <time>5:00 – 7:00 PM</time></div>
+<p class="fx-note">The Sponsors Match is planned subject to availability and will be held if possible. Semi-final and final teams will be determined based on the tournament standings.</p>
+</div>
+</section>
+</main>
+<footer class="fx-footer">SBKYM Premier League — Season 4 &nbsp;•&nbsp; © Shree Banaskantha Yuvak Mandal, Pune</footer>
+<script>
+function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+fetch('/api/config').then(r=>r.ok?r.json():{}).then(cfg=>{const map=cfg.teamNames||{};document.querySelectorAll('.fx-team').forEach(el=>{const key=el.textContent.trim();if(map[key])el.innerHTML=esc(map[key])+' <small style="opacity:.7">('+esc(key)+')</small>';});}).catch(()=>{});
+</script>
+</body></html>
