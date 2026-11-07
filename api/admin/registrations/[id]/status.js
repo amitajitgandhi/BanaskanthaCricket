@@ -9,7 +9,7 @@ const VALID_WICKET_KEEPER = ['Yes', 'No'];
 const FIELD_MAP = {
   formNumber: 'form_number', fullName: 'full_name', gotra: 'gotra',
   mobileNumber: 'mobile_number', dob: 'dob', skillset: 'skillset',
-  bowlingArm: 'bowling_arm', bowlingStyle: 'bowling_style', battingStyle: 'batting_style',
+  bowlingArm: 'bowling_arm', bowlingStyle: 'bowling_style', wicketKeeper: 'wicket_keeper', battingStyle: 'batting_style',
   jerseyName: 'jersey_name', jerseyNumber: 'jersey_number',
   jerseySize: 'jersey_size', trackPantSize: 'track_pant_size', cricheroesLink: 'cricheroes_link',
 };
