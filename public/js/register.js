@@ -61,12 +61,20 @@ function extractTxnId(text) {
 
 function setOcrStatus(text, cls) {
   const el = document.getElementById('ocrStatus');
+  if (!el) {
+    console.warn('Registration UI element #ocrStatus is missing:', text);
+    return;
+  }
   el.textContent = text;
   el.className = 'ocr-status' + (cls ? ' ' + cls : '');
 }
 
 function setPhotoStatus(text, cls) {
   const el = document.getElementById('photoStatus');
+  if (!el) {
+    console.warn('Registration UI element #photoStatus is missing:', text);
+    return;
+  }
   el.textContent = text;
   el.className = 'ocr-status' + (cls ? ' ' + cls : '');
 }
@@ -96,6 +104,12 @@ async function runOcr(file) {
 
 function showMsg(text, type) {
   const el = document.getElementById('formMsg');
+  if (!el) {
+    // Do not let a missing message container hide the original submit error.
+    console.error('Registration UI element #formMsg is missing:', text);
+    window.alert(text);
+    return;
+  }
   el.textContent = text;
   el.className = 'msg ' + type;
 }
@@ -105,6 +119,10 @@ function showMsg(text, type) {
 // in `prefix` can ever be interpreted as markup.
 function showSuccessMsg(referenceId) {
   const el = document.getElementById('formMsg');
+  if (!el) {
+    window.alert('Registration submitted successfully. Reference ID: ' + referenceId);
+    return;
+  }
   el.textContent = '';
 
   const lines = [
