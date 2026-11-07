@@ -20,7 +20,7 @@ module.exports = async (req, res) => {
     if (error) throw error;
 
     const columns = [
-      'id', 'created_at', 'form_number', 'full_name', 'gotra', 'mobile_number', 'dob', 'skillset', 'bowling_arm',
+      'id', 'created_at', 'form_number', 'full_name', 'gotra', 'mobile_number', 'dob', 'skillset', 'bowling_style', 'bowling_arm', 'wicket_keeper',
       'batting_style', 'cricheroes_link', 'jersey_name', 'jersey_number', 'jersey_size', 'track_pant_size',
       'photo_path', 'status', 'admin_notes', 'updated_at',
     ];
