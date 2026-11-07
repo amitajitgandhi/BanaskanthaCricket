@@ -1,10 +1,11 @@
 const { getSupabase } = require('../../../../lib/supabase');
 const { rejectUnlessAdmin } = require('../../../../lib/auth');
 const VALID_STATUSES = ['Pending', 'Approved', 'Rejected'];
-const VALID_SKILLSET = ['Batsman', 'Bowler', 'All Rounder', 'Wicket-Keeper'];
-const VALID_BOWLING_ARM = ['Left Arm', 'Right Arm'];
+const VALID_SKILLSET = ['Batsman', 'Bowler', 'All Rounder'];
+const VALID_BOWLING_ARM = ['Left Arm', 'Right Arm', 'Does Not Bowl'];
 const VALID_BOWLING_STYLE = ['Fast Bowler', 'Spinner', 'Does Not Bowl'];
 const VALID_BATTING_STYLE = ['Left Handed', 'Right Handed'];
+const VALID_WICKET_KEEPER = ['Yes', 'No'];
 const FIELD_MAP = {
   formNumber: 'form_number', fullName: 'full_name', gotra: 'gotra',
   mobileNumber: 'mobile_number', dob: 'dob', skillset: 'skillset',
@@ -42,12 +43,13 @@ module.exports = async (req, res) => {
   for (const [key, column] of Object.entries(FIELD_MAP)) {
     if (body[key] === undefined) continue;
     const value = String(body[key] ?? '').trim();
-    if (['formNumber','fullName','gotra','mobileNumber','dob','skillset','bowlingArm','bowlingStyle','battingStyle','jerseyName','jerseyNumber','jerseySize'].includes(key) && !value) {
+    if (['formNumber','fullName','gotra','mobileNumber','dob','skillset','bowlingArm','bowlingStyle','wicketKeeper','battingStyle','jerseyName','jerseyNumber','jerseySize'].includes(key) && !value) {
       return res.status(400).json({ error: key + ' cannot be empty.' });
     }
     if (key === 'trackPantSize' && value && !['28','30','32','34','36','38','40'].includes(value)) return res.status(400).json({ error: 'Please select a valid track pant size.' });
     if (key === 'skillset' && !VALID_SKILLSET.includes(value)) return res.status(400).json({ error: 'Please select a valid skillset.' });
     if (key === 'bowlingArm' && !VALID_BOWLING_ARM.includes(value)) return res.status(400).json({ error: 'Please select a valid bowling arm.' });
+    if (key === 'wicketKeeper' && !VALID_WICKET_KEEPER.includes(value)) return res.status(400).json({ error: 'Please select Yes or No for wicket keeper.' });
     if (key === 'bowlingStyle' && !VALID_BOWLING_STYLE.includes(value)) return res.status(400).json({ error: 'Please select a valid bowling style.' });
     if (key === 'battingStyle' && !VALID_BATTING_STYLE.includes(value)) return res.status(400).json({ error: 'Please select a valid batting style.' });
     if (key === 'dob') {
