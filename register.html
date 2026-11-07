@@ -9,6 +9,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link href="public/css/site-theme.css" rel="stylesheet" />
   <style>
+    .registration-rules{margin:0 0 24px;padding:18px 18px 14px;border:1px solid rgba(245,197,24,.32);border-left:4px solid #f5c518;border-radius:16px;background:linear-gradient(145deg,rgba(245,197,24,.09),rgba(255,255,255,.025));color:var(--text,#f8fafc)}
+    .registration-rules h3{margin:0;color:var(--gold-light,#f5d76e);font:700 1.08rem/1.4 'Space Grotesk',sans-serif}
+    .registration-rules h4{margin:5px 0 13px;color:var(--text,#fff);font:700 .88rem/1.4 'Space Grotesk',sans-serif;letter-spacing:.55px}
+    .registration-rules ul{display:grid;gap:10px;margin:0;padding-left:20px}
+    .registration-rules li{padding-left:3px;color:var(--muted,#cbd5e1);font:400 .88rem/1.6 'Outfit',sans-serif}
+    .registration-rules li::marker{color:var(--gold,#f5c518)}
+    .registration-rules-signoff{margin:15px 0 0;padding-top:12px;border-top:1px solid rgba(245,197,24,.18);color:var(--gold-light,#f5d76e);font:700 .92rem 'Outfit',sans-serif;text-align:right}
+    @media(max-width:480px){.registration-rules{padding:15px 13px 12px}.registration-rules h3{font-size:1rem}.registration-rules li{font-size:.84rem}}
     .age-modal-overlay{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(2,6,15,.78);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
     .age-modal-overlay[hidden]{display:none}
     .age-modal{width:min(100%,420px);overflow:hidden;border:1px solid rgba(245,197,24,.3);border-radius:24px;background:linear-gradient(155deg,#182131 0%,#0b111c 75%);box-shadow:0 24px 80px rgba(0,0,0,.55);color:#f8fafc;text-align:center;animation:ageModalIn .22s ease-out}
@@ -64,6 +72,20 @@
   <div class="panel" id="registrationPanel">
     <h2>Player Details</h2>
     <form id="regForm">
+      <section class="registration-rules" aria-labelledby="registrationRulesTitle">
+        <h3 id="registrationRulesTitle">📌 SBKYM PREMIER LEAGUE – SEASON 4</h3>
+        <h4>IMPORTANT RULES &amp; CONDITIONS</h4>
+        <ul>
+          <li>Participation in SBKYM Season 4 is open only to residents of Banaskantha Visa Oswal Sangh, Pune.</li>
+          <li>The player must have completed 17 years of age.</li>
+          <li>If a player is selected by any team in the auction but later withdraws from the tournament, the registration fee will not be refunded under any circumstances.</li>
+          <li>If a player remains unsold in the auction, the full registration fee will be refunded.</li>
+          <li>The SBKYM Committee and Mandal will not be responsible for any injuries sustained by players during the tournament or practice sessions.</li>
+          <li>The SBKYM Committee reserves the right to make any changes to the tournament rules, schedule or arrangements whenever required.</li>
+          <li>All players are requested to read and understand these rules carefully before registering.</li>
+        </ul>
+        <p class="registration-rules-signoff">🙏 TEAM SBKYM 🏏</p>
+      </section>
       <div class="grid-2">
         <div class="field">
           <label for="formNumber">Form Number *</label>
