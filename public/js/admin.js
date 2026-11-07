@@ -175,12 +175,15 @@ const CONFIRM_COLUMNS = [
   { key: 'skillset', label: 'Skillset',
     getValue: (e) => e.skillset || '', getText: (e) => e.skillset || '',
     renderCell: (e) => escapeHtml(e.skillset) },
-  { key: 'bowling_arm', label: 'Bowling Arm',
-    getValue: (e) => e.bowling_arm || '', getText: (e) => e.bowling_arm || '',
-    renderCell: (e) => escapeHtml(e.bowling_arm) },
   { key: 'bowling_style', label: 'Bowling Style',
     getValue: (e) => e.bowling_style || '', getText: (e) => e.bowling_style || '',
     renderCell: (e) => escapeHtml(e.bowling_style || '—') },
+  { key: 'bowling_arm', label: 'Bowling Arm',
+    getValue: (e) => e.bowling_arm || '', getText: (e) => e.bowling_arm || '',
+    renderCell: (e) => escapeHtml(e.bowling_arm) },
+  { key: 'wicket_keeper', label: 'Wicket Keeper',
+    getValue: (e) => e.wicket_keeper || '', getText: (e) => e.wicket_keeper || '',
+    renderCell: (e) => escapeHtml(e.wicket_keeper || '—') },
   { key: 'batting_style', label: 'Batting Style',
     getValue: (e) => e.batting_style || '', getText: (e) => e.batting_style || '',
     renderCell: (e) => escapeHtml(e.batting_style) },
@@ -471,8 +474,9 @@ function openEditModal(entry) {
   document.getElementById('editMobileNumber').value = entry.mobile_number || '';
   document.getElementById('editDob').value = entry.dob || '';
   document.getElementById('editSkillset').value = entry.skillset || '';
-  document.getElementById('editBowlingArm').value = entry.bowling_arm || '';
   document.getElementById('editBowlingStyle').value = entry.bowling_style || 'Does Not Bowl';
+  document.getElementById('editBowlingArm').value = entry.bowling_arm || 'Does Not Bowl';
+  document.getElementById('editWicketKeeper').value = entry.wicket_keeper || 'No';
   document.getElementById('editBattingStyle').value = entry.batting_style || '';
   document.getElementById('editJerseyName').value = entry.jersey_name || '';
   document.getElementById('editJerseyNumber').value = entry.jersey_number || '';
@@ -500,8 +504,9 @@ async function handleSaveEdit() {
     mobileNumber: document.getElementById('editMobileNumber').value,
     dob: document.getElementById('editDob').value,
     skillset: document.getElementById('editSkillset').value,
-    bowlingArm: document.getElementById('editBowlingArm').value,
     bowlingStyle: document.getElementById('editBowlingStyle').value,
+    bowlingArm: document.getElementById('editBowlingArm').value,
+    wicketKeeper: document.getElementById('editWicketKeeper').value,
     battingStyle: document.getElementById('editBattingStyle').value,
     jerseyName: document.getElementById('editJerseyName').value,
     jerseyNumber: document.getElementById('editJerseyNumber').value,
@@ -579,8 +584,9 @@ const EXPORT_COLUMNS = [
   { key: 'mobile_number', label: 'Mobile' },
   { key: 'dob', label: 'DOB' },
   { key: 'skillset', label: 'Skillset' },
-  { key: 'bowling_arm', label: 'Bowling Arm' },
   { key: 'bowling_style', label: 'Bowling Style' },
+  { key: 'bowling_arm', label: 'Bowling Arm' },
+  { key: 'wicket_keeper', label: 'Wicket Keeper' },
   { key: 'batting_style', label: 'Batting Style' },
   { key: 'jersey_name', label: 'Jersey Name' },
   { key: 'jersey_number', label: 'Jersey Number' },
