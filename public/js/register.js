@@ -257,7 +257,8 @@ async function handleSubmit(e) {
     const result = await res.json();
 
     if (!res.ok) {
-      showMsg(result.error || 'Something went wrong. Please try again.', 'error');
+      const detail = result.diagnostic ? ` Details: ${result.diagnostic}${result.code ? ` (Code: ${result.code})` : ''}` : '';
+      showMsg((result.error || 'Something went wrong. Please try again.') + detail, 'error');
       btn.disabled = false;
       btn.textContent = 'Submit Registration';
       return;
