@@ -9,10 +9,11 @@ function isValidCricheroesLink(url) {
   return !String(url || '').trim() || /^https:\/\/chshare\.link\/player\/[A-Za-z0-9_-]+\/?(\?.*)?$/i.test(String(url || '').trim());
 }
 
-const VALID_SKILLSET = ['Batsman', 'Bowler', 'All Rounder', 'Wicket-Keeper'];
-const VALID_BOWLING_ARM = ['Left Arm', 'Right Arm'];
+const VALID_SKILLSET = ['Batsman', 'Bowler', 'All Rounder'];
+const VALID_BOWLING_ARM = ['Left Arm', 'Right Arm', 'Does Not Bowl'];
 const VALID_BOWLING_STYLE = ['Fast Bowler', 'Spinner', 'Does Not Bowl'];
 const VALID_BATTING_STYLE = ['Left Handed', 'Right Handed'];
+const VALID_WICKET_KEEPER = ['Yes', 'No'];
 
 module.exports = async (req, res) => {
   if (req.method !== 'POST') {
@@ -21,7 +22,7 @@ module.exports = async (req, res) => {
 
   const b = req.body || {};
   const required = [
-    'formNumber', 'fullName', 'gotra', 'mobileNumber', 'dob', 'skillset', 'bowlingArm', 'bowlingStyle', 'battingStyle',
+    'formNumber', 'fullName', 'gotra', 'mobileNumber', 'dob', 'skillset', 'bowlingArm', 'bowlingStyle', 'wicketKeeper', 'battingStyle',
     'photoPath', 'jerseyName', 'jerseyNumber', 'jerseySize', 'trackPantSize',
   ];
   const missing = required.filter((f) => !String(b[f] || '').trim());
@@ -46,6 +47,9 @@ module.exports = async (req, res) => {
   }
   if (!VALID_BOWLING_STYLE.includes(b.bowlingStyle)) {
     return res.status(400).json({ error: 'Please select a valid bowling style.' });
+  }
+  if (!VALID_WICKET_KEEPER.includes(b.wicketKeeper)) {
+    return res.status(400).json({ error: 'Please select whether you are a wicket keeper.' });
   }
   if (!VALID_BATTING_STYLE.includes(b.battingStyle)) {
     return res.status(400).json({ error: 'Please select a valid batting style.' });
@@ -74,6 +78,7 @@ module.exports = async (req, res) => {
         skillset: String(b.skillset).trim(),
         bowling_arm: String(b.bowlingArm).trim(),
         bowling_style: String(b.bowlingStyle).trim(),
+        wicket_keeper: String(b.wicketKeeper).trim(),
         batting_style: String(b.battingStyle).trim(),
         photo_path: String(b.photoPath).trim(),
         cricheroes_link: String(b.cricheroesLink || '').trim() || null,
