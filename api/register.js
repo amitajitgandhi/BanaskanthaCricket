@@ -95,7 +95,19 @@ module.exports = async (req, res) => {
 
     res.status(201).json({ success: true, id: data.id });
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: 'Server error. Please try again.' });
+    console.error('Registration insert failed:', {
+      message: err.message,
+      code: err.code,
+      details: err.details,
+      hint: err.hint,
+    });
+    // Return the database error message temporarily so registration failures
+    // can be diagnosed from the browser without guessing at schema issues.
+    res.status(500).json({
+      error: 'Registration could not be saved.',
+      diagnostic: err.message || 'Unknown database error',
+      code: err.code || null,
+      hint: err.hint || null,
+    });
   }
 };
