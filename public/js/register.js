@@ -163,10 +163,6 @@ async function uploadToBucket(bucket, file) {
   return path;
 }
 
-function isValidCricheroesLink(url) {
-  return !String(url || '').trim() || /^https:\/\/chshare\.link\/player\/[A-Za-z0-9_-]+\/?(\?.*)?$/i.test(String(url || '').trim());
-}
-
 const DOB_CUTOFF = '2009-12-10';
 
 function isEligibleDateOfBirth(dob) {
@@ -223,12 +219,6 @@ async function handleSubmit(e) {
     return;
   }
 
-  const cricHeroesValue = form.cricheroesLink.value.trim();
-  if (cricHeroesValue && !isValidCricheroesLink(cricHeroesValue)) {
-    showMsg('Please enter a valid Cric Heroes link, or leave the field blank.', 'error');
-    return;
-  }
-
   btn.disabled = true;
   btn.textContent = 'Uploading photo…';
 
@@ -254,7 +244,6 @@ async function handleSubmit(e) {
     bowlingArm: form.bowlingArm.value,
     wicketKeeper: form.wicketKeeper.value,
     battingStyle: form.battingStyle.value,
-    cricheroesLink: form.cricheroesLink.value.trim(),
     jerseyName: form.jerseyName.value,
     jerseyNumber: form.jerseyNumber.value,
     jerseySize: form.jerseySize.value,
