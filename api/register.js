@@ -59,11 +59,25 @@ module.exports = async (req, res) => {
 
   try {
     const supabase = getSupabase();
+    const formNumber = String(b.formNumber).trim();
+
+    // Friendly duplicate check; the database unique index is the final
+    // protection against simultaneous submissions.
+    const { data: existing, error: lookupError } = await supabase
+      .from('sbkym_registrations')
+      .select('id')
+      .eq('form_number', formNumber)
+      .limit(1);
+
+    if (lookupError) throw lookupError;
+    if (existing && existing.length) {
+      return res.status(409).json({ error: 'This Form Number is already registered. Please check the number and try again.' });
+    }
 
     const { data, error } = await supabase
       .from('sbkym_registrations')
       .insert({
-        form_number: String(b.formNumber).trim(),
+        form_number: formNumber,
         full_name: String(b.fullName).trim(),
         gotra: String(b.gotra).trim(),
         mobile_number: String(b.mobileNumber).trim(),
@@ -87,6 +101,9 @@ module.exports = async (req, res) => {
 
     res.status(201).json({ success: true, id: data.id });
   } catch (err) {
+    if (err.code === '23505') {
+      return res.status(409).json({ error: 'This Form Number is already registered. Please check the number and try again.' });
+    }
     console.error('Registration insert failed:', {
       message: err.message,
       code: err.code,
