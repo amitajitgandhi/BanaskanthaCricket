@@ -5,10 +5,6 @@ function isValidMobile(mobile) {
   return /^[0-9]{10}$/.test(String(mobile || '').trim());
 }
 
-function isValidCricheroesLink(url) {
-  return !String(url || '').trim() || /^https:\/\/chshare\.link\/player\/[A-Za-z0-9_-]+\/?(\?.*)?$/i.test(String(url || '').trim());
-}
-
 const VALID_SKILLSET = ['Batsman', 'Bowler', 'All Rounder'];
 const VALID_BOWLING_ARM = ['Left Arm', 'Right Arm', 'Does Not Bowl'];
 const VALID_BOWLING_STYLE = ['Fast Bowler', 'Spinner', 'Does Not Bowl'];
@@ -54,9 +50,6 @@ module.exports = async (req, res) => {
   if (!VALID_BATTING_STYLE.includes(b.battingStyle)) {
     return res.status(400).json({ error: 'Please select a valid batting style.' });
   }
-  if (!isValidCricheroesLink(b.cricheroesLink)) {
-    return res.status(400).json({ error: 'Please enter a valid Cric Heroes link, e.g. https://chshare.link/player/nhh1FI' });
-  }
   if (b.confirmCorrect !== true) {
     return res.status(400).json({ error: 'Please confirm your details are correct.' });
   }
@@ -81,7 +74,6 @@ module.exports = async (req, res) => {
         wicket_keeper: String(b.wicketKeeper).trim(),
         batting_style: String(b.battingStyle).trim(),
         photo_path: String(b.photoPath).trim(),
-        cricheroes_link: String(b.cricheroesLink || '').trim() || null,
         jersey_name: String(b.jerseyName).trim(),
         jersey_number: String(b.jerseyNumber).trim(),
         jersey_size: String(b.jerseySize).trim(),
