@@ -128,8 +128,6 @@ function showSuccessMsg(referenceId) {
   const lines = [
     'Registration submitted successfully.',
     'We will review your details and contact you if any discrepancies or clarifications are required.',
-    'If a player remains unsold during the auction, the applicable registration fee will be refunded.',
-    'See you at the auction soon! Stay tuned for more details.',
   ];
 
   lines.forEach((line, index) => {
