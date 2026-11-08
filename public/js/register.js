@@ -221,11 +221,7 @@ async function handleSubmit(e) {
   // enforces uniqueness when the registration is finally inserted.
   const formNumber = form.formNumber.value.trim();
   try {
-    const checkRes = await fetch('/api/check-form-number', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ formNumber }),
-    });
+    const checkRes = await fetch('/api/register?formNumber=' + encodeURIComponent(formNumber));
     const checkResult = await checkRes.json();
     if (!checkRes.ok || checkResult.exists) {
       showMsg(checkResult.error || 'This Form Number is already registered. Please check the number and try again.', 'error');
