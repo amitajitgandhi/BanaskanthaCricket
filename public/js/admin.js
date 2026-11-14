@@ -664,7 +664,7 @@ function handleDownloadExport() {
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = 'clbpl-registrations.csv';
+  a.download = 'SBKYM Registration.csv';
   document.body.appendChild(a);
   a.click();
   a.remove();
