@@ -11,7 +11,7 @@ module.exports = async (req, res) => {
       .select('photo_path').eq('id', id).single();
     if (error || !row || !row.photo_path) return res.status(404).json({ error: 'No photo on file.' });
     const { data, error: signError } = await supabase.storage.from('sbkym-player-photos')
-      .createSignedUrl(row.photo_path, 60);
+      .createSignedUrl(row.photo_path, 604800);
     if (signError) throw signError;
     return res.status(200).json({ url: data.signedUrl });
   } catch (err) {
