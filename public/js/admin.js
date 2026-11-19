@@ -630,7 +630,7 @@ function toggleExportPanel(show) {
   document.getElementById('exportPanel').hidden = !show;
 }
 
-function handleDownloadExport() {
+async function handleDownloadExport() {
   const statusFilter = document.getElementById('exportStatusFilter').value;
   const search = document.getElementById('exportSearchFilter').value.trim().toLowerCase();
   const checkedKeys = Array.from(document.querySelectorAll('#exportColumnsGrid input[type="checkbox"]:checked')).map((cb) => cb.value);
@@ -656,8 +656,30 @@ function handleDownloadExport() {
 
   const columns = EXPORT_COLUMNS.filter((c) => checkedKeys.includes(c.key));
   const lines = [columns.map((c) => csvEscape(c.label)).join(',')];
+  // Resolve stored photo paths to usable signed URLs for the CSV.
+  const photoSelected = checkedKeys.includes('photo_path');
+  const photoUrls = new Map();
+  if (photoSelected) {
+    try {
+      await Promise.all(rows.filter((row) => row.photo_path).map(async (row) => {
+        const response = await fetch(`/api/admin/registrations/${encodeURIComponent(row.id)}/photo`, {
+          headers: authHeaders(),
+        });
+        const result = await response.json();
+        if (!response.ok || !result.url) throw new Error(result.error || 'Could not generate a photo URL.');
+        photoUrls.set(row.id, result.url);
+      }));
+    } catch (err) {
+      alert('Could not prepare photo URLs for the export. ' + (err.message || 'Please try again.'));
+      return;
+    }
+  }
+
   rows.forEach((row) => {
-    lines.push(columns.map((c) => csvEscape(exportValue(row, c.key))).join(','));
+    const values = columns.map((c) => c.key === 'photo_path'
+      ? (photoUrls.get(row.id) || '')
+      : exportValue(row, c.key));
+    lines.push(values.map(csvEscape).join(','));
   });
 
   const blob = new Blob([lines.join('\n')], { type: 'text/csv' });
